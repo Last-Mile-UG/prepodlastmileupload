@@ -1,79 +1,116 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## Local setup
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This project uses [Docker](https://docs.docker.com/install/)
+and [Docker Compose](https://docs.docker.com/compose/install/).
+Ensure you have both installed.
 
-## About Laravel
+#### Setup steps
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**1. .env file deployment**
+Copy `.env.dist` file into `.env` file. Update parameters if needed.
+This will prepare env variables required for installation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**2. Environment setup**
+Run `docker-compose up -d` within project's root directory.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+This will deploy all necessary containers to run application
 
-## Learning Laravel
+**3. Application setup**
+Run `.docker/update.sh` to build all the project's dependencies.
+This will install composer dependencies, runs migrations, clears env,
+builds assets and updates Laravel plugin assets.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**4. Application shutdown**
+To shutdown application and deployed environment run `docker-compose down`
+within project's root directory
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Run application
+After setup is finished your application can be reached from the localhost:
+[http://localhost:8011] - the main application entrypoint.
 
-## Laravel Sponsors
+## Useful scripts
+`.docker` directory contains some useful scripts:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+**Aggregated scripts:**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+- `build-app.sh` will build all the backend deps and run's migrations
+- `update-ide-plugin.sh` will update meta and helpers for Laravel plugin.
 
-## Contributing
+Basically `.docker/update.sh` is the aggregation of these above scripts
+and you should run it each time when updating from `master`.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Proxy scripts:**
 
-## Code of Conduct
+- `composer.sh` Proxy to `composer` executable, you can call with any valid composer arguments and options
+- `artisan.sh` Proxy to Laravel's `artisan` executable, you can call with any valid artisan arguments and options
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Module management
+Laravel is not providing a module management feature by default.
+To utilize advantages of modulear architecture we created a
+simple module manager (`App\Module\ModuleManager`).
 
-## Security Vulnerabilities
+To add a new custom module you need to create directory under `./module` directory (see autoloading section below)
+and place a `[Namespace]\Module` class in the root. We recommend tou to use `src` for code sources and other folders for misc.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+`Module` class can provide several interfaces called `features`. See `App\\Module\\Feature` namespace for reference.
 
-## License
+Also each module should be an instance of Laravel's `ServiceProvider` to be able
+for custom `register` and `boot` actions.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+After you have created your new module register it within `./config/modules.php` config.
+Registering module is the same as for `ZF2`-like projects. Order of modules within config does matter.
+
+#### Modules autoloading
+
+To have your modules structured please settle them into `./module` directory only.
+Each module MUST reside in it's own folder inside the `./module`.
+
+Each module should be `PSR-4` compliant and be register at `./composer.json` file within `psr-4` section.
+Once you have added a new module into `./composer.json` file
+get autoloading files generated via command `.docker/composer.sh dump-autoload`.
+
+## Laravel plugin
+
+To have all the autocompletion advantages with Laravel facades & models you need Laravel plugin installed.
+
+**Installation:**
+
+- Go to Plugins settings
+- Search for `Laravel Plugin`
+- Install it with PHPStorm and reload your IDE
+
+**Usage:**
+
+Run `.docker/update-ide-plugin.sh`
+
+## Application debugging with XDebug
+
+In order to use XDebug setup within app container you should have Docker version `>=18.03-ce`
+because of special hosts forwarding variable `host.docker.internal` become available only with this version.
+
+#### PHPStorm IDE configuration:
+
+**Remote server:**
+
+- Host: `localhost`
+- Port: `8011`
+- Path mappings: `[local project root] > /var/www/app`
+
+**Debug configuration:**
+
+- PHP Web Page
+- Start URL: `/`
+- Server: *choose server defined previously*
+
+Now you are all set and ready to debug application as usual.
+
+## Direct database access
+
+Access to the database can be obtained through the standard DB connection on `localhost` at port `13306`
+
+## Initial data
+
+**Creating first admin:**
+
+Run `.docker/artisan.sh user:create:admin` and follow the instructions.
+Once first user is created you can login into system.
