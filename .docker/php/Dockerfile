@@ -31,7 +31,7 @@ php-mcrypt \
 php-pear \
 php-memcached \
 php-imagick \
-php-xdebug \
+php7.4-xdebug \
 php7.4-dev
 
 COPY ./config/fpm/php.ini /etc/php/7.4/fpm/php.ini
