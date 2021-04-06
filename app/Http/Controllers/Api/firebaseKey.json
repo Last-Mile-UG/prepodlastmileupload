@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "lastmileprovider",
+  "private_key_id": "d74ed2226c4145795a80a683412c5c8211e6d6ac",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDQkPW7oLjaT4wm\nU4w9h8vJ7r2+PUom46qe3l5gKa6NQXdQ7apBtTFI3ZcN4hROTsqNTZxT3HqnteLw\nJqsOyLDpVs0FOiSyPKUI9lSZC7Wrah8Qo+FgFT9lAkUbYb+bJEC3PAaDompmxcEN\nuUtl3M8Io9EzOg+UMAvVFVwgk8o/o3fdt0YNyQzlEjIWD87Q4ZwUA4QfotwmMg5V\nSyvvVn1um6nQsWv3WCGv8nswi/al2RneJl6xT0vT0OnTlUDn5M9SbnS9ZD4DpXd4\nJ9zY6NVfExynSTCT1XWQNqCJAU0pYCZQpNZov9K1m8ea4uvhGYJ1RqqBBp6GGsrK\nGZVTjjfFAgMBAAECggEABXDutD8oa2udWqed1kIbbzB3C0ZCj7qrShs/h4820lEV\nqYsVwMKXH1FGnlJaWMOl9aNDc42iNotgeQbtOgTC1seQsDT43ZyG6rGwedCsI+Vw\nG4lG+TB8t6gkQOdfLg83UAB1JAyB7Z31oCPII4dr8EwDymwWmXVabavxvBjW8yuG\nv/MwnjdSakqzMg1Y+1fZa/uEIz0PsNyQ8wlHb0ZOg71M9/1Pufn+pRRnJNsIxUwb\noDhNnZoPp5T6Bnyi2WBkgq9oc8pMGOM5Nidt3k7S7XbB0j9jxNZSsCyKyUJay+9J\nQYo0yMGQwIrPaKNdQzKD4T86JDaf3u9af5t3uwpEuQKBgQD4IcLbfyl9OEm73+Y5\nwlgQEOQ7ga4C5rEA2j+eOy61glzjhqs35ZCqK+/S5Anl4uDFj3Y1opRrJFFnwS5O\nWh9aikqzd1nY/pS2dgq08tnOaPgWHEunyZ4hHEQAC5HGKAu39WW84ko5rVy4PIGn\nkhdAYOExaycHIMAilKY8z1QYzQKBgQDXLgUs/rRtyBdolfucNxoSMewFUBrQzMXY\nH8nKCWPkNvzmXNkj0W/uihrOJEdtbpQFpnpISlVSm7bRLATmMv/BW1YBjX/DD0Ye\nHvQDqoMumLi5DqVXWF7azFQbVdk6YA8KU2QvIR1xfM0pIT/axwzgmpzjvTstAROe\n0bLHzUH62QKBgQDoCnJ135IGBuh1KCndY9AEnjdBKsF29xMZ7/9EUqYYmaOSJrLh\nX+4MJXBt8FENSUDXn5R1Defr1hfGhlJudTsS6XZ4JCnCkjix9OuIUf67V1CBJM7f\nRt14qz0wKaGWBIcI7hTJMXkmPOgTZon9EdJqou6Uz1a9BLSI4igff+duFQKBgQC/\nzWydo9fOd2muNuqVX2RkzYz1W2bbsXu03vjulxosRXt+F0sSK1Cbjwy/rQTiHYvh\n0Xf0UhXl0ZjOsG8ZhmIEx1ZNggRdKZM1rB+T2Pyfn1Ag3FYzGjlKzJE34HkGGLOv\nX4/QlrL5AuaY/+M8LutilU69jWJfBjOoAIFcqbBjWQKBgEQ339gxamhDoWT7V6mz\nlUShkGoSy4zhAqAXc4gn5yPkhd4G5oAYZIujaOb862X/VLriFXFS3R4IDM9pRo0+\ntbKORALecP3kW9XqvHLf5sTZhWvLatPkfYK3Ns8l2XiUl4oW0/Gdokj5+E37ngFn\nrwKJRAnUks7V/VMXZzoqbJQ7\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-vemd9@lastmileprovider.iam.gserviceaccount.com",
+  "client_id": "102906652217243501550",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-vemd9%40lastmileprovider.iam.gserviceaccount.com"
+}

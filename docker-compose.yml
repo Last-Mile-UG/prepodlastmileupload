@@ -1,0 +1,88 @@
+version: '3'
+services:
+  db:
+    image: mariadb:10.2
+    volumes:
+      - ./storage/docker/db.data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "${DB_DATABASE}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+    networks:
+      default:
+        aliases:
+          - db
+    ports:
+      - "13306:${DB_PORT}"
+    expose:
+      - "${DB_PORT}"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+
+  memcached:
+    image: memcached
+    restart: always
+    expose:
+      - 11211
+    networks:
+      default:
+        aliases:
+          - memcached
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+  nginx:
+    depends_on:
+      - app
+    image: nginx:stable
+    restart: always
+    volumes:
+      - ./.docker/nginx/:/etc/nginx/conf.d
+      - ./:/var/www/app
+    ports:
+      - "8011:80"
+    command: /bin/bash -c "nginx -g 'daemon off;'"
+    networks:
+      default:
+        aliases:
+          - webfront
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+  app:
+    build: ./.docker/php/
+    restart: always
+    depends_on:
+      - db
+      - memcached
+    volumes:
+      - ./:/var/www/app
+    environment:
+      APP_URL: "http://localhost:8011"
+      XDEBUG_CONFIG: "remote_host=host.docker.internal"
+      XDEBUG_MODE: debug
+    networks:
+      default:
+        aliases:
+          - app
+    working_dir: /var/www/app
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+networks:
+  default:
