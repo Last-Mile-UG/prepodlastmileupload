@@ -57,10 +57,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            
+
             'phone' => ['required','max:255'],
             'address' => ['required', 'string', 'max:255'],
-            
+
         ]);
     }
 
@@ -76,7 +76,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            
+
             'phone'=> $data['phone'],
             'address'=>$data['address'],
         ]);
@@ -85,7 +85,7 @@ class RegisterController extends Controller
     }
     public function register(UserStore $request)
     {
-       
+
         $request->validated();
         $data = $request->all();
         extract($data);
@@ -99,17 +99,17 @@ class RegisterController extends Controller
 
         $userdetail = new UserDetail();
         $userdetail->user_id = $user->id;
-        $userdetail->user_name = $name; 
+        $userdetail->user_name = $name;
         $userdetail->phone = $phone;
         $userdetail->address = $address;
         $userdetail->email = $email;
         $userdetail->save();
-        
+
         Auth::loginUsingId($user->id);
 
         $user->sendEmailVerificationNotification();
-        
+
         return redirect()->route('premium');
-    } 
-   
+    }
+
 }

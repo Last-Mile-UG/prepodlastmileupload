@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Hash;
 class PaymentController extends Controller
 {
     public function checkout(Request $request)
-    {        
-        // print_r($request->toArray());	
+    {
+        // print_r($request->toArray());
         // exit;
 
 
@@ -25,11 +25,11 @@ class PaymentController extends Controller
         DB::beginTransaction();
         try
         {
-            
-            $unSubscribeItems = Cart::content()->where('options.subscription',0);        
+
+            $unSubscribeItems = Cart::content()->where('options.subscription',0);
             $unSubscribeItemsSum = array_sum(array_column($unSubscribeItems->toArray(), 'subtotal'));
             $unsubscribeCount = $unSubscribeItems->count();
-            
+
             $amount = Cart::total();
             $cartItems = Cart::content();
             $totalAmount = str_replace(',', '', $amount);
@@ -38,10 +38,10 @@ class PaymentController extends Controller
             if(auth()->check()) //if userlogin
             {
                 $loggedInUser = auth()->user();
-                
+
                 if(!$payment_method_id)
                 {
-                    $userCard = new UserCard();                    
+                    $userCard = new UserCard();
                     $userCard->user_id = auth()->user()->id;
                     $userCard->card_name = $card_name;
                     $userCard->number = $card_number;
@@ -50,24 +50,24 @@ class PaymentController extends Controller
                     $userCard->cvc = $cvc;
                     $userCard->save();
                 }
-                
+
                 $userLocation = new UserLocation();
                 if($address_id)
                 {
                     $userAddress = $userLocation->find($address_id);
                 }
                 else
-                {                    
+                {
                     $userLocation->user_id = auth()->user()->id;
                     $userLocation->title = $address;
                     $userLocation->address = $address_description;
-                    $userLocation->latitude = $latitude;	
+                    $userLocation->latitude = $latitude;
                     $userLocation->longitude = $longitude;
-                    $userLocation->save();                 
-                    $userAddress = $userLocation->find($userLocation->id);                    
+                    $userLocation->save();
+                    $userAddress = $userLocation->find($userLocation->id);
                 }
-               
-            
+
+
                 #region order and orderdetail
                     $order = new Orders();
                     $order->order_id = 'LM-'.time();
@@ -78,9 +78,9 @@ class PaymentController extends Controller
                     $order->latitude = $userAddress->latitude;
                     $order->longitude = $userAddress->longitude;
                     $order->address = $userAddress->address;
-                    $order->tax = 2;  // check 
+                    $order->tax = 2;  // check
                     $order->save();
-                    
+
                     // $vendorIds = [];
                     foreach($cartItems as $item)
                     {
@@ -92,7 +92,7 @@ class PaymentController extends Controller
                         $orderDetail->price = $item->price;
                         $orderDetail->total_price = $item->subtotal;
                         $orderDetail->save();
-                        
+
                         // array_push($vendorIds, $item->options->vendorId);
 
                         if($item->options->subscription == 1){
@@ -100,11 +100,11 @@ class PaymentController extends Controller
                             $variant = $variantModel->find($item->id);
                             $productsModel = new Products();
                             $product = $productsModel->find($variant->product_id);
-        
+
                             $subscription = new ProductSubscriptionRequest();
                             $subscription->product_id = $product->id;
                             $subscription->product_variant_id = $item->id;
-                            
+
                             $subscription->order_id = $order->id;
                             $subscription->order_detail_id = $orderDetail->id;
                             $subscription->user_id = auth()->user()->id;
@@ -114,12 +114,12 @@ class PaymentController extends Controller
                             $subscription->billing_cycle = $item->options->cycle;
                             $subscription->status = 1;
                             $subscription->save();
-                            
+
                             self::subscribe($request->all(), $item->subtotal, $order->id, $loggedInUser, $item->options->cycle);
                         }
                     }
 
-                        // $vendorIds = array_unique($vendorIds);                    
+                        // $vendorIds = array_unique($vendorIds);
                         // foreach($endorIds as $id){
                         //     $vendor = new User();
                         //     $vendor = $vendor->find($id);
@@ -128,13 +128,13 @@ class PaymentController extends Controller
                         //     $orderDetail->where('order_id', $order->id)->get();
                         //     $subject = 'You have a new Order - '.$order->order_id;
                         //     $body = '';
-                        //     $body .='Hello (Mr. / Ms.) '.$vendor->name.', <br>You have received an order set to be delivered: (Set Delivery Time) <br> Please see the below order details: <br>';                        
+                        //     $body .='Hello (Mr. / Ms.) '.$vendor->name.', <br>You have received an order set to be delivered: (Set Delivery Time) <br> Please see the below order details: <br>';
                         //     $body .= 'Order Amount: '.$order->price;
                         //     $body .= 'Order Amount: '.$order->price;
                         //     $body .= 'Order Amount: '.$order->price;
                         //     $body .= 'Order Amount: '.$order->price;
                         //     $body .= 'Shop Now-'.config('app.url');
-    
+
                         //     $mail = new MailController($subject, $body, $vendor->email);
                         //     $mail->basic_email();
 
@@ -152,7 +152,7 @@ class PaymentController extends Controller
                         $transaction->object = json_encode($paymentObject);
                         $transaction->save();
                     }
-                #endregion 
+                #endregion
                 $route = 'home';
 
                 if($loggedInUser->detail->language == 1){
@@ -169,7 +169,7 @@ class PaymentController extends Controller
                 }
                 $mail = new MailController($subject, $body, $loggedInUser->email);
                 $mail->basic_email();
-         
+
             }
             else //Anonymous User Flow
             {
@@ -192,7 +192,7 @@ class PaymentController extends Controller
                 }
                 if(!$payment_method_id)
                 {
-                    $userCard = new UserCard();                    
+                    $userCard = new UserCard();
                     $userCard->user_id = $user->id;
                     $userCard->card_name = $card_name;
                     $userCard->number = $card_number;
@@ -205,10 +205,10 @@ class PaymentController extends Controller
                     $userLocation->user_id = $user->id;
                     $userLocation->title = $address;
                     $userLocation->address = $address_description;
-                    $userLocation->latitude = $latitude; 	
-                    $userLocation->longitude = $longitude; 
+                    $userLocation->latitude = $latitude;
+                    $userLocation->longitude = $longitude;
                     $userLocation->save();
-                    $userAddress = $userLocation->find($userLocation->id);  
+                    $userAddress = $userLocation->find($userLocation->id);
 
                 if($unsubscribeCount > 0){
                 #region order and orderdetail
@@ -244,33 +244,30 @@ class PaymentController extends Controller
                     $transaction = new Transaction();
                     $transaction->user_id = $user->id;
                     $transaction->order_id = $order->id;
-                    $transaction->price = $unSubscribeItemsSum; // what about tax? 
+                    $transaction->price = $unSubscribeItemsSum; // what about tax?
                     $transaction->object = json_encode($paymentObject);
                     $transaction->save();
                 }
-                #endregion  
+                #endregion
                 $route = 'site';
 
-                if($loggedInUser->detail->language == 1){
+                if($user->detail->language == 1){
                     $subject = 'Welcome to the Last Mile Community';
                     $body ='Hello (Mr. / Ms.) '.$user->name.'<br> Welcome to the Last Mile Community. You now have joined the local network of shops and
                     services built for the sustainable shopping. <br> Shop Now as a registered member or join premium membership for free deliveries, increased
                     delivery options and premium benefits from selected shops. <br> Shop Now- ('.config('app.url').') <br> Thank you - Sincerely, <br> The Last Mile Community';
                 }else{
                     $subject = 'Willkommen bei der Last-Mile-Community';
-                    $body ='Hallo (Herr / Frau) '.$loggedInUser->name.'<br> herzlich willkommen in der Last Mile Community. Sie sind nun Teil des lokalen Netzwerks von
+                    $body ='Hallo (Herr / Frau) '.$user->name.'<br> herzlich willkommen in der Last Mile Community. Sie sind nun Teil des lokalen Netzwerks von
                     Geschäften und Dienstleistungen, das für den nachhaltigen Einkauf aufgebaut wurde. <br> Shoppen Sie jetzt als registriertes Mitglied oder werden Sie Premium-Mitglied für kostenlose
                     Lieferungen, erweiterte Lieferoptionen und Premium-Vorteile ausgewählter Shops. <br> Jetzt einkaufen- ('.config('app.url').') <br> Vielen Dank - mit freundlichen Grüßen, <br> Die Last Mile Community';
                 }
-
-                $mail = new MailController($subject, $body, $user->email);
-                $mail->basic_email();
             }
             DB::commit();
             $cart = Cart::destroy();
             return redirect()->route($route)->with(['message' => $message]);
         }
-      catch(Exception $e){ 
+      catch(Exception $e){
             DB::rollback();
             return redirect()->back();
       }
@@ -278,10 +275,10 @@ class PaymentController extends Controller
     private static function unsubscribe($request, $totalAmount)
     {
         extract($request);
-        
+
         $stripe = new \Stripe\StripeClient(config('app.stripe_secret_key'));
         $token = $stripe->tokens->create([
-            'card' => [ 
+            'card' => [
             'number' => $card_number,
             'exp_month' => $exp_month,
             'exp_year' => $exp_year,
@@ -309,7 +306,7 @@ class PaymentController extends Controller
             'exp_year' => $exp_year,
             'cvc' => $cvc,
             ],
-        ]); 
+        ]);
         $plan = $stripe->plans->create([
             'amount' => $amount*100,
             'currency' => 'eur',
@@ -324,8 +321,8 @@ class PaymentController extends Controller
                 "name" => $user->name,
                 "email" => $user->email //$email
             )
-        );        
-        
+        );
+
         $subscription = $stripe->subscriptions->create([
             "customer" => $customer->id,
             "items" => [
@@ -368,8 +365,8 @@ class PaymentController extends Controller
 
     public function premiumCustomer()
     {
-       
-        $cartCount = count(Cart::content());        
+
+        $cartCount = count(Cart::content());
         return view('site.premium', compact(['cartCount']));
     }
     public function basicUser()
@@ -378,7 +375,7 @@ class PaymentController extends Controller
         $record = $model->find(auth()->user()->id);
         $record->customer_type = 1;
         $record->save();
-        return redirect()->route('site');        
+        return redirect()->route('site');
     }
     public function premiumUser(Request $request)
     {
@@ -394,8 +391,8 @@ class PaymentController extends Controller
                     "name" => $cardholder,
                     "email" => auth()->user()->email //$email
                 )
-            );        
-            
+            );
+
             $subscription = $stripe->subscriptions->create([
                 "customer" => $customer->id,
                 "items" => [
@@ -405,13 +402,13 @@ class PaymentController extends Controller
             if($subscription->status == 'incomplete'){
                 return redirect()->back()->withErrors('Failed To Subscribe');
             }
-            
+
             $transaction = new PremiumUserTransacion();
             $transaction->user_id = auth()->user()->id;
             $transaction->price = config('app.premium_customer_package_price');
             $transaction->object = json_encode($subscription);
             $transaction->save();
-            
+
             $model = new User();
             $record = $model->find(auth()->user()->id);
             $record->customer_type = 2;
