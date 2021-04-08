@@ -102,26 +102,26 @@
                                                 <div class="bg-white br-5 shadow-2 p-3">
                                                     <div class="form-row mb-3">
                                                     <div class="form-col col-md-6 mb-3">
-                                                        <input type="text" value="{{ Auth::check() ? $record->detail->fname : ''}}" id="addNewFname" class="form-control  custom" {{Auth::check() ? 'readonly'  : ''}}  placeholder="First Name"> 
+                                                        <input type="text" oninput="validateContactInfo();" value="{{ Auth::check() ? $record->detail->fname : ''}}" id="addNewFname" class="form-control  custom" placeholder="First Name"> 
                                                     </div>
                                                     <div class="form-col col-md-6">
-                                                        <input type="text" value="{{ Auth::check() ? $record->detail->lname : '' }}" id="addNewLname" class="form-control custom" {{Auth::check() ? 'readonly'  : ''}} placeholder="Last Name">
+                                                        <input type="text" oninput="validateContactInfo();" value="{{ Auth::check() ? $record->detail->lname : '' }}" id="addNewLname" class="form-control custom" placeholder="Last Name">
                                                     </div>
                                                     </div>
                                                     <div class="form-col mb-3">
-                                                        <input type="email" value="{{Auth::check() ? $record->email : ''}}" id="addNewEmail" class="form-control  custom" {{Auth::check() ? 'readonly'  : ''}} placeholder="Email">
+                                                        <input type="email" oninput="validateContactInfo();" value="{{Auth::check() ? $record->email : ''}}" id="addNewEmail" class="form-control  custom" placeholder="Email">
                                                     </div>
                                                     <div class="form-col mb-3">
-                                                        <input type="text" value="{{Auth::check() ? $record->detail->phone : '' }}" id="addNewPhone" class="form-control  custom" {{Auth::check() ? 'readonly'  : ''}} placeholder="Phone#">
+                                                        <input type="text" oninput="validateContactInfo();" value="{{Auth::check() ? $record->detail->phone : '' }}" id="addNewPhone" class="form-control  custom" placeholder="Phone#">
                                                     </div>
                                                     <!-- <div class="form-row mb-3">
                                                         <input type="text" class="form-control custom" id="addNewAddress" name="address" value="" placeholder="Address">
                                                     </div>
                                                     <div class="form-col mb-3">
-                                                        <input type="text" class="form-control custom" id="addNewCompany" name="name" value="" placeholder="Address Title">
+                                                        <input type="text" disabled class="form-control custom" id="addNewCompany" name="name" value="" placeholder="Address Title">
                                                     </div> -->
                                                     <div class="form-col mb-3">
-                                                        <button type="button" class="btn btn-black w-100" data-toggle="modal"  data-target="#myMapModal1">{{__('msg.addnewlocations')}}</button>
+                                                        <button type="button" disabled class="btn btn-black w-100" id="addNewLocationBtn" data-toggle="modal"  data-target="#myMapModal1">{{__('msg.addnewlocations')}}</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -151,7 +151,7 @@
                                                                 <div class="form-row">
                                                                     <div class="form-group col-md-12 mt-3 mb-2">
                                                                         <label for="title">{{__('msg.search')}}</label>
-                                                                        <input id="search-txt" class="controls form-control" type="text" placeholder="Enter a location">
+                                                                        <input oninput="validateNewAddressFields();" id="search-txt" class="controls form-control" type="text" placeholder="Enter a location">
                                                                         <!-- <input type="text" class="form-control" name="title" id="searchTextField" onclick="mapInit()" > -->
                                                                     </div>
                                                                 </div>    
@@ -159,11 +159,11 @@
                                                                 <div class="form-row">
                                                                     <div class="form-group col-md-6 mb-3">
                                                                         <label for="title">{{__('msg.addressname')}}</label>
-                                                                        <input type="text" class="form-control" id="addNewCompany" name="name" >
+                                                                        <input oninput="validateNewAddressFields();" type="text" class="form-control" id="addNewCompany" name="name" >
                                                                     </div>
                                                                     <div class="form-group col-md-6 mb-3">
                                                                         <label for="title">{{__('msg.location')}}</label>
-                                                                        <input id="location-address" type="text" class="form-control"  name="address" >
+                                                                        <input oninput="validateNewAddressFields();" id="location-address" type="text" class="form-control"  name="address" >
                                                                     </div>
                                                                     <input type="hidden" id="lat" name="latitude">
                                                                     <input type="hidden" id="long" name="longitude">
@@ -176,7 +176,7 @@
                                                                             <input id="detect-btn" class="btn btn-black w-100 font-14 font-medium" type="button" value="{{__('msg.detectlocation')}}" disabled>
                                                                         </div>
                                                                         <div class="form-group col-md-4 mb-3">
-                                                                            <button type="submit" class="btn btn-black w-100 font-14 font-medium" onClick="getlatlong()"  data-dismiss="modal">{{__('msg.save')}}</button>
+                                                                            <button type="submit" id="new-address-btn" disabled class="btn btn-black w-100 font-14 font-medium" onClick="getlatlong()"  data-dismiss="modal">{{__('msg.save')}}</button>
                                                                         </div>
                                                                 </div>
                                                                 <div id="map-canvas"  style="height: 35vh;  position: relative;"></div>
@@ -206,7 +206,7 @@
                                             @foreach($recordcard as $records)
                                                 <div class="radio  mb-3">
                                                     <label class="m-0">
-                                                        <input id="card-{{$records->id}}" type="radio" data-id="{{$records->id}}" data-year="{{$records->exp_year}}" data-month="{{$records->exp_month}}" data-cvc="{{$records->cvc}}" class="mr-3 payment-radio" name="payment-radio"  value="{{$records->card_name}}">{{$records->card_name}}
+                                                        <input id="card-{{$records->id}}" onchange="validateExistCard();" type="radio" data-id="{{$records->id}}" data-year="{{$records->exp_year}}" data-month="{{$records->exp_month}}" data-cvc="{{$records->cvc}}" class="mr-3 payment-radio" name="payment-radio"  value="{{$records->card_name}}">{{$records->card_name}}
                                                     </label>
                                                     <span class="float-right" id="card-number-{{$records->id}}">{{$records->number}}</span>                                        
                                                 </div>
@@ -239,21 +239,21 @@
                                             <label for="title" class="my-3 mb-2">{{__('msg.CardDetails')}}</label>
                                             <div class="bg-white shadow-2 br-5 p-3">
                                                     <div class="form-col mb-3">
-                                                        <input type="text" oninput="validateCardFields();" class="form-control custom c" id="cardNo" value="" placeholder="{{__('msg.cardnoplaceholder')}}">
+                                                        <input type="text" oninput="validateNewCardFields();" class="form-control custom c" id="cardNo" value="" placeholder="{{__('msg.cardnoplaceholder')}}">
                                                     </div>
                                                     <div class="form-col mb-3">
-                                                        <input type="text" oninput="validateCardFields();" class="form-control custom c" id="cardHolderName" value="" placeholder="{{__('msg.cardholdernameplaceholder')}}">
+                                                        <input type="text" oninput="validateNewCardFields();" class="form-control custom c" id="cardHolderName" value="" placeholder="{{__('msg.cardholdernameplaceholder')}}">
                                                     </div>
                                                     <div class="form-row mb-3">
                                                         <div class="form-col col-md-6">
-                                                            <input type="text" oninput="validateCardFields();" class="form-control custom c" id="expiry" value="" placeholder="{{__('msg.expiryyearplaceholder')}}">
+                                                            <input type="text" oninput="validateNewCardFields();" class="form-control custom c" id="expiry" value="" placeholder="{{__('msg.expiryyearplaceholder')}}">
                                                         </div>
                                                         <div class="form-col col-md-6">
-                                                            <input type="text" oninput="validateCardFields();" class="form-control custom c" id="cvcget" value="" placeholder="CVC">
+                                                            <input type="text" oninput="validateNewCardFields();" class="form-control custom c" id="cvcget" value="" placeholder="CVC">
                                                         </div>
                                                      </div>
                                                 <div class="form-col mb-3">
-                                                <input type="text" oninput="validateCardFields();" class="form-control custom c" id="expiry_month" value="" placeholder="{{__('msg.expirymonthplaceholder')}}">
+                                                <input type="text" oninput="validateNewCardFields();" class="form-control custom c" id="expiry_month" value="" placeholder="{{__('msg.expirymonthplaceholder')}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -422,12 +422,27 @@
 
     <script src="{{ asset('assets/site/js/checkout.js') }}"></script>
     <script>
-    function validateCardFields()
+    function validateNewAddressFields()
+    {
+        var allFieldsHaveValues = $('#search-txt').val() && $('#addNewCompany').val() && $('#location-address').val();
+
+        $("#new-address-btn").prop('disabled', !allFieldsHaveValues);
+    }
+    function validateContactInfo()
+    {
+        var allFieldsHaveValues = $('#addNewFname').val() && $('#addNewLname').val() && $('#addNewEmail').val() && $('#addNewPhone').val();
+        
+        $("#addNewLocationBtn").prop('disabled', !allFieldsHaveValues);
+    }
+    function validateExistCard()
+    {
+        $("#nextmethod_payment").prop('disabled', false);
+    }
+    function validateNewCardFields()
     {
         var allFieldsHaveValues = $('#cardNo:text').val() && $('#cardHolderName').val() && $('#expiry_month').val() && $('#cvcget').val() && $('#expiry').val();
-        if (allFieldsHaveValues) {
-            $("#nextmethod_payment").prop('disabled', false);
-        }
+        
+        $("#nextmethod_payment").prop('disabled', !allFieldsHaveValues);
     }
     function validateDelivery()
     {
@@ -569,10 +584,12 @@
             $("#add-new-delivery-address").on('click',function(){
         $("#existing-address-container").hide();
         $("#new-address-container").show();
+        $("input[name=delivery-radio]").prop('checked', false);
     });
     $("#add-new-card").on('click',function(){
         $("#existing-payment-container").hide();
         $("#new-payment-container").show();
+        $("input[name=payment-radio]").prop('checked', false);
     });
         });
     </script>
