@@ -41,7 +41,7 @@
                                     <label for="title" class="my-3 mb-2">{{__('msg.checkoutmethod')}}</label>
                                     @foreach($recordDelivery as $delivery)
                                     <div class="radio  mb-3">
-                                        <label class="m-0"><input type="radio" data-id="{{$delivery->id}}" value="{{$delivery->title}}" class="mr-3 checkout-radio payment_method" name="checkout-radio">{{$delivery->title}}</label>
+                                        <label class="m-0"><input type="radio" onchange="validateDelivery();" data-id="{{$delivery->id}}" value="{{$delivery->title}}" class="mr-3 checkout-radio payment_method" name="checkout-radio">{{$delivery->title}}</label>
                                         <span class="float-right" id="delivery-{{$delivery->id}}">€{{$delivery->price}}</span>
                                     </div>
                                     @endforeach
@@ -61,7 +61,7 @@
                                     </div>    
                                 </div>
                                 <div class="row mt-4">
-                                    <button class="btn btn-black next-button"  onClick="paymenttype()" id="nextmethod">{{__('msg.next')}}</button>
+                                    <button class="btn btn-black next-button" disabled onClick="paymenttype()" id="nextmethod">{{__('msg.next')}}</button>
                                 </div>
                             </div>
                             <div class="card-1 ml-2">
@@ -74,7 +74,7 @@
                                         @foreach($recordlocation as $location)
                                             <div class="radio mb-3">
                                                 <label class="m-0" for="address" >
-                                                    <input id="address-{{$location->id}}" data-id="{{$location->id}}" type="radio" class="mr-3 delivery-radio" name="delivery-radio"  value="{{$location->title}}">{{$location->title}}
+                                                    <input id="address-{{$location->id}}" onchange="validateDeliveryAddress();" data-id="{{$location->id}}" type="radio" class="mr-3 delivery-radio" name="delivery-radio"  value="{{$location->title}}">{{$location->title}}
                                                 </label>
                                                 <span class="float-right" id="location-address-{{$location->id}}">{{$location->address}}</span>
                                             </div>
@@ -193,7 +193,7 @@
                                 <!--for existing  user (available delivery addresses)-->
                                 <div class="row mt-4">
                                     <button class="btn btn-transparent btn-prev mb-2">{{__('msg.back')}}</button>
-                                    <button class="btn btn-black next-button" onClick="address1()" >{{__('msg.next')}}</button>
+                                    <button class="btn btn-black next-button" disabled id="nextmethod_delivery" onClick="address1()" >{{__('msg.next')}}</button>
                                 </div>
                             </div>
                             <div class="card-1 ml-2">
@@ -226,34 +226,34 @@
                                                <label for="title" class="my-3 mb-2">{{__('msg.alltransactionsecure')}}</label>
                                                 <div class="d-flex flex-wrap">
                                                     <div class="radio  w-100 mr-2 mb-2">
-                                                        <label class="m-0"><input type="radio" id="creadit-card" class="mr-3 checkout-radio cardType" name="cardType"  value="Credit Card">Credit Card{{__('msg.creditcard')}}</label>
+                                                        <label class="m-0"><input type="radio" checked id="creadit-card" class="mr-3 checkout-radio cardType" name="cardType"  value="Credit Card">Credit Card{{__('msg.creditcard')}}</label>
                                                         <i class="fa fa-credit-card float-right"></i>
                                                     </div>
-                                                    <div class="radio w-100 mr-2">
-                                                        <label class="m-0"><input type="radio" id="paypal" class="mr-3 checkout-radio cardType" name="cardType"  value="Paypal">Paypal</label>
-                                                        <i class="fa fa-cc-paypal float-right" aria-hidden="true"></i>
-                                                    </div>
+                                                    <!--<div class="radio w-100 mr-2">-->
+                                                        <!--<label class="m-0"><input type="radio" id="paypal" class="mr-3 checkout-radio cardType" name="cardType"  value="Paypal">Paypal</label>-->
+                                                        <!--<i class="fa fa-cc-paypal float-right" aria-hidden="true"></i>-->
+                                                    <!--</div>-->
                                                 </div>
                                             </div>
                                         <div class="checkout-method mt-3" id="d-c-card">
                                             <label for="title" class="my-3 mb-2">{{__('msg.CardDetails')}}</label>
                                             <div class="bg-white shadow-2 br-5 p-3">
                                                     <div class="form-col mb-3">
-                                                        <input type="text" class="form-control custom c" id="cardNo" value="" placeholder="{{__('msg.cardnoplaceholder')}}">
+                                                        <input type="text" oninput="validateCardFields();" class="form-control custom c" id="cardNo" value="" placeholder="{{__('msg.cardnoplaceholder')}}">
                                                     </div>
                                                     <div class="form-col mb-3">
-                                                        <input type="text" class="form-control custom c" id="cardHolderName" value="" placeholder="{{__('msg.cardholdernameplaceholder')}}">
+                                                        <input type="text" oninput="validateCardFields();" class="form-control custom c" id="cardHolderName" value="" placeholder="{{__('msg.cardholdernameplaceholder')}}">
                                                     </div>
                                                     <div class="form-row mb-3">
                                                         <div class="form-col col-md-6">
-                                                            <input type="text" class="form-control custom c" id="expiry" value="" placeholder="{{__('msg.expiryyearplaceholder')}}">
+                                                            <input type="text" oninput="validateCardFields();" class="form-control custom c" id="expiry" value="" placeholder="{{__('msg.expiryyearplaceholder')}}">
                                                         </div>
                                                         <div class="form-col col-md-6">
-                                                            <input type="text" class="form-control custom c" id="cvcget" value="" placeholder="CVC">
+                                                            <input type="text" oninput="validateCardFields();" class="form-control custom c" id="cvcget" value="" placeholder="CVC">
                                                         </div>
                                                      </div>
                                                 <div class="form-col mb-3">
-                                                <input type="text" class="form-control custom c" id="expiry_month" value="" placeholder="{{__('msg.expirymonthplaceholder')}}">
+                                                <input type="text" oninput="validateCardFields();" class="form-control custom c" id="expiry_month" value="" placeholder="{{__('msg.expirymonthplaceholder')}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -261,7 +261,7 @@
                                 <!--for new/guest  user (add new payment method)-->
                                 <div class="row mt-4">
                                     <button class="btn btn-transparent btn-prev mb-2">{{__('msg.back')}}</button>
-                                    <button class="btn btn-black next-button " onClick="paymentCard()">{{__('msg.next')}}</button>
+                                    <button class="btn btn-black next-button " disabled id="nextmethod_payment" onClick="paymentCard()">{{__('msg.next')}}</button>
                                 </div>
                             </div>
                             <div class="card-1 ml-2">
@@ -422,6 +422,21 @@
 
     <script src="{{ asset('assets/site/js/checkout.js') }}"></script>
     <script>
+    function validateCardFields()
+    {
+        var allFieldsHaveValues = $('#cardNo:text').val() && $('#cardHolderName').val() && $('#expiry_month').val() && $('#cvcget').val() && $('#expiry').val();
+        if (allFieldsHaveValues) {
+            $("#nextmethod_payment").prop('disabled', false);
+        }
+    }
+    function validateDelivery()
+    {
+        $("#nextmethod").prop('disabled', false);
+    }
+    function validateDeliveryAddress()
+    {
+        $("#nextmethod_delivery").prop('disabled', false);
+    }
     //Payment Type
     function paymenttype()
     {
@@ -607,7 +622,9 @@
 					} else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
 						alert("Sorry, geocoder API failed to locate the address.");
 					} else {
-						alert("Sorry, geocoder API failed with an error.");
+						alert("Sorry, geocoder API failed with an error. Check that Search field isn't empty. ");
+						console.error('results', results)
+						console.error('status', status)
 					}
 				});
 			});
@@ -666,6 +683,6 @@ function getlatlong()
     $('#select-lat').val(lat);
     $('#select-long').val(long);
 
-
+    validateDeliveryAddress();
 }
 </script>
