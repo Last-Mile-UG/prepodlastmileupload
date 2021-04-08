@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Exception;
+use Illuminate\Support\Facades\Log;
 use App\{Transaction, Orders, OrderDetail, User, UserCard, UserDetail, UserLocation, ProductSubscriptionRequest, ProductVariant, Products,PremiumUserTransacion};
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Hash;
@@ -269,6 +270,8 @@ class PaymentController extends Controller
         }
       catch(Exception $e){
             DB::rollback();
+            Log::alert($e->getMessage());
+
             return redirect()->back();
       }
     }
