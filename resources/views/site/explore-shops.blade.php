@@ -5,8 +5,7 @@
 @section('content')
 <div class="container">
 
-
-<div class="row">
+<!-- <div class="row">
     <div class="col-md-12 mt-4 mb-3">
     <h3 class="font-medium">Categories</h3>
     </div>
@@ -62,7 +61,7 @@
                 </a>
                 </div>
             </div>
-            <!-- Add Arrows -->
+
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
@@ -124,15 +123,15 @@
                 </a>
                 </div>
             </div>
-            <!-- Add Arrows -->
+            Add Arrows
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
     </div>
-</div>
+</div> -->
 
     <div class="row">
-        <div class="col-md-12 mb-3">
+        <div class="col-md-12 mb-3 mt-4">
             <div class="d-flex d-flex justify-content-between">
                 <h3 class="font-medium">{{__('msg.shopnearheading')}}</h3>
                 <!-- <div class="shops-search-container d-flex">
