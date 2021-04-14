@@ -104,7 +104,7 @@ class CartController extends Controller
         $modelcard = new UserCard();
         $recordcard = $modelcard->where('user_id',auth()->user()->id)->get();
         $modaldelivery =  new DeliveryOption();
-        $recordDelivery =  $modaldelivery->get();
+        $recordDelivery =  $modaldelivery->where('status', 1)->get();
         $items = Cart::content();
         $cartCount = count($items);
         $cartTotal = Cart::total();
@@ -113,7 +113,7 @@ class CartController extends Controller
         else
         {
             $modaldelivery =  new DeliveryOption();
-            $recordDelivery =  $modaldelivery->get();
+            $recordDelivery =  $modaldelivery->where('status', 1)->get();
             $items = Cart::content();
             $cartCount = count($items);
             $cartTotal = Cart::total();
