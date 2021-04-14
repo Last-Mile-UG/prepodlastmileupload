@@ -5,34 +5,25 @@
     @section('content')
     <style>
 
-
-
 .sidenav {
-  height: 100%;
+  display: none;
   width: 0;
-  position: fixed;
   z-index: 1;
   top: 0px;
   right: 0;
   background-color: white;
   transition: 0.5s;
   width:300px;
-  margin-top: -90px;
-  padding-top:20px;
-  
-  
+  padding:20px 0;
 }
 .side-cart {
-    width: 100%;
+  width: 100%;
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
   color: #818181;
   display: block;
   transition: 0.3s;
-  position: absolute;
-  top:230px;
-  height: 100%;
   overflow-y:scroll;
 }
 @media screen and (max-height: 450px) {
@@ -40,7 +31,7 @@
   .sidenav a {font-size: 18px;}
 }
 </style>
-    <div class="container-fuild" style="margin-top:-16px;width:80%">
+    <div class="container-fuild" style="margin-top:-16px;width:100%">
         <div class="row">
             <div class="swiper-container my-3 ">
                 <div class="swiper-wrapper">
@@ -262,11 +253,11 @@
                         </div>
                         
                     </div>
-                    <div class="text-center" style="bottom: 0; position: absolute; margin: 0 09 10px 100px">
+                    <div class="text-center">
                         @if(auth::check())
-                        <a href="{{route('cart.index')}}" class="btn btn-black next-button w-100">{{__('msg.checkoutbtn')}}</a>
+                        <a href="{{route('cart.index')}}" class="btn btn-black next-button">{{__('msg.checkoutbtn')}}</a>
                         @elseif(!auth::check())
-                        <a href="{{route('cart.index')}}" class="btn btn-black next-button w-100" >Checkout</a>
+                        <a href="{{route('cart.index')}}" class="btn btn-black next-button" >Checkout</a>
                         <!-- <a href="#" class="btn btn-black next-button"  >Checkout</a> -->
                         @endif                
                     </div>
@@ -463,6 +454,13 @@
       },
     });
     </script>
+    <script>
+        $(document).ready(function(){
+            if(!!($('#cart-item div').length)) {
+                $('.sidenav').show();
+            }
+        })
+    </script>
     <script>        
         $('body').on('click' , '.add-to-cart-btn', function() {
             id = $(this).attr('data-id');
@@ -541,7 +539,7 @@
                         vendorIds.push(item.options.vendorId)
                     });
                     
-                if(Object.keys(result.items).length > 0){
+                    if(Object.keys(result.items).length > 0){
                         $.each(result.items, function(index, item){
                             var allVendorIds = vendorIds.includes(item.options.vendorId); 
                             html2 +=`<div class="cart-total d-flex flex-column justify-content-between">
@@ -565,9 +563,9 @@
                         })
                         $('#cart-item').html('')
                         $('#cart-item').html(html2)
+                        $('.sidenav').show();
                     }
                 }
-              
             });
             snackbar()
         }  
