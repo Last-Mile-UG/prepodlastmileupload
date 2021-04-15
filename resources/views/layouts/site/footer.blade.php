@@ -250,7 +250,7 @@
            <a href="{{route('terms')}}">{{__('msg.term')}}</a>
 
            <a href="{{route('Impressum')}}" class="pl-3 mr-4">{{__('Impressum')}}</a>
-           <a href="{{route('datenschutz')}}" >{{__('Datenschutzerklärung')}}</a>
+           <a href="{{route('datenschutz')}}" >{{__('msg.privacy')}}</a>
         </div>
         <div class="right d-flex  ml-2">
             <a href="https://www.facebook.com/lastmileug/" class="mr-4">

@@ -23,7 +23,7 @@
                         </div>
                     </div> -->
                     <div class="search-address-field-container d-flex flex-fill">
-                     <input type="text" id="locationInput" class="form-control" placeholder="Enter your address">
+                     <input type="text" id="locationInput" class="form-control" placeholder="{{__('msg.locationInputPlaceholder')}}">
                      <form method="post" id="form-submit" action="{{route('site.explore.shop')}}">
                         @csrf
                         <input type="hidden" name="getLatitude" id="getLatitude">
@@ -65,8 +65,8 @@
                         <div class="dropdown ml-4">
                             <span class="link-item ">{{__('msg.language')}} <img class="dark" src="{{ asset('assets/site/img/icons/down_arrow.png') }}" alt=""> </span>
                             <div class="dropdown-content">
-                            <a class="dropdown-item" href="/local/en">English</a>
-                            <a class="dropdown-item" href="/local/ge">Deutsch</a>
+                            <a class="dropdown-item" href="/local/en">{{__('msg.langEng')}}</a>
+                            <a class="dropdown-item" href="/local/ge">{{__('msg.langDe')}}</a>
                             </div>
                         </div>
                     @else
