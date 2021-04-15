@@ -23,10 +23,15 @@
                         </div>
                     </div> -->
                     <div class="search-address-field-container d-flex flex-fill">
-                     <input id="locationInput" type="text" class="form-control" placeholder="Enter your address">
-                        <button class="btn">
-                        <i class="fa fa-search"></i>
+                     <input type="text" id="locationInput" class="form-control" placeholder="Enter your address">
+                     <form method="post" id="form-submit" action="{{route('site.explore.shop')}}">
+                        @csrf
+                        <input type="hidden" name="getLatitude" id="getLatitude">
+                        <input type="hidden" name="getLongitude" id="getLongitude">
+                        <button class="btn"  id="search-btn" type="submit">
+                        <i class="fa fa-search" style="padding:8px"></i>
                         </button>
+                    </form>
                     </div>
 
                     <div class="top-links d-flex justify-content-center flex-wrap ml-0 ml-sm-0 ml-md-3 ml-lg-3 mr-0 mr-sm-0 mr-md-5 mr-lg-5">
@@ -186,16 +191,32 @@ $('#products_search_box').keyup(function(){
 });
 </script>
 <script>
- /** Change the style **/
- function overStyle(object){
-    object.style.background = '#f5f5f0';
-    // Change some other properties ...
- }
+    /** Change the style **/
+    function overStyle(object){
+        object.style.background = '#f5f5f0';
+        // Change some other properties ...
+    }
 
- /** Restores the style **/
- function outStyle(object){
-    object.style.background = 'white';
-    // Restore the rest ...
- }
+    /** Restores the style **/
+    function outStyle(object){
+        object.style.background = 'white';
+        // Restore the rest ...
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true&amp;key=AIzaSyBR7rrSUi4o118-vGLhDI_f6buJOnZr900&amp;callback=initialize&amp;libraries=places" defer></script>
+
+<script type="text/javascript">
+    function initialize() {
+        var input = document.getElementById('locationInput');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+
+            document.getElementById('getLatitude').value = place.geometry.location.lat();
+            document.getElementById('getLongitude').value = place.geometry.location.lng(); 
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize).style.color = "blue"; 
 </script>
 
