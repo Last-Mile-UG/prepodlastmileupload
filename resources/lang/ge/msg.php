@@ -1,53 +1,53 @@
 <?php
-
-
-return [
+  return [
     //For Header&Footer
     'searchHeader' => '',//What are you looking for?
     'category' => 'Kategorie',
     'items' => 'artikel',
-    'favorites' => '',//Favorites
+    'favorites' => 'Favoriten',
     'login' => 'Anmelden',
     'allcategories' => 'Alle Kategorien',
     'allshop' => 'Alle Läden',
     'language' => 'Sprache',
+    'langEng' => 'Englisch',
+    'langDe' => 'Deutsch',
     'privacy' => 'Datenschutzerklärung',
     'term' => 'AGB',
     'allorders'=>'Alle Bestellungen',
-    'featurebrands' => 'Marken', //
-    'bestselling' => 'Top Seller', //
-    'nearest' => 'in Ihrer Nähe', //
-    'help' => 'Hilfe', //
-    'dashboard' => 'Dashboard', //
-    'logout' => 'Abmelden', //
+    'featurebrands' => 'Marken',
+    'bestselling' => 'Top Seller',
+    'nearest' => 'in Ihrer Nähe',
+    'help' => 'Hilfe',
+    'dashboard' => 'Dashboard',
+    'logout' => 'Abmelden',
     //End Header&Footer
 
     //For FindMe Index Page
     'find' => 'Finden Sie mich',
     'enter' => 'Adresse z.B. Musterstraße 1',
     'search' => 'Suche',
-    'shopnow' => '',//Shop Now
-    'registerbtn'=>'jetzt Registrieren',
-    'joinbtn'=>'Beitreten wie ein Verkäufer',
+    'shopnow' => 'Jetzt einkaufen',
+    'registerbtn'=>'Jetzt Registrieren',
+    'joinbtn'=>'Tritt als Verkäufer bei',
     'getheading' => 'Get it Now, Get it Local',
-    'getpara' => '',//In 4 clicks, Last Mile offers an on-demand delivery service.
-    'getpara2'=>'',//Support your favorite local shops.
+    'getpara' => 'Mit 4 Klicks bietet Last Mile einen On-Demand Lieferdienst.',
+    'getpara2'=>'Unterstütze deine lokalen Lieblingsgeschäfte',
     'buyheading' => 'Kaufen oder Abonnieren in Ihrer Community online',
-    'buypara'=>'',//In 4 clicks, you can now buy or subscribe to products and services from your favorite local stores. Shop now and get it within the hours.
-    'sellheading' => '',//Join our Community
-    'sellpara' => '',//Sell your products or services to everyone around you
-    'deliveryheading' => 'Liefern Sie in Ihrer Community aus',
-    'deliverypara' => '',//Deliver to the Community Make customers happy by picking up and delivering roducts and subscriptions daily
-    'getphoneheading' =>'Jetzt kaufen, auf unserer mobilen App',
-    'getphonepara' =>'',//Get it on your phone soon! Download our application on your smartphone
-    'getintouchheading'=>'Erhalten im berühren',
-    'getintouchpara'=>'',//Join us as a vendor and sell your products and services
+    'buypara'=>'Mit 4 Klicks kannst du jetzt Produkte und Dienstleistungen von deinen lokalen Lieblingsgeschäften kaufen oder abonnieren. Jetzt shoppen und innerhalb von Stunden erhalten',
+    'sellheading' => 'Tritt unserer Community bei',
+    'sellpara' => 'Verkaufe deine Produkte oder Dienstleistungen an alle in deinem Umkreis',
+    'deliveryheading' => 'Lieferung in der Community',
+    'deliverypara' => 'Liefere an die Community. Gewinne die Zufriedenheit der Kunden durch tägliches Abholen und Liefern von Produkten und Abonnements',
+    'getphoneheading' =>'App herunterladen–bald erhältlich',
+    'getphonepara' =>'Bald fürs Handy verfügbar! Lade dir unsere Applikation auf dein Smartphone',
+    'getintouchheading'=>'Kontaktiere uns!',
+    'getintouchpara'=>'Tritt uns als Verkäufer bei und verkaufe deine Produkte und Dienstleistungen',
     'vendor'=>'Verkäufer',
     'name' => 'Name',
     'email'=>'Email',
-    'subject' => 'Gegenstand',
-    'typemessage' => 'Nachricht eingeben',
-    'submit' => 'EINREICHEN',
+    'subject' => 'Betreff',
+    'typemessage' => 'Schreibe deine Nachricht',
+    'submit' => 'Absenden',
     //End FindMe Index Page
 
     //For UserSidebar
@@ -89,23 +89,23 @@ return [
 
     //For Login
     'welcomeback' => 'Willkommen zurück!', //
-    'pleaselogin' => 'zum Fortfahren bitte anmelden', //
+    'pleaselogin' => 'Zum Fortfahren bitte anmelden', //
     'emailaddress' => 'E-Mail Adresse', //
     'enteremail'   => 'E-Mail Adresse eingeben', //
     'password' => 'Passwort', //
     'enterpassword' => 'Passwort eingeben', //
-    'rememberme' => 'Erinnern Sie sich', //
+    'rememberme' => 'Angemeldet bleiben', //
     'login' => 'Anmelden', //
-    'newhere' => 'Hier neu!', //
-    'createaccount' => 'Konto hier erstellen', //
+    'newhere' => 'Neu bei uns?', //
+    'createaccount' => 'Konto erstellen', //
     //End Login
 
     //For Guest
     'login' => 'Anmelden', //
     'orcheck' => 'Oder als Gast auschecken', //
     'loginbtn' => 'Anmelden', //
-    'newhere' => 'Hier neu!', //
-    'createaccount' => 'Konto hier erstellen', //
+    'newhere' => 'Neu bei uns?', //
+    'createaccount' => 'Konto erstellen', //
     'checkout' => 'Als Gast auschecken', //
     //End Guest
 
@@ -173,26 +173,27 @@ return [
     'total' => 'Total', //
     'outstanding' => 'offener Saldo', //
     //End AccountBalance
-//HomeCustomer
-'trackyourorders'=>'Verfolgen Sie Ihre Bestellungen',
-'track'=>'Spur',
-'recentorder'=>'letzte Bestellungen',
-//HomeCustomer
+
+    //HomeCustomer
+    'trackyourorders'=>'Verfolgen Sie Ihre Bestellungen',
+    'track'=>'Spur',
+    'recentorder'=>'letzte Bestellungen',
+    //HomeCustomer
+
     //For Cart Checkout
     'easytpes' =>'Einfache Schritte',
     'checkoutmethod' =>'Checkout-Methode',
     'checkoutbtn'=>'Checkout',
-
-    'next' =>'Nächster',
+    'next' =>'Weiter',
     'cart'=>'Wagen',
     'deliveryaddress' => 'Lieferadresse',
     'deliverydetails' => 'Lieferdetails',
     'paymentmethod' => 'Zahlungsmethode',
-    'itemsincart' => 'Artikel im Warenkorb',
-    'viewitem' => 'Elemente anzeigen',
-    
+    'itemsincart' => 'Artikel in deinem Warenkorb',
+    'viewitem' => 'Artikel ansehen',
+    'total' => 'Summe',
     'back' => 'Zurück',
-    'addnewaddress' => 'Neue Adresse hinzufügen',
+    'addnewaddress' => 'Neue Adresse eingeben',
     'addnewlocations' => 'Neuen Standort hinzufügen',
     'search' => 'Suche',
     'addressname' => 'Adresse Name',
@@ -204,13 +205,13 @@ return [
     'creditcard' => 'Kreditkarte',
     'paypal' => 'Paypal',
     'CardDetails' => 'Kartendetails',
-    'cardnoplaceholder' => 'Karten-Nr',
-    'cardholdernameplaceholder' => 'Name des Karteninhabers',
+    'cardnoplaceholder' => 'Kartennummer',
+    'cardholdernameplaceholder' => 'Karteninhaber',
     'expiryyearplaceholder' => 'Ablaufjahr',
     'cvc' => 'CVC',
     'expirymonthplaceholder' => 'Ablaufmonat', 
     'save' => 'speichern', 
-    'confirmcheckout' => 'Bestätigen Sie die Kaufabwicklung',
+    'confirmcheckout' => 'Checkout bestätigen',
     //End Cart Checkout
 
     //For Message Center Vendor Support
@@ -238,22 +239,22 @@ return [
     'orderlist' => 'BESTELLLISTE', //
     'subscriptionrequest' => 'ABO-ANFRAGEN',//
 
-       //start Admin Sidebar
-       'vendor' => 'Verkäufer',//
-       'addvendor' => 'Verkäufer HINZUFÜGEN',//
-       'vendorlist' => 'VERKÄUFERLISTE',//
-       'addcustomer' => 'KUNDEN HINZUFÜGEN',//
-       'deliveroption' => 'LIEFEROPTIONEN',//
-       'adddeliveryoption' => 'LIEFEROPTIONEN HINZUFÜGEN',//
-       'deliveryoptionlist' => 'LISTE DER LIEFEROPTIONEN',//
-       'allorders' => 'Alle Bestellungen',//
-       'servicefees' => 'SERVICEGEBÜHREN',//
-       'reviews' => 'REZENSIONEN',//
-       'productreviews' =>'PRODUKTREZENSIONEN',//
-       'productvarientreviews' => 'PRODUKT-VARIENTENREZENSIONEN',//
-       'vendorreviews' => 'VENDORREZENSIONEN',//
-       'customerservicerequest' => 'KUNDENDIENSTANFRAGE ',//
-       //end Admin Sidbar
+    //start Admin Sidebar
+    'vendor' => 'Verkäufer',//
+    'addvendor' => 'Verkäufer HINZUFÜGEN',//
+    'vendorlist' => 'VERKÄUFERLISTE',//
+    'addcustomer' => 'KUNDEN HINZUFÜGEN',//
+    'deliveroption' => 'LIEFEROPTIONEN',//
+    'adddeliveryoption' => 'LIEFEROPTIONEN HINZUFÜGEN',//
+    'deliveryoptionlist' => 'LISTE DER LIEFEROPTIONEN',//
+    'allorders' => 'Alle Bestellungen',//
+    'servicefees' => 'SERVICEGEBÜHREN',//
+    'reviews' => 'REZENSIONEN',//
+    'productreviews' =>'PRODUKTREZENSIONEN',//
+    'productvarientreviews' => 'PRODUKT-VARIENTENREZENSIONEN',//
+    'vendorreviews' => 'VENDORREZENSIONEN',//
+    'customerservicerequest' => 'KUNDENDIENSTANFRAGE ',//
+    //end Admin Sidbar
 
     //End VendorPanel Sidebar
     
@@ -401,7 +402,7 @@ return [
     'password' => 'Passwort',//
     'confirmpassword' => 'Passwort bestätigen',//
     'emailaddress' => 'E-Mail Adresse',//
-    'phone'=>'Telefon',//
+    'phone'=>'Telefonnummer',//
     'latitude' => 'Breitengrad',//
     'longitude' => 'Längengrad',//
     'address' => 'Adresse',//
@@ -435,75 +436,73 @@ return [
 
     //End Admin Panel
 
-    // For Help
-    'user'=>'Nutzer',
-'vendor'=>'Verkäufer',
-'driver'=>'Treiber',
-'forusers' => 'Für Kunden ',
-'oneque'=>'Was ist Last Mile?',
-'oneans' => 'Last Mile ist ein On-Demand-Lieferservice, der Ihnen Produkte und Dienstleistungen von lokalen Läden rund um Frankfurt bringt.',
-'twoque'=>'Wann wird Last Mile verfügbar sein?',
-'twoans' =>'Last Mile wird ab dem 24. Februar 2021 in Frankfurt verfügbar sein. Sie können uns auf sozialen Medien für Updates in Echtzeit über die folgenden Accounts folgen:thelastmile.shop',
-'threeque'=>'Wo kann ich Last Mile herunterladen?',
-'threeans'=>'Last Mile wird über den App Store, Google Play und unsere Website www.thelastmile.shop zum Download verfügbar sein.',
-'fourque'=>'Was ist On-Demand-Lieferung? Können wir Lieferungen planen?',
-'fourans'=>'On-Demand-Lieferung gibt Ihnen, unseren Kunden, die Wahl, wo und wann Last Mile Ihre Bestellungen ausliefert. Sie können die Artikel innerhalb von 2 Stunden oder am selben Tag geliefert bekommen.',
-'fiveque'=>'Ist es möglich, ein tägliches, wöchentliches oder monatliches Abonnement für Artikel zu haben?',
-'fiveans'=>'Ja, es ist möglich, ein Abonnement für jeden Artikel zu haben. Sie werden beim Auschecken die Option für ein Abonnement sehen.',
-'sixque'=>'Kann ich Sie bitten, Dinge für mich zu kaufen, die nicht Teil Ihrer Shop-Liste sind?',
-'sixans'=>'Bleiben Sie dran und folgen Sie uns auf unseren Social-Media-Konten, um zu erfahren, wann wir diese Funktion einführen werden.',
-'sevenque'=>'Was ist, wenn ich meine Bestellung ändern möchte?',
-'sevenans'=>' Sie können Ihre Bestellung auf der Bestellseite ändern. Sie können alle Änderungen vornehmen, solange die Bestellung noch nicht bearbeitet oder bezahlt wurde.',
-'eightque'=>'Was ist, wenn der von mir gewünschte Artikel nicht verfügbar ist?',
-'eightans'=>'Wenn der Artikel nicht verfügbar ist, wird er von Ihrer Rechnung entfernt. In einigen Fällen wird eine Alternative angeboten, Sie haben dann die Möglichkeit, diese in Ihren Warenkorb aufzunehmen oder auszuschließen.',
-'nineque'=>'Kann ich meinen Fahrer persönlich kontaktieren?',
-'nineans'=>'Nein, bisher nicht. Ja, bei Beginn der Lieferfahrt können Sie Ihre Bestellungen nachverfolgen oder den Fahrer direkt für weitere Anweisungen kontaktieren.',
-'tenque'=>'Welche Bezahlmethoden sind verfügbar?',
-'tenans'=>'Die derzeit verfügbaren Zahlungsarten sind Paypal und Kreditkarte.',
-'elevenque'=>'Kann ich Ihren Service buchen, aber an eine andere Person geliefert werden?',
-'elevenans'=>'Ja, geben Sie einfach die Adresse des Empfängers als Lieferadresse ein.',
-'tweleveque'=>'Kann ich den Fahrer bitten, verschiedene Artikel aus verschiedenen Geschäften zu kaufen?',
-'tweleveans'=>'Ja, es ist möglich, bei maximal 2 verschiedenen Geschäften gleichzeitig zu bestellen.',
-'thirteenque'=>'Was ist, wenn ich nicht zu Hause bin, um es zu empfangen?',
-'thirteenans'=>'Sie können dem Community Rider Anweisungen geben, wo er die Lieferung abliefern soll, oder einen neuen Liefertermin vereinbaren.',
-'fourteenque'=>'Ist der Service rund um die Uhr verfügbar? Zu welchen Zeiten kann ich den Service nutzen?',
-'fourteenans'=>'Ja, der Service ist rund um die Uhr verfügbar, hängt aber auch von den Geschäftszeiten des Anbieters ab.',
-'fiftheenque'=>'Wie schnell kann ich meine Bestellung erhalten?',
-'fiftheenans'=>'Sie können Ihre Bestellung innerhalb von 2 Stunden erhalten, aber das hängt auch von der Vorlaufzeit des Geschäfts ab.',
-'sixteenque'=>'Wie kann ich meine Bestellung verfolgen?',
-'sixteenans'=>'Ja, Sie können Ihre Bestellungen auf unserer Bestellseite verfolgen.',
+    // For HELP
+    'user'=>'Benutzer',
+    'vendor'=>'Verkäufer',
+    'driver'=>'Fahrer',
+    'forusers' => 'Für benutzer',
+    'oneque'=>'Was ist Last Mile?',
+    'oneans' => 'Last Mile ist ein On-Demand-Lieferdienst, der dir Produkte und Dienstleistungen von lokalen Geschäften in Frankfurt bringt.',
+    'twoque'=>'Ab wann wird Last Mile verfügbar sein?',
+    'twoans' =>'Last Mile wird in Frankfurt ab 24 Februar 2021 verfügbar sein. Folge uns auf Social Media um Updates in Echtzeit zu erhalten:thelastmile.shop',
+    'threeque'=>'Wo kann ich Last Mile herunterladen?',
+    'threeans'=>'Last Mile wird über den App Store, Google Play und unsere Website www.thelastmile.shop zum Download verfügbar sein.',
+    'fourque'=>'Was ist On-Demand-Lieferung? Kann man Lieferungen im Voraus planen?',
+    'fourans'=>'On-Demand-Lieferungen bieten dir, unseren Kunden eine Wahl wohin und wann Last Mile deine Bestellungen liefern soll. Du kannst die Artikel nach bis zu 2 Stunden oder noch am selben Tag erhalten. Du kannst dich auch für eine Planung deiner Lieferungen bestimmen.',
+    'fiveque'=>'Ist es möglich, ein tägliches, wöchentliches oder monatliches Abonnement für Artikel zu haben?',
+    'fiveans'=>'Ja, es ist möglich ein Abo für jeden Artikel zu haben. Du hast beim Checkout die Möglichkeit zu abonnieren.',
+    'sixque'=>'Könnt ihr Dinge für mich kaufen, die nicht Teil eurer Store Liste sind?',
+    'sixans'=>'Folgt unseren Social Media Accounts für Updates über die Einführung dieses Features.',
+    'sevenque'=>'Was wenn ich meine Bestellung ändern möchte?',
+    'sevenans'=>'Du kannst deine Bestellungen auf der Bestellungsseite ändern. Diese Änderungen kannst du solange vornehmen, bis die Bestellung verarbeitet oder bezahlt ist.',
+    'eightque'=>'Was wenn ein angefragter Artikel nicht verfügbar ist?',
+    'eightans'=>'Falls der Artikel nicht verfügbar ist, wird er von deiner Rechnung gestrichen. In manchen Fällen kann eine Alternative angeboten werden, welche du annehmen oder aus deinem Warenkorb entfernen kannst.',
+    'nineque'=>'Kann ich meinen Fahrer persönlich erreichen?',
+    'nineans'=>'Wir arbeiten momentan an diesem Feature. Folge uns für Updates in Echtzeit auf unseren Social Media Accounts.',
+    'tenque'=>'Welche Zahlungsmethoden stehen zur Verfügung?',
+    'tenans'=>'Die derzeit verfügbaren Zahlungsmethoden sind Paypal und Kreditkarte.',
+    'elevenque'=>'Kann ich euren Dienst buchen um an jemand anderen liefern zu lassen?',
+    'elevenans'=>'Ja, benutze einfach die Adresse des Empfängers als Lieferadresse.',
+    'tweleveque'=>'Kann ich den Fahrer darum bitten verschiedene Artikel aus mehreren Geschäften zu kaufen?',
+    'tweleveans'=>'Ja, es ist möglich von maximal zwei Geschäften gleichzeitig zu bestellen.',
+    'thirteenque'=>'Was wenn ich nicht zuhause bin um die Lieferung entgegenzunehmen?',
+    'thirteenans'=>'Du kannst dem Community Fahrer Anweisungen geben wo er die Lieferung hinterlegen soll oder eine andere Lieferzeit vereinbaren.',
+    'fourteenque'=>'Ist der Dienst 24/7 verfügbar? Zu welchen Zeiten kann ich den Dienst nutzen?',
+    'fourteenans'=>'Ja, unser Dienst ist 24/7 verfügbar. Dies hängt allerdings auch von den Geschäftszeiten des Verkäufers ab.',
+    'fiftheenque'=>'Wie schnell kann ich meine Bestellung erhalten?',
+    'fiftheenans'=>'Du kannst deine Bestellung schon nach bis zu 2 Stunden erhalten. Dies hängt allerdings von der Vorlaufzeit des Geschäfts ab.',
+    'sixteenque'=>'Wie kann ich meine Bestellungen verfolgen?',
+    'sixteenans'=>'Ja, du kannst deine Bestellungen auf der Bestellseite verfolgen',
 
-'forvendor'=>'Für Verkäufer',
-'vendoneque'=>'Wie funktioniert der Service?',
-'vendoneans'=>'Jeder Verkäufer hat seine eigene Seite, auf der er seine Produkte oder Dienstleistungen hochladen kann. ',
-'vendtwoque'=>'Wie kann ich teilnehmen?',
-'vendtwoans'=>'Interessierte Verkäufer können ihre Anfragen an info@thelastmile.shop senden.',
-'vendthreeque'=>'Wie sieht der Prozess für Verkäufer aus?',
-'vendthreeans'=>'Von der Einrichtung Ihres Shops bis zur Bereitstellung der richtigen Daten steht Ihnen unser Team zur Seite. Wir bringen Sie in 4 Schritten an Bord. Hier erfahren Sie wie.',
-'step1'=>'Schritt 1: ANMELDEN',
-'step1detail'=>'Melden Sie sich bei unserem Team an und registrieren Sie sich als Last-Mile-Händler. Schicken Sie uns eine E-Mail oder senden Sie alle Anforderungen an info@thelastmile.shop.',
-'step2'=>'Schritt 2: SHOP EINRICHTEN',
-'step2detail'=>'Erhalten Sie Ihre Zugangsdaten und greifen Sie auf Ihren Shop zu. In Ihrem Shop können Sie Ihre Produkte, Öffnungs- und Schließzeiten und weitere Details hochladen und verwalten.',
-'step3'=>'Schritt 3: GET TRAINED',
-'step3detail'=>'Unser Team zeigt Ihnen in einer Demo, wie Sie unsere App und das Dashboard nutzen.',
-'step4'=>'Schritt 4: LIVE gehen',
-'step4details'=>'Ihr Shop wird live geschaltet.',
-'media'=>'Medienanfragen',
-'mediadetail'=>'Für Zitate, Interviews oder andere Medienanfragen senden Sie bitte eine E-Mail an info@thelastmile.shop.',
-'fordriver'=>'Für Fahrer',
-'driveroneque'=>'Was sind die Voraussetzungen, um ein Last-Mile-Fahrer zu werden?',
-'driveroneans'=>'Das können wir vorerst weglassen, bis wir den Vendor-Dampf aufgebaut haben',
-'drivertwoque'=>'Wie kann ich mich als Fahrer bewerben?',
-'drivertwoans'=>'Interessierte Fahrer können uns eine E-Mail an info@thelastmile.shop _____ schicken.',
-// End Help
+    'forvendor'=>'Für Verkäufer',
+    'vendoneque'=>'Wie funktioniert der Dienst?',
+    'vendoneans'=>'Jeder Verkäufer wird eine eigene Seite haben, auf der Produkte und Dienstleistungen hochgeladen werden können.',
+    'vendtwoque'=>'Wie trete ich bei?',
+    'vendtwoans'=>'Interessierte Verkäufer können Ihre Anfragen an info@thelastmile.shop senden.',
+    'vendthreeque'=>'Wie läuft der Verkäuferprozess ab?',
+    'vendthreeans'=>'Vom Aufbau des Shops bis zur richtigen Datenversorgung, wird euch unser Team unterstützen. Wir werden euch in 4 Schritten an Bord holen. So funktioniert’s.',
+    'step1'=>'Schritt 1: REGISTRIEREN',
+    'step1detail'=>'Registriert euch bei unserem Team als Last Mile Verkäufer. Schickt uns eine E-Mail oder sendet alle Vorraussetzungen an info@thelastmile.shop',
+    'step2'=>'Schritt 2: SHOP ENTWERFEN',
+    'step2detail'=>'Holt euch eure Login-Daten und erlangt Zugriff auf euren Shop. Im Shop könnt ihr eure Produkte hochladen und verwalten, Öffnungszeiten hinzufügen und zusätzliche Details zur Verfügung stellen.',
+    'step3'=>'Schritt 3: DURCHLAUFE DAS TRAINING',
+    'step3detail'=>'Du erhältst von unserem Team eine Demo über die Funktionsweise der App und des Dashboards.',
+    'step4'=>'Schritt 4: LIVE GEHEN',
+    'step4details'=>'Dein Shop wird live gehen.',
+    'media'=>'Medienanfragen',
+    'mediadetail'=>'Für Zitate, Interviews oder andere Medienanfragen, kontaktiere bitte info@thelastmile.shop',
 
-// For Perimum
+    'fordriver'=>'Für Fahrer',
+    'driveroneque'=>'Was sind die Voraussetzungen um Last Mile Fahrer zu werden?',
+    'driveroneans'=>'Das können wir vorerst weglassen, bis wir den Vendor-Dampf aufgebaut haben',
+    'drivertwoque'=>'Wie kann ich mich als Fahrer bewerben?',
+    'drivertwoans'=>'Interessierte Fahrer können uns an info@thelastmile.shop eine Anfrage schicken.',
+    // End HELP
 
-'permiumpara'=>'Für nur 8,99 € pro Monat erhalten Sie alle Ihre Lieferungen kostenlos! Mit unserem Premium-Plan genießen Sie exklusive Vorteile und reduzierte Preise für spezielle Produkte in bestimmten Shops. Ihr Premium-Plan-Abonnement wird automatisch einmal zu Beginn des Monats berechnet.  Sie können Ihr Premium-Abonnement jederzeit kündigen, aber der Monat, für den Sie ursprünglich bezahlt haben, wird nicht zurückerstattet und Sie können die Vorteile eines Premium-Plans noch bis zum Ende des Monats genießen.',
-'freepara'=>' Melden Sie sich kostenlos an und lassen Sie sich alles aus Ihren Lieblingsläden vor Ort liefern! Die Lieferkosten variieren je nach den gewählten Läden.Sie können uns auch hier als Premium-Benutzer beitreten. (Link einfügen)'
-// End Perimum
+    // For Perimum
 
-
-]
-
+    'permiumpara'=>'Für nur 8,99 € pro Monat erhalten Sie alle Ihre Lieferungen kostenlos! Mit unserem Premium-Plan genießen Sie exklusive Vorteile und reduzierte Preise für spezielle Produkte in bestimmten Shops. Ihr Premium-Plan-Abonnement wird automatisch einmal zu Beginn des Monats berechnet.  Sie können Ihr Premium-Abonnement jederzeit kündigen, aber der Monat, für den Sie ursprünglich bezahlt haben, wird nicht zurückerstattet und Sie können die Vorteile eines Premium-Plans noch bis zum Ende des Monats genießen.',
+    'freepara'=>' Melden Sie sich kostenlos an und lassen Sie sich alles aus Ihren Lieblingsläden vor Ort liefern! Die Lieferkosten variieren je nach den gewählten Läden.Sie können uns auch hier als Premium-Benutzer beitreten. (Link einfügen)'
+    // End Perimum
+  ]
 ?>

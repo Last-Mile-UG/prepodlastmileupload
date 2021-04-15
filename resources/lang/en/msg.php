@@ -1,16 +1,16 @@
 <?php
-
-
-return [
+  return [
     //for Header&Footer
     'searchHeader' => 'What are you looking for?',
-    'category' => 'CATEGORY',
+    'category' => 'Category',
     'items' =>'items',
     'favorites' => 'Favorites',
     'login' =>'Login/Signup',
     'allcategories' => 'All Categories',
     'allshop' => 'All Shops',
     'language' => 'Language',
+    'langEng' => 'English',
+    'langDe' => 'Deutsch',
     'privacy' => 'Privacy Policy',
     'term' => 'Terms of Use',
     'allorders'=>'All Orders',
@@ -48,7 +48,6 @@ return [
     'subject' => 'Subject',
     'typemessage' => 'Type Message',
     'submit' => 'Submit',
-
     //End FindMe Index Page
 
     //For UserSidebar
@@ -174,6 +173,7 @@ return [
     'total' => 'Total',
     'outstanding' => 'outstanding',
     //End AccountBalance
+
     //HomeCustomer
     'trackyourorders'=>'Track your Orders',
     'track'=>'Track',
@@ -189,7 +189,7 @@ return [
     'deliveryaddress' => 'Delivery Address',
     'deliverydetails' => 'Delivery Details',
     'paymentmethod' => 'Payment Method',
-    'itemsincart' => 'Items in Cart',
+    'itemsincart' => 'Items in your Cart',
     'viewitem' => 'View Items',
     'total' => 'Total',
     'back' => 'Back',
@@ -231,7 +231,6 @@ return [
     'support' => 'Support',
     //End Message Center Vendor Support
 
-
     //ForVendorPanel 
 
     //For VendorPanel and AdminPanel Sidebar
@@ -251,22 +250,23 @@ return [
     'orders' => 'ORDERS',
     'orderlist' => 'ORDER LIST',
     'subscriptionrequest' => 'SUBSCRIPTION REQUESTS',
-      //start Admin Sidebar
-      'vendor' => 'VENDOR',
-      'addvendor' => 'ADD VENDOR',
-      'vendorlist' => 'VENDOR LIST',
-      'addcustomer' => 'ADD CUSTOMER',
-      'deliveroption' => 'DELIVERY OPTIONS',
-      'adddeliveryoption' => 'ADD DELIVERY OPTIONS',
-      'deliveryoptionlist' => 'DELIVERY OPTIONS LIST',
-      'allorders' => 'All Orders',
-      'servicefees' => 'SERVICE FEES',
-      'reviews' => 'REVIEWS',
-      'productreviews' =>'PRODUCT REVIEWS',
-      'productvarientreviews' => 'PRODUCT VAIRENT REVIEWS',
-      'vendorreviews' => 'VENDOR REVIEWS',
-      'customerservicerequest' => 'CUSTOMER SERVICE REQUEST', 
-      //end Admin Sidbar
+
+    //start Admin Sidebar
+    'vendor' => 'VENDOR',
+    'addvendor' => 'ADD VENDOR',
+    'vendorlist' => 'VENDOR LIST',
+    'addcustomer' => 'ADD CUSTOMER',
+    'deliveroption' => 'DELIVERY OPTIONS',
+    'adddeliveryoption' => 'ADD DELIVERY OPTIONS',
+    'deliveryoptionlist' => 'DELIVERY OPTIONS LIST',
+    'allorders' => 'All Orders',
+    'servicefees' => 'SERVICE FEES',
+    'reviews' => 'REVIEWS',
+    'productreviews' =>'PRODUCT REVIEWS',
+    'productvarientreviews' => 'PRODUCT VAIRENT REVIEWS',
+    'vendorreviews' => 'VENDOR REVIEWS',
+    'customerservicerequest' => 'CUSTOMER SERVICE REQUEST', 
+    //end Admin Sidbar
     //End VendorPanel and AdminPanel Sidebar
 
     //For VendorDropDown
@@ -518,79 +518,74 @@ return [
     'getstarted' => 'Get Started',
     //End Admin login page
 
-    
+    //For HELP
+    'user'=>'Users',
+    'vendor'=>'Vendors',
+    'driver'=>'Drivers',
+    'forusers' => 'For Users',
+    'oneque'=>'What is Last Mile?',
+    'oneans' => 'Last Mile is an on-demand delivery service that brings you products and services from local shops around Frankfurt.',
+    'twoque'=>'When will Last Mile be available?',
+    'twoans' =>'Last Mile will be available in Frankfurt beginning 24 February 2021. You can follow us on social media for real time updates through the following accounts:FB, IG (link to be added here)',
+    'threeque'=>'Where can I download Last Mile?',
+    'threeans'=>'Last Mile will be available for download via the App Store, Google Play, and our website:',
+    'fourque'=>'What is on-demand delivery? Can we schedule deliveries?',
+    'fourans'=>'On-demand delivery gives you, our customers a choice to where and when Last Mile will deliver your orders. You can get the items in as fast as 2 hours or same day delivery. You can also opt to schedule your deliveries.',
+    'fiveque'=>'Is it possible to have a subscription on items daily,  weekly or monthly?',
+    'fiveans'=>'Yes, it is possible to have a subscription on each item. You will see upon check out the option to subscribe.',
+    'sixque'=>'Can I ask you to buy things for me that are not part of your store list?',
+    'sixans'=>'Stay tuned and follow us in our social media accounts for updates on when we are launching this feature.',
+    'sevenque'=>'What if I want to change my order?',
+    'sevenans'=>'You may change your order on the orders page. You can make any edits as long as the order has not been processed or paid for.',
+    'eightque'=>'What if the item I asked is not available?',
+    'eightans'=>'If the item is not available, it will then be removed from your bill. In some cases, an alternative will be offered, you will have an option to include or exclude it from your cart.',
+    'nineque'=>'Can I personally contact my driver?',
+    'nineans'=>'We are currently working on this feature. You can follow us on social media for real time updates through the following accounts: FB, IG (link to be added here)',
+    'tenque'=>'What are the payment methods available?',
+    'tenans'=>'The current available payment methods are through Paypal and Credit Card.',
+    'elevenque'=>'Can I book your service but will be delivered to someone else?',
+    'elevenans'=>'Yes, just input the address of the receiver as the delivery address.',
+    'tweleveque'=>'Can I ask the driver to buy different items from different stores?',
+    'tweleveans'=>'Yes, it is possible to order from a maximum of 2 different shops at the same time.',
+    'thirteenque'=>'What if I am not at home to receive it?',
+    'thirteenans'=>'You can give the Community Rider instructions on where to place the delivery or reschedule a delivery time.',
+    'fourteenque'=>'Is the service available 24/7? At what hours can I use the service?',
+    'fourteenans'=>'Yes, our service is available 24/7, but it is also dependent on the Vendor’s business hours.',
+    'fiftheenque'=>'How fast can I receive my order?',
+    'fiftheenans'=>'You can receive your order in as quick as 2 hour but it will also depend on the store’s lead time.',
+    'sixteenque'=>'How can I track my order?',
+    'sixteenans'=>'Yes, you can track your orders at our Orders page',
 
-//For HELP
-'user'=>'User',
-'vendor'=>'Vendor',
-'driver'=>'Driver',
-'forusers' => 'For Users',
-'oneque'=>'What is Last Mile?',
-'oneans' => 'Last Mile is an on-demand delivery service that brings you products and services from local shops around Frankfurt.',
-'twoque'=>'When will Last Mile be available?',
-'twoans' =>'Last Mile will be available in Frankfurt beginning 24 February 2021. You can follow us on social media for real time updates through the following accounts:FB, IG (link to be added here)',
-'threeque'=>'Where can I download Last Mile?',
-'threeans'=>'Last Mile will be available for download via the App Store, Google Play, and our website:',
-'fourque'=>'What is on-demand delivery? Can we schedule deliveries?',
-'fourans'=>'On-demand delivery gives you, our customers a choice to where and when Last Mile will deliver your orders. You can get the items in as fast as 2 hours or same day delivery. You can also opt to schedule your deliveries.',
-'fiveque'=>'Is it possible to have a subscription on items daily,  weekly or monthly?',
-'fiveans'=>'Yes, it is possible to have a subscription on each item. You will see upon check out the option to subscribe.',
-'sixque'=>'Can I ask you to buy things for me that are not part of your store list?',
-'sixans'=>'Stay tuned and follow us in our social media accounts for updates on when we are launching this feature.',
-'sevenque'=>'What if I want to change my order?',
-'sevenans'=>'You may change your order on the orders page. You can make any edits as long as the order has not been processed or paid for.',
-'eightque'=>'What if the item I asked is not available?',
-'eightans'=>'If the item is not available, it will then be removed from your bill. In some cases, an alternative will be offered, you will have an option to include or exclude it from your cart.',
-'nineque'=>'Can I personally contact my driver?8',
-'nineans'=>'We are currently working on this feature. You can follow us on social media for real time updates through the following accounts:FB, IG (link to be added here)',
-'tenque'=>'What are the payment methods available?',
-'tenans'=>'The current available payment methods are through Paypal and Credit Card.',
-'elevenque'=>'Can I book your service but will be delivered to someone else?',
-'elevenans'=>'Yes, just input the address of the receiver as the delivery address.',
-'tweleveque'=>'Can I ask the driver to buy different items from different stores?',
-'tweleveans'=>'Yes, it is possible to order from a maximum of 2 different shops at the same time.',
-'thirteenque'=>'What if I am not at home to receive it?',
-'thirteenans'=>'You can give the Community Rider instructions on where to place the delivery or reschedule a delivery time.',
-'fourteenque'=>'Is the service available 24/7? At what hours can I use the service?',
-'fourteenans'=>'Yes, our service is available 24/7, but it is also dependent on the Vendor’s business hours.',
-'fiftheenque'=>'How fast can I receive my order?',
-'fiftheenans'=>'You can receive your order in as quick as 2 hour but it will also depend on the store’s lead time.',
-'sixteenque'=>'How can I track my order?',
-'sixteenans'=>'Yes, you can track your orders at our Orders page',
+    'forvendor'=>'For Vendors',
+    'vendoneque'=>'How does the service work?',
+    'vendoneans'=>'Each vendor will have their own page where they can upload their products or services.',
+    'vendtwoque'=>'How do I join?',
+    'vendtwoans'=>'Interested vendors can send their inquiries to info@thelastmile.shop',
+    'vendthreeque'=>'What is the vendor process?',
+    'vendthreeans'=>'From setting up your shop to providing you with the right data, our team will be there to support you. We will get you on board in 4 steps. Here is how.',
+    'step1'=>'Step 1: SIGN UP',
+    'step1detail'=>'Sign up and register to be a Last Mile vendor with our team. Send us an email or submit all requirements to info@thelastmile.shop',
+    'step2'=>'Step 2: SET UP SHOP',
+    'step2detail'=>'Get your login details and access your shop. At your shop, you can upload and manage your products, opening and closing times, and additional details.',
+    'step3'=>'Step 3: GET TRAINED',
+    'step3detail'=>'Our team will provide a demo on how to use our app and dashboard.',
+    'step4'=>'Step 4: GO LIVE',
+    'step4details'=>'Your shop will go live.',
+    'media'=>'Media Inquiries',
+    'mediadetail'=>'For quotes, interviews or other media requests, please email info@thelastmile.shop',
 
-'forvendor'=>'For Vendors',
-'vendoneque'=>'How does the service work?',
-'vendoneans'=>'Each vendor will have their own page where they can upload their products or services.',
-'vendtwoque'=>'How do I join?',
-'vendtwoans'=>'Interested vendors can send their inquiries to info@thelastmile.shop',
-'vendthreeque'=>'What is the vendor process?',
-'vendthreeans'=>'From setting up your shop to providing you with the right data, our team will be there to support you. We will get you on board in 4 steps. Here is how.',
-'step1'=>'Step 1: SIGN UP',
-'step1detail'=>'Sign up and register to be a Last Mile vendor with our team. Send us an email or submit all requirements to info@thelastmile.shop',
-'step2'=>'Step 2: SET UP SHOP',
-'step2detail'=>'Get your login details and access your shop. At your shop, you can upload and manage your products, opening and closing times, and additional details.',
-'step3'=>'Step 3: GET TRAINED',
-'step3detail'=>'Our team will provide a demo on how to use our app and dashboard.',
-'step4'=>'Step 4: GO LIVE',
-'step4details'=>'Your shop will go live.',
-'media'=>'Media Inquiries',
-'mediadetail'=>'For quotes, interviews or other media requests, please email info@thelastmile.shop',
-'fordriver'=>'For Drivers',
-'driveroneque'=>'What are the requirements to be a Last Mile Driver?',
-'driveroneans'=>'This we can delay and left out for now until we build up the Vendor steam',
-'drivertwoque'=>'How do I apply as a driver?',
-'drivertwoans'=>'Interested drivers can email us at info@thelastmile.shop',
+    'fordriver'=>'For Drivers',
+    'driveroneque'=>'What are the requirements to be a Last Mile Driver?',
+    'driveroneans'=>'This we can delay and left out for now until we build up the Vendor steam',
+    'drivertwoque'=>'How do I apply as a driver?',
+    'drivertwoans'=>'Interested drivers can email us at info@thelastmile.shop',
+    //End HELP
 
-//End HELP
+    // For Perimum
 
-// For Perimum
-
-'permiumpara'=>'For only €8,99 per month, you can get all your deliveries for free! With our premium plan, enjoy exclusive benefits and reduced prices for special products in certain shops.
-Your premium plan subscription is automatically charged once every beginning of the month.  You may opt out from your premium subscription any time but the month that you have initially paid for will not be refunded and you can still enjoy the benefits of a premium plan until the end of the month.',
-'freepara'=>'Join us for free and get anything from your favourite local shops delivered! Delivery costs varies depending on the chosen stores.You may also join us as premium user here. (include link)',
-// End Perimum
-    
-]
-
-
+    'permiumpara'=>'For only €8,99 per month, you can get all your deliveries for free! With our premium plan, enjoy exclusive benefits and reduced prices for special products in certain shops.
+    Your premium plan subscription is automatically charged once every beginning of the month.  You may opt out from your premium subscription any time but the month that you have initially paid for will not be refunded and you can still enjoy the benefits of a premium plan until the end of the month.',
+    'freepara'=>'Join us for free and get anything from your favourite local shops delivered! Delivery costs varies depending on the chosen stores.You may also join us as premium user here. (include link)',
+    // End Perimum
+  ]
 ?>
