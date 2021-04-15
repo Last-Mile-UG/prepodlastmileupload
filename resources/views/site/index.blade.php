@@ -39,7 +39,7 @@
                     <p class="mb-3">{{__('msg.getpara')}}
                     <br>{{__('msg.getpara2')}}
                     </p>
-                    <a href="{{route('site.explore.shops')}}" class="btn btn-green ">{{__('msg.shopnow')}}</a>
+                    <button id="shopNowBtn" class="btn btn-green" onclick="setLocationFocus()">{{__('msg.shopnow')}}</button>
                 </div>
                 <div class="row">
             <div class="col-md-12">
@@ -288,32 +288,42 @@
 </script> 
 <!--Map Js Start-->
 
+<!--Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+src="https://code.jquery.com/jquery-3.5.1.js"
+integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+crossorigin="anonymous"></script>
+    <!-- Swiper JS -->
 
-    <!--Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-     <script
-    src="https://code.jquery.com/jquery-3.5.1.js"
-    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
-     <!-- Swiper JS -->
 
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
+<!-- Optional JavaScript -->
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
-    <!-- Optional JavaScript -->
+    <script src="{{ asset('assets/site/js/checkout.js') }}"></script>
+    <script>
+// $( document ).ready(function() {
+// document.getElementById("continue").style.visibility = "hidden";
+// });
 
-     <script src="{{ asset('assets/site/js/checkout.js') }}"></script>
-     <script>
-    // $( document ).ready(function() {
-    // document.getElementById("continue").style.visibility = "hidden";
-    // });
+function cont()
+{
+    document.getElementById("continue").style.visibility = "visible";   
+}
+function cont1()
+{
+    document.getElementById("continue").style.visibility = "visible";   
+}
+</script>
 
-    function cont()
-    {
-        document.getElementById("continue").style.visibility = "visible";   
-    }
-    function cont1()
-    {
-        document.getElementById("continue").style.visibility = "visible";   
-    }
-    </script>
+<script>
+  function setLocationFocus() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+
+    $("#locationInput").focus();
+  }
+</script>
