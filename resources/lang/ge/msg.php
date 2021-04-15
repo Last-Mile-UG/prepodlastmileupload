@@ -2,6 +2,7 @@
   return [
     //For Header&Footer
     'searchHeader' => '',//What are you looking for?
+    'locationInputPlaceholder' => 'Gib deine Adresse ein',
     'category' => 'Kategorie',
     'items' => 'artikel',
     'favorites' => 'Favoriten',

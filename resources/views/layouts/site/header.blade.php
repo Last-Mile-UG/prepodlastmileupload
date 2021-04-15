@@ -23,7 +23,7 @@
                         </div>
                     </div> -->
                     <div class="search-address-field-container d-flex flex-fill">
-                     <input type="text" class="form-control" placeholder="Enter your address">
+                     <input type="text" class="form-control" placeholder="{{__('msg.locationInputPlaceholder')}}">
                         <button class="btn">
                         <i class="fa fa-search"></i>
                         </button>
