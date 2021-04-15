@@ -23,7 +23,7 @@
                         </div>
                     </div> -->
                     <div class="search-address-field-container d-flex flex-fill">
-                     <input type="text" class="form-control" placeholder="Enter your address">
+                     <input type="text" class="form-control" placeholder="{{__('msg.locationInputPlaceholder')}}">
                         <button class="btn">
                         <i class="fa fa-search"></i>
                         </button>
@@ -60,8 +60,8 @@
                         <div class="dropdown ml-4">
                             <span class="link-item ">{{__('msg.language')}} <img class="dark" src="{{ asset('assets/site/img/icons/down_arrow.png') }}" alt=""> </span>
                             <div class="dropdown-content">
-                            <a class="dropdown-item" href="/local/en">English</a>
-                            <a class="dropdown-item" href="/local/ge">Deutsch</a>
+                            <a class="dropdown-item" href="/local/en">{{__('msg.langEng')}}</a>
+                            <a class="dropdown-item" href="/local/ge">{{__('msg.langDe')}}</a>
                             </div>
                         </div>
                     @else
