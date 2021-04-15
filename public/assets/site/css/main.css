@@ -2568,6 +2568,11 @@ textarea.complaint-msg:focus {
 }
 /*footer */
 
+/* Google autocomplete popup */
+.pac-container {
+    z-index: 1030 !important;
+}
+
 /*media queries*/
 @media screen and (max-width: 1056px) {
     .nav-scroller {
