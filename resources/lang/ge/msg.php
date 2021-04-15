@@ -30,7 +30,7 @@
     'shopnow' => 'Jetzt einkaufen',
     'registerbtn'=>'Jetzt Registrieren',
     'joinbtn'=>'Tritt als Verkäufer bei',
-    'getheading' => 'Get it Now, Get it Local',
+    'getheading' => 'Lieferung auf Abruf aus deinen Lieblingsläden von Ort',
     'getpara' => 'Mit 4 Klicks bietet Last Mile einen On-Demand Lieferdienst.',
     'getpara2'=>'Unterstütze deine lokalen Lieblingsgeschäfte',
     'buyheading' => 'Kaufen oder Abonnieren in Ihrer Community online',
