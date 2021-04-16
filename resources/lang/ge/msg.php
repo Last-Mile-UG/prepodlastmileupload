@@ -4,7 +4,7 @@
     'searchHeader' => '',//What are you looking for?
     'locationInputPlaceholder' => 'Gib deine Adresse ein',
     'category' => 'Kategorie',
-    'items' => 'artikel',
+    'items' => 'Artikel',
     'favorites' => 'Favoriten',
     'login' => 'Anmelden',
     'allcategories' => 'Alle Kategorien',
@@ -32,7 +32,11 @@
     'joinbtn'=>'Tritt als Verkäufer bei',
     'getheading' => 'Lieferung auf Abruf aus deinen Lieblingsläden von Ort',
     'getpara' => 'Mit 4 Klicks bietet Last Mile einen On-Demand Lieferdienst.',
-    'getpara2'=>'Unterstütze deine lokalen Lieblingsgeschäfte',
+    'getpara2'=>'Unterstütze deine lokalen Lieblingsläden',
+    'howtoinputaddress' => 'Adresse eingeben',
+    'howtogotostore' => 'Laden auswählen',
+    'howtoaddtocart' => 'In den Einkaufswagen',
+    'howtocheckout' => 'Zur Kasse gehen',
     'buyheading' => 'Kaufen oder Abonnieren in Ihrer Community online',
     'buypara'=>'Mit 4 Klicks kannst du jetzt Produkte und Dienstleistungen von deinen lokalen Lieblingsgeschäften kaufen oder abonnieren. Jetzt shoppen und innerhalb von Stunden erhalten',
     'sellheading' => 'Tritt unserer Community bei',
@@ -291,7 +295,7 @@
     'id' => 'ID', //
     'name' => 'Name', //
     'email' => 'E-Mail', //
-    'phone' => 'Telefon', //
+    'phone' => 'Telefonnummer', //
     'image' => 'Bild', //
     'status' => 'Status', //
     'editcategory' => 'Kategorie bearbeiten',
@@ -381,7 +385,7 @@
     'customerdetail' => 'Kunden Detail',//
     'name' => 'Name',//
     'email' => 'E-Mail',//
-    'phone' => '',//Telefon
+    'phone' => 'Telefonnummer',//
     'address' => 'Adresse',//
     'products' => 'Produkte',//
     'quantity' => 'Menge',//

@@ -102,17 +102,17 @@
                                                 <div class="bg-white br-5 shadow-2 p-3">
                                                     <div class="form-row mb-3">
                                                     <div class="form-col col-md-6 mb-3">
-                                                        <input type="text" oninput="validateContactInfo();" value="{{ Auth::check() ? $record->detail->fname : ''}}" id="addNewFname" class="form-control  custom" placeholder="First Name"> 
+                                                        <input type="text" oninput="validateContactInfo();" value="{{ Auth::check() ? $record->detail->fname : ''}}" id="addNewFname" class="form-control  custom" placeholder="{{__('msg.firstname')}}"> 
                                                     </div>
                                                     <div class="form-col col-md-6">
-                                                        <input type="text" oninput="validateContactInfo();" value="{{ Auth::check() ? $record->detail->lname : '' }}" id="addNewLname" class="form-control custom" placeholder="Last Name">
+                                                        <input type="text" oninput="validateContactInfo();" value="{{ Auth::check() ? $record->detail->lname : '' }}" id="addNewLname" class="form-control custom" placeholder="{{__('msg.lastname')}}">
                                                     </div>
                                                     </div>
                                                     <div class="form-col mb-3">
                                                         <input type="email" oninput="validateContactInfo();" value="{{Auth::check() ? $record->email : ''}}" id="addNewEmail" class="form-control  custom" placeholder="Email">
                                                     </div>
                                                     <div class="form-col mb-3">
-                                                        <input type="text" oninput="validateContactInfo();" value="{{Auth::check() ? $record->detail->phone : '' }}" id="addNewPhone" class="form-control  custom" placeholder="Phone#">
+                                                        <input type="text" oninput="validateContactInfo();" value="{{Auth::check() ? $record->detail->phone : '' }}" id="addNewPhone" class="form-control  custom" placeholder="{{__('msg.phone')}}">
                                                     </div>
                                                     <!-- <div class="form-row mb-3">
                                                         <input type="text" class="form-control custom" id="addNewAddress" name="address" value="" placeholder="Address">
@@ -226,7 +226,7 @@
                                                <label for="title" class="my-3 mb-2">{{__('msg.alltransactionsecure')}}</label>
                                                 <div class="d-flex flex-wrap">
                                                     <div class="radio  w-100 mr-2 mb-2">
-                                                        <label class="m-0"><input type="radio" checked id="creadit-card" class="mr-3 checkout-radio cardType" name="cardType"  value="Credit Card">Credit Card{{__('msg.creditcard')}}</label>
+                                                        <label class="m-0"><input type="radio" checked id="creadit-card" class="mr-3 checkout-radio cardType" name="cardType"  value="Credit Card">{{__('msg.creditcard')}}</label>
                                                         <i class="fa fa-credit-card float-right"></i>
                                                     </div>
                                                     <!--<div class="radio w-100 mr-2">-->
