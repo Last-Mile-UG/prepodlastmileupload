@@ -594,7 +594,6 @@
         });
     </script>
 
-    <!--Map Js Start-->
     <script type="text/javascript">
 		/*
 		 * Google Maps: Latitude-Longitude Finder Tool
@@ -607,7 +606,7 @@
             zoom: 13,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-        
+
         // initialize marker
         var marker = new google.maps.Marker({
             position: map.getCenter(),
