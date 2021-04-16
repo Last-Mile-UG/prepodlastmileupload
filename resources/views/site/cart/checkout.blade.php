@@ -165,8 +165,8 @@
                                                                         <label for="title">{{__('msg.location')}}</label>
                                                                         <input oninput="validateNewAddressFields();" id="location-address" type="text" class="form-control"  name="address" >
                                                                     </div>
-                                                                    <input type="hidden" id="lat" name="latitude">
-                                                                    <input type="hidden" id="long" name="longitude">
+                                                                    <input type="hidden" id="latitude" name="latitude">
+                                                                    <input type="hidden" id="longitude" name="longitude">
                                                                 </div>
                                                                 <div class="form-row">    
                                                                         <div class="form-group col-md-4 mb-3">
@@ -593,111 +593,124 @@
     });
         });
     </script>
-<!--Map Js Start-->
-<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true&amp;key=AIzaSyBR7rrSUi4o118-vGLhDI_f6buJOnZr900&amp;callback=loadmap" defer></script> -->
-<script type="text/javascript">
+
+    <!--Map Js Start-->
+    <script type="text/javascript">
 		/*
 		 * Google Maps: Latitude-Longitude Finder Tool
 		 * https://salman-w.blogspot.com/2009/03/latitude-longitude-finder-tool.html
 		 */
-		function loadmap() {
-            // Commented for fix address update on checkout process
+    function loadmap() {
+        // initialize map
+        var map = new google.maps.Map(document.getElementById("map-canvas"), {
+            center: new google.maps.LatLng(33.808678, -117.918921),
+            zoom: 13,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        
+        // initialize marker
+        var marker = new google.maps.Marker({
+            position: map.getCenter(),
+            draggable: true,
+            map: map
 
-			// initialize map
-			// var map = new google.maps.Map(document.getElementById("map-canvas"), {
-			// 	center: new google.maps.LatLng(33.808678, -117.918921),
-			// 	zoom: 13,
-			// 	mapTypeId: google.maps.MapTypeId.ROADMAP
-			// });
-			// // initialize marker
-			// var marker = new google.maps.Marker({
-			// 	position: map.getCenter(),
-			// 	draggable: true,
-			// 	map: map
+        });
 
-			// });
-			// // intercept map and marker movements
-			// google.maps.event.addListener(map, "idle", function() {
-			// 	marker.setPosition(map.getCenter());
-			// 	var longitude = document.getElementById("latitude").value = map.getCenter().lat().toFixed(6);
-            //     var latitude = document.getElementById("latitude").value = map.getCenter().lng().toFixed(6);
-            // });
-			// google.maps.event.addListener(marker, "dragend", function(mapEvent) {
-			// 	map.panTo(mapEvent.latLng);
-			// });
+        // initialize geocoder
+        var geocoder = new google.maps.Geocoder();
 
-            // initialize geocoder
-			var geocoder = new google.maps.Geocoder();
-			google.maps.event.addDomListener(document.getElementById("search-btn"), "click", function() {
-				geocoder.geocode({ address: document.getElementById("search-txt").value }, function(results, status) {
-					if (status == google.maps.GeocoderStatus.OK) {
-						var result = results[0];
-						document.getElementById("search-txt").value = result.formatted_address;
-                        document.getElementById("location-address").value = result.formatted_address;
-						// if (result.geometry.viewport) {
-						// 	map.fitBounds(result.geometry.viewport);
-						// } else {
-						// 	map.setCenter(result.geometry.location);
-						// }
-					} else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
-						alert("Sorry, geocoder API failed to locate the address.");
-					} else {
-						alert("Sorry, geocoder API failed with an error. Check that Search field isn't empty. ");
-						console.error('results', results)
-						console.error('status', status)
-					}
-				});
-			});
-			google.maps.event.addDomListener(document.getElementById("search-txt"), "keydown", function(domEvent) {
-				if (domEvent.which === 13 || domEvent.keyCode === 13) {
-				var b=google.maps.event.trigger(document.getElementById("search-btn"), "click");
-                console.log(b)
-				}
-			});
-			// initialize geolocation
-			if (navigator.geolocation) {
-				google.maps.event.addDomListener(document.getElementById("detect-btn"), "click", function() {
-					navigator.geolocation.getCurrentPosition(function(position) {
-				    map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-                    
-                    //get current address
-                    var google_map_pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                    var google_maps_geocoder = new google.maps.Geocoder();
+        // intercept map and marker movements
+        google.maps.event.addListener(map, "idle", function() {
+            marker.setPosition(map.getCenter());
+            var longitude = document.getElementById("longitude").value = map.getCenter().lat().toFixed(6);
+            var latitude = document.getElementById("latitude").value = map.getCenter().lng().toFixed(6);
+        });
 
-                    google_maps_geocoder.geocode(
-                            { 'latLng': google_map_pos },
-                            function( results, status ) {
-                                if ( status == google.maps.GeocoderStatus.OK && results[0] ) {
-                                    currentlocation = results[0].formatted_address;
-                                    document.getElementById("location-address").value = results[0].formatted_address;
-                                }
+        google.maps.event.addListener(marker, "dragend", function(mapEvent) {
+            geocoder.geocode({
+                location: mapEvent.latLng
+            }, function(result) {
+                if (result && result.length > 0) {
+                    document.getElementById("search-txt").value = result[0].formatted_address;
+                    document.getElementById("location-address").value = result[0].formatted_address;
+                } else {
+                alert('Cannot determine address at this location.');
+                }
+            })
+            map.panTo(mapEvent.latLng);
+        });
+
+        google.maps.event.addDomListener(document.getElementById("search-btn"), "click", function() {
+            geocoder.geocode({ address: document.getElementById("search-txt").value }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var result = results[0];
+                    document.getElementById("search-txt").value = result.formatted_address;
+                    document.getElementById("location-address").value = result.formatted_address;
+                    if (result.geometry.viewport) {
+                        map.fitBounds(result.geometry.viewport);
+                    } else {
+                        map.setCenter(result.geometry.location);
+                    }
+                } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+                    alert("Sorry, geocoder API failed to locate the address.");
+                } else {
+                    alert("Sorry, geocoder API failed with an error. Check that Search field isn't empty. ");
+                    console.error('results', results)
+                    console.error('status', status)
+                }
+            });
+        });
+        google.maps.event.addDomListener(document.getElementById("search-txt"), "keydown", function(domEvent) {
+            if (domEvent.which === 13 || domEvent.keyCode === 13) {
+            var b=google.maps.event.trigger(document.getElementById("search-btn"), "click");
+            console.log(b)
+            }
+        });
+        // initialize geolocation
+        if (navigator.geolocation) {
+            google.maps.event.addDomListener(document.getElementById("detect-btn"), "click", function() {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+                
+                //get current address
+                var google_map_pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                var google_maps_geocoder = new google.maps.Geocoder();
+
+                google_maps_geocoder.geocode(
+                        { 'latLng': google_map_pos },
+                        function( results, status ) {
+                            if ( status == google.maps.GeocoderStatus.OK && results[0] ) {
+                                currentlocation = results[0].formatted_address;
+                                document.getElementById("location-address").value = results[0].formatted_address;
                             }
-                        );
+                        }
+                    );
 
 
-					}
-                    , function() {
-                        alert("Sorry, geolocation API failed to detect your location.");
-					});
-                    
-				});
-				document.getElementById("detect-btn").disabled = false;
-			}
-		}
-        $(document).ready(loadmap);
+                }
+                , function() {
+                    alert("Sorry, geolocation API failed to detect your location.");
+                });
+                
+            });
+            document.getElementById("detect-btn").disabled = false;
+        }
+    }
 
-        function getlatlong() { 
+    $(document).ready(loadmap);
+
+    function getlatlong() { 
         addnewaddress = $('#location-address:text').val();
         console.log(addnewaddress)
         addnewcompany =  $('#addNewCompany:text').val();
         console.log(addnewcompany)
         $('.address_name').html(addnewcompany);
         $('.address-description-span').html(addnewaddress);
-        address = $('#lat').val();
+        address = $('#latitude').val();
         
-        addresslocation = $('#long').val();
-        lat = $('#lat').val();
-        long = $('#long').val();
+        addresslocation = $('#longitude').val();
+        lat = $('#latituse').val();
+        long = $('#longitude').val();
         $('#select-lat').val(lat);
         $('#select-long').val(long);
 
