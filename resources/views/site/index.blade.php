@@ -47,19 +47,19 @@
                     <div class="steps d-flex flex-wrap justify-content-center align-items-center mb-4 mt-4">
                         <div class="step one d-flex flex-column justify-content-center align-items-center mr-0 mr-md-3 mb-2">
                             <img src="{{ asset('assets/site/img/icons/landing_page/map-marker.svg') }}" alt="">
-                            <span>INPUT ADDRESS</span>
+                            <span>{{__('msg.howtoinputaddress')}}</span>
                         </div>
                         <div class="step two d-flex flex-column justify-content-center align-items-center mr-0 mr-md-3 mb-2">
                             <img src="{{ asset('assets/site/img/icons/landing_page/store.svg') }}" alt="">
-                            <span>GO TO STORE</span>
+                            <span>{{__('msg.howtogotostore')}}</span>
                         </div>
                         <div class="step three d-flex flex-column justify-content-center align-items-center mr-0 mr-md-3 mb-2">
                             <img src="{{ asset('assets/site/img/icons/landing_page/cart.svg') }}" alt="">
-                            <span>ADD TO CART</span>
+                            <span>{{__('msg.howtoaddtocart')}}</span>
                         </div>
                         <div class="step four d-flex flex-column justify-content-center align-items-center mr-0 mr-md-3 mb-2">
                             <img src="{{ asset('assets/site/img/icons/landing_page/checkout.svg') }}" alt="">
-                            <span>CHECKOUT</span>
+                            <span>{{__('msg.howtocheckout')}}</span>
                         </div>
                     </div>  
                 </div>

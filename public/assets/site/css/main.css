@@ -1371,13 +1371,18 @@ a:link {
     font-size: 15px;
     font-weight: 500;
     transition: all ease-out 120ms;
+    padding: 12px;
+}
+.section.easy-steps .step span {
+    text-transform: uppercase;
+    flex: 2;
 }
 .section.easy-steps .step:hover {
     box-shadow: 4px 4px 24px #dfdfdf;
 }
 .section.easy-steps .step img {
     max-width: 30px;
-    margin-bottom: 28px;
+    flex: 3;
 }
 .section.easy-steps .step.one {
     background: white;
