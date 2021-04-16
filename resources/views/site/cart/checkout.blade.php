@@ -594,36 +594,39 @@
         });
     </script>
 <!--Map Js Start-->
-<script src="https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true&amp;key=AIzaSyCF8vXfHR8LRRMvD9N4zPIdawHbI6tJQjM&amp;callback=loadmap" defer></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true&amp;key=AIzaSyBR7rrSUi4o118-vGLhDI_f6buJOnZr900&amp;callback=loadmap" defer></script> -->
 <script type="text/javascript">
 		/*
 		 * Google Maps: Latitude-Longitude Finder Tool
 		 * https://salman-w.blogspot.com/2009/03/latitude-longitude-finder-tool.html
 		 */
 		function loadmap() {
-			// initialize map
-			var map = new google.maps.Map(document.getElementById("map-canvas"), {
-				center: new google.maps.LatLng(33.808678, -117.918921),
-				zoom: 13,
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-			});
-			// initialize marker
-			var marker = new google.maps.Marker({
-				position: map.getCenter(),
-				draggable: true,
-				map: map
+            // Commented for fix address update on checkout process
 
-			});
-			// intercept map and marker movements
-			google.maps.event.addListener(map, "idle", function() {
-				marker.setPosition(map.getCenter());
-				var longitude = document.getElementById("lat").value = map.getCenter().lat().toFixed(6);
-                var latitude = document.getElementById("long").value = map.getCenter().lng().toFixed(6);
-            });
-			google.maps.event.addListener(marker, "dragend", function(mapEvent) {
-				map.panTo(mapEvent.latLng);
-			});
-			// initialize geocoder
+			// initialize map
+			// var map = new google.maps.Map(document.getElementById("map-canvas"), {
+			// 	center: new google.maps.LatLng(33.808678, -117.918921),
+			// 	zoom: 13,
+			// 	mapTypeId: google.maps.MapTypeId.ROADMAP
+			// });
+			// // initialize marker
+			// var marker = new google.maps.Marker({
+			// 	position: map.getCenter(),
+			// 	draggable: true,
+			// 	map: map
+
+			// });
+			// // intercept map and marker movements
+			// google.maps.event.addListener(map, "idle", function() {
+			// 	marker.setPosition(map.getCenter());
+			// 	var longitude = document.getElementById("latitude").value = map.getCenter().lat().toFixed(6);
+            //     var latitude = document.getElementById("latitude").value = map.getCenter().lng().toFixed(6);
+            // });
+			// google.maps.event.addListener(marker, "dragend", function(mapEvent) {
+			// 	map.panTo(mapEvent.latLng);
+			// });
+
+            // initialize geocoder
 			var geocoder = new google.maps.Geocoder();
 			google.maps.event.addDomListener(document.getElementById("search-btn"), "click", function() {
 				geocoder.geocode({ address: document.getElementById("search-txt").value }, function(results, status) {
@@ -631,11 +634,11 @@
 						var result = results[0];
 						document.getElementById("search-txt").value = result.formatted_address;
                         document.getElementById("location-address").value = result.formatted_address;
-						if (result.geometry.viewport) {
-							map.fitBounds(result.geometry.viewport);
-						} else {
-							map.setCenter(result.geometry.location);
-						}
+						// if (result.geometry.viewport) {
+						// 	map.fitBounds(result.geometry.viewport);
+						// } else {
+						// 	map.setCenter(result.geometry.location);
+						// }
 					} else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
 						alert("Sorry, geocoder API failed to locate the address.");
 					} else {
@@ -681,25 +684,23 @@
 				document.getElementById("detect-btn").disabled = false;
 			}
 		}
-</script>
-<!--Map Js Start-->
-<script>
-function getlatlong()
-{ 
-    addnewaddress = $('#location-address:text').val();
-    console.log(addnewaddress)
-    addnewcompany =  $('#addNewCompany:text').val();
-    console.log(addnewcompany)
-    $('.address_name').html(addnewcompany);
-    $('.address-description-span').html(addnewaddress);
-    address = $('#lat').val();
-    
-    addresslocation = $('#long').val();
-    lat = $('#lat').val();
-    long = $('#long').val();
-    $('#select-lat').val(lat);
-    $('#select-long').val(long);
+        $(document).ready(loadmap);
 
-    validateDeliveryAddress();
-}
+        function getlatlong() { 
+        addnewaddress = $('#location-address:text').val();
+        console.log(addnewaddress)
+        addnewcompany =  $('#addNewCompany:text').val();
+        console.log(addnewcompany)
+        $('.address_name').html(addnewcompany);
+        $('.address-description-span').html(addnewaddress);
+        address = $('#lat').val();
+        
+        addresslocation = $('#long').val();
+        lat = $('#lat').val();
+        long = $('#long').val();
+        $('#select-lat').val(lat);
+        $('#select-long').val(long);
+
+        validateDeliveryAddress();
+    }
 </script>
