@@ -41,46 +41,52 @@
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <script>
-   var swiper = new Swiper('.swiper-container', {
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+  var swiper = new Swiper('.swiper-container', {
+    loop: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
       },
-    });
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
 
-    var swiper1 = new Swiper('.category-container', {
-      slidesPerView:'auto',
-      spaceBetween: 24,
-      slidesPerGroup: 1,
-      loop: false,
-      loopFillGroupWithBlank: false,
-      pagination: {
-        el: '.swiper-pagination',
-        type:'none',
-        clickable: true,
-         
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
-    var swiper2 = new Swiper('.shops-container', {
-      slidesPerView:'auto',
-      spaceBetween: 24,
-      slidesPerGroup: 1,
-      loop: false,
-      loopFillGroupWithBlank: false,
-      pagination: {
-        el: '.swiper-pagination',
-        type:'none',
-        clickable: true,
-         
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
+  var swiper1 = new Swiper('.category-container', {
+    slidesPerView:'auto',
+    spaceBetween: 24,
+    slidesPerGroup: 1,
+    loop: false,
+    loopFillGroupWithBlank: false,
+    pagination: {
+      el: '.swiper-pagination',
+      type:'none',
+      clickable: true,
+        
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+  
+  var swiper2 = new Swiper('.shops-container', {
+    slidesPerView:'auto',
+    spaceBetween: 24,
+    slidesPerGroup: 1,
+    loop: false,
+    loopFillGroupWithBlank: false,
+    pagination: {
+      el: '.swiper-pagination',
+      type:'none',
+      clickable: true,
+        
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
 </script>
 </body>

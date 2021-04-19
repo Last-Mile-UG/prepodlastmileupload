@@ -6,7 +6,7 @@
         
 <div class="row no-gutters">
     <div class="col-md-12">
-            <div class="swiper-container feature-banner-container">
+        <div class="swiper-container feature-banner-container">
             <div class="swiper-wrapper">
             <div class="swiper-slide">
             <img  src="{{ asset('assets/site/img/featured-banners/1.jpg') }}" alt="First Banner">
