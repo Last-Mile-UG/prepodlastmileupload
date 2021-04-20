@@ -199,7 +199,7 @@
                             
                             <div class="card-1 ml-2">
                                 <h5>3/3 {{__('msg.easytpes')}}</h5>
-                                <form>
+                                <form onsubmit="return confirmOrder(event)" name="orderForm" id="orderForm">
                                     @csrf 
                                     <div class="top d-flex flex-column">
                                         <div class="details  mb-3 mt-3">
@@ -252,9 +252,8 @@
                                     <div class="row mt-4">
                                         <button class="btn btn-transparent btn-prev mb-2" type="button">{{__('msg.back')}}</button>
                                         <!-- <button class="btn btn-black btn-confirm-checkout" type="submit" onClick="getallvalue()">{{__('msg.confirmcheckout')}}</button> -->
-                                        <button class="btn btn-black btn-confirm-checkout" id="checkout-button">{{__('msg.confirmcheckout')}}</button>
+                                        <button class="btn btn-black btn-confirm-checkout" type="submit" id="checkout-button">{{__('msg.confirmcheckout')}}</button>
                                     </div>
-                                    
                                 </form>
                             </div>
                         </div>
@@ -313,6 +312,7 @@
         </div>
     </div>   
     <!-- order successful modal-->
+    <div id="snackbar">!</div>
     <div class="modal"  id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content order-success-modal">
@@ -321,7 +321,7 @@
                     <div class="col-md-12 ">
                         <div class="d-flex flex-column align-items-center p-3">
                             <div class="">
-                                <h3 class="text-center">Order Successfull</h3>
+                                <h3 class="text-center">Order Confirmed</h3>
                                 <p class="text-center">Your Order ID: #232112112 </p>
                             </div>
                             <div class="">
@@ -391,19 +391,14 @@
     function paymenttype()
     {
         var data =$("input[name=checkout-radio]");
-       if(data.filter(":checked").val())
-        {
-       
-        var value = data.filter(":checked").val()
-        var value6 = data.filter(":checked");
-        id = value6.attr('data-id');
-        $('.payment-type').html(value);
-        paymenttext = $('#delivery-'+id).text(); 
-        $('.payment-type-span').html(paymenttext);
-      
-        }
-        else
-        {
+        if(data.filter(":checked").val()) {
+            var value = data.filter(":checked").val()
+            var value6 = data.filter(":checked");
+            id = value6.attr('data-id');
+            $('.payment-type').html(value);
+            paymenttext = $('#delivery-'+id).text(); 
+            $('.payment-type-span').html(paymenttext);
+        } else {
           
         $('#p1').css({
             "display": "block"
@@ -427,12 +422,10 @@
             $('.address-description-span').html(address);
         }
         else
-        {
-            
+        {   
             console.log('else');
             addnewfname = $('#addNewFname:text').val();
             console.log(addnewfname,"AddnewFname");
-            
 
             addnewlasname  =  $('#addNewLname:text').val();
             console.log(addnewlasname,"addnewLastname");
@@ -500,33 +493,75 @@
         }
     } 
     //Get All Value 
-    function getallvalue()
-    {
+    function setValues() {
         $("#checkout-method").val($("#payment-type").text());
         $('#checkout-method-type').val($('#payment-type-span').text());
         $('#get_address_name').val($('#address_name').text());
         $('#get_address_description').val($('#address_description_span').text());
         $('#get_payment_card_type').val($('#payment_card_type').text());
         $('#get_payment_card_number').val($('#card-number-span').text());
-
-      
     }
+
+    function confirmOrder(e) {
+        e.preventDefault();
+        const data = setValues();
+        const form = document.getElementById('orderForm');
+        const allFormValues = new FormData(form);
+
+        $.ajax({
+            url : `{{route('checkout.payment')}}`,
+            type : "POST",
+            enctype: 'multipart/form-data',
+            data : allFormValues,
+            processData: false,
+            contentType: false,
+
+            success: function() {
+                // Create an instance of the Stripe object with your publishable API key
+                var stripe = Stripe('pk_test_51I9I00Ieek3BiHvge1ziyYmRagWsQ73CGQ9lKSG07vWzBoPryjCMZ1euPoTtXcnJsBTLn8Wyr3xYQTJTKWi3bmWE00LSYcqAe1');
+                
+                fetch('/create-checkout-session', {
+                    method: 'POST',
+                })
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(session) {
+                    return stripe.redirectToCheckout({ sessionId: session.id });
+                })
+                .then(function(result) {
+                    // If `redirectToCheckout` fails due to a browser or network
+                    // error, you should display the localized error message to your
+                    // customer using `error.message`.
+                    if (result.error) {
+                        alert(result.error.message);
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Error:', error);
+                });
+            },
+            error: () => showOrderNotification(`{{__('msg.orderFailed')}`, false)
+        })
+
+        return false;
+    }
+
     </script>
 
     <script>
-        
         $(document).ready(function(){
             $("#new-address-container").hide();
             $("#add-new-delivery-address").on('click',function(){
-        $("#existing-address-container").hide();
-        $("#new-address-container").show();
-        $("input[name=delivery-radio]").prop('checked', false);
-    });
-    $("#add-new-card").on('click',function(){
-        $("#existing-payment-container").hide();
-        $("#new-payment-container").show();
-        $("input[name=payment-radio]").prop('checked', false);
-    });
+                $("#existing-address-container").hide();
+                $("#new-address-container").show();
+                $("input[name=delivery-radio]").prop('checked', false);
+            });
+            $("#add-new-card").on('click',function(){
+                $("#existing-payment-container").hide();
+                $("#new-payment-container").show();
+                $("input[name=payment-radio]").prop('checked', false);
+            });
         });
     </script>
 
@@ -620,10 +655,8 @@
                             }
                         }
                     );
-
-
-                }
-                , function() {
+                },
+                function() {
                     alert("Sorry, geolocation API failed to detect your location.");
                 });
                 
@@ -641,52 +674,24 @@
         console.log(addnewcompany)
         $('.address_name').html(addnewcompany);
         $('.address-description-span').html(addnewaddress);
-        address = $('#latitude').val();
-        
-        addresslocation = $('#longitude').val();
-        lat = $('#latituse').val();
+
+        lat = $('#latitude').val();
         long = $('#longitude').val();
         $('#select-lat').val(lat);
         $('#select-long').val(long);
 
         validateDeliveryAddress();
     }
-</script>
-<script>
-    function initStripe() {
-        // Create an instance of the Stripe object with your publishable API key
-        var stripe = Stripe('pk_test_51I9I00Ieek3BiHvge1ziyYmRagWsQ73CGQ9lKSG07vWzBoPryjCMZ1euPoTtXcnJsBTLn8Wyr3xYQTJTKWi3bmWE00LSYcqAe1');
-        var checkoutButton = document.getElementById('checkout-button');
 
-        console.log('stripe', stripe);
-        console.log('checkoutButton', checkoutButton);
+    function showOrderNotification(text, redirect) {
+        const notification = $('#snackbar');
+        notification.text(text).toggleClass('show');
 
-        checkoutButton.addEventListener('click', function() {
-            // Create a new Checkout Session using the server-side endpoint you
-            // created in step 3.
-            fetch('/create-checkout-session', {
-                method: 'POST',
-            })
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(session) {
-                return stripe.redirectToCheckout({ sessionId: session.id });
-            })
-            .then(function(result) {
-                // If `redirectToCheckout` fails due to a browser or network
-                // error, you should display the localized error message to your
-                // customer using `error.message`.
-                if (result.error) {
-                    alert(result.error.message);
-                }
-            })
-            .catch(function(error) {
-                console.error('Error:', error);
-            });
-        });
+        setTimeout(function() {
+            notification.toggleClass('show');
+            if(redirect) {
+                window.location.replace('/');
+            }
+        }, 3000);
     }
-
-$(document).ready(initStripe);
-
 </script>

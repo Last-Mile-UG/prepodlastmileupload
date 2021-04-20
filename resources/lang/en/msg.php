@@ -217,6 +217,8 @@
     'expirymonthplaceholder' => 'Expiry Month', 
     'save' => 'Save', 
     'confirmcheckout' => 'Confirm Checkout',
+    'orderConfirmed' => 'Order Confirmed',
+    'orderFailed' => 'Order Failed',
     //End Cart Checkout
 
     //For WishList
