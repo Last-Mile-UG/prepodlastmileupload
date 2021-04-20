@@ -389,8 +389,8 @@
                         <div class="d-flex flex-column align-items-center p-3">
                             <div class="">
                                 <h3 class="text-center">Order Confirmed</h3>
-                                <!-- <p class="text-center">Your Order ID: #232112112 </p> -->
-                            <!-- </div>
+                                <p class="text-center">Your Order ID: #232112112 </p>
+                            </div>
                             <div class="">
                                 <img src="{{ asset('assets/site/img/order_success.png') }}" alt="">
                             </div>
@@ -400,7 +400,7 @@
                             </div>
                             <div class="">
                                 <button class="btn text-black font-14 btn-transparent" data-dismiss="modal">Cancel</button>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </div>          
@@ -724,8 +724,8 @@
     }
 
     function showOrderNotification(text, redirect) {
-        const notification = $('#snackbar').text(text);
-        notification.toggleClass('show');
+        const notification = $('#snackbar');
+        notification.text(text).toggleClass('show');
 
         setTimeout(function() {
             notification.toggleClass('show');
