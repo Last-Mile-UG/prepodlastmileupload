@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card p-3 mt-3">
-                <div class="card-head ml-5"><h3>Role's for Customer</h3></div>
+                <div class="card-head ml-5"><h3>Roles for Customer</h3></div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-8">
@@ -15,7 +15,7 @@
                                         <div class="card-body">
                                             <p style="text-align:left">{{__('msg.freepara')}}</p>
                                         </div>
-                                        <div class="p-3" style="margin-left: 390px;">
+                                        <div class="p-3 d-flex justify-content-center">
                                             <a href="{{route('premiumstatus')}}" class="btn btn-success">Subscribe
                                             </a>
                                         </div>    
@@ -27,9 +27,8 @@
                                         <div class="card-body">
                                         <p style="text-align:left;">{{__('msg.permiumpara')}}</p>
                                         </div>
-                                        <div class="p-3" style="margin-left: 390px;">
-                                            <button type="button" onclick="addnewcard()" class="btn btn-success center">Subscribe
-                                            </button>
+                                        <div class="p-3 d-flex justify-content-center">
+                                            {{__('msg.comingSoon')}}
                                         </div>
                                     </div>
                                 </div>

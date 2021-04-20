@@ -43,7 +43,7 @@
     'sellpara' => 'Verkaufe deine Produkte oder Dienstleistungen an alle in deinem Umkreis',
     'deliveryheading' => 'Lieferung in der Community',
     'deliverypara' => 'Liefere an die Community. Gewinne die Zufriedenheit der Kunden durch tägliches Abholen und Liefern von Produkten und Abonnements',
-    'getphoneheading' =>'App herunterladen–bald erhältlich',
+    'getphoneheading' =>'App herunterladen – bald erhältlich',
     'getphonepara' =>'Bald fürs Handy verfügbar! Lade dir unsere Applikation auf dein Smartphone',
     'getintouchheading'=>'Kontaktiere uns!',
     'getintouchpara'=>'Tritt uns als Verkäufer bei und verkaufe deine Produkte und Dienstleistungen',
@@ -506,6 +506,7 @@
 
     // For Perimum
 
+    'comingSoon' => 'Bald erhältlich',
     'permiumpara'=>'Für nur 8,99 € pro Monat erhalten Sie alle Ihre Lieferungen kostenlos! Mit unserem Premium-Plan genießen Sie exklusive Vorteile und reduzierte Preise für spezielle Produkte in bestimmten Shops. Ihr Premium-Plan-Abonnement wird automatisch einmal zu Beginn des Monats berechnet.  Sie können Ihr Premium-Abonnement jederzeit kündigen, aber der Monat, für den Sie ursprünglich bezahlt haben, wird nicht zurückerstattet und Sie können die Vorteile eines Premium-Plans noch bis zum Ende des Monats genießen.',
     'freepara'=>' Melden Sie sich kostenlos an und lassen Sie sich alles aus Ihren Lieblingsläden vor Ort liefern! Die Lieferkosten variieren je nach den gewählten Läden.Sie können uns auch hier als Premium-Benutzer beitreten. (Link einfügen)'
     // End Perimum

@@ -588,6 +588,7 @@
 
     // For Perimum
 
+    'comingSoon' => 'Coming soon',
     'permiumpara'=>'For only €8,99 per month, you can get all your deliveries for free! With our premium plan, enjoy exclusive benefits and reduced prices for special products in certain shops.
     Your premium plan subscription is automatically charged once every beginning of the month.  You may opt out from your premium subscription any time but the month that you have initially paid for will not be refunded and you can still enjoy the benefits of a premium plan until the end of the month.',
     'freepara'=>'Join us for free and get anything from your favourite local shops delivered! Delivery costs varies depending on the chosen stores.You may also join us as premium user here. (include link)',
