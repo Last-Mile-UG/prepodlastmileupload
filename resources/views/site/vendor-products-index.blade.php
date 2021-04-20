@@ -513,7 +513,6 @@
         }
 
         function addToCart(){
-            
             variantId = $('#final-variant-id').val()
             qty = $('#final-qty').val()
             let route = `{{route('add-to-cart')}}`
@@ -564,10 +563,10 @@
                         $('#cart-item').html('')
                         $('#cart-item').html(html2)
                         $('.sidenav').show();
+                        snackbar();
                     }
                 }
             });
-            snackbar()
         }  
         
 

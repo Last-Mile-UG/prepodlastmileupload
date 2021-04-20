@@ -166,7 +166,7 @@ input[type=number] {
                 @if(auth::check())
                 <a href="{{route('site.checkout')}}" class="btn btn-black next-button w-100">{{__('msg.checkoutbtn')}}</a>
                 @elseif(!auth::check())
-                <button class="btn btn-black next-button w-100"  data-toggle="modal" data-target="#nologin" onclick="addToCart()">Checkout</button>
+                <button class="btn btn-black next-button w-100"  data-toggle="modal" data-target="#nologin" onclick="addToCart()">{{__('msg.checkoutbtn')}}</button>
                 <!-- <a href="#" class="btn btn-black next-button"  >Checkout</a> -->
                 @endif                
                 </div>
