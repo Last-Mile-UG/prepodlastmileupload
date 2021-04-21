@@ -146,7 +146,7 @@
 
     <div class="row">
         @foreach($shops as $shop)
-        <div class="col-md-3 mb-4">
+        <div class="col-md-3 mb-4 shop-item" data-opening-time="{{$shop->detail->opening_time}}" data-closing-time="{{$shop->detail->closing_time}}">
             <div class="card s-shop shadow-2">
                 <div class="card-header px-2 pt-3 d-flex justify-content-between">
                     <span class="shop-category-tag px-2" style="background: none;"></span>
@@ -177,18 +177,13 @@
                     @if($shop->detail->opening_time)
                     <div class="row flex justify-content-center">
                         <div>
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>{{$shop->detail->opening_time}} - {{$shop->detail->closing_time}}
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>{{$shop->detail->opening_time}} - {{$shop->detail->closing_time}}
                         </div>
-                       
                     </div>
                     @else
-                    <div style="height: 40px">
-                    
-                    </div>
+                    <div style="height: 40px"></div>
                     @endif
-                    <div class="d-flex justify-content-center mt-3 mb-3">
-                        <a href="{{route('site.explore.vendor.products', ['id'=>$shop->id])}}" class="shop-link">{{__('msg.viewshop')}}</a>
-                    </div>
+                    <button class="d-flex justify-content-center mt-3 mb-3 go-to-shop-btn" onclick="window.location.href = `{{route('site.explore.vendor.products', ['id'=>$shop->id])}}`">{{__('msg.viewshop')}}</button>
                 </div>
             </div>
         </div>
@@ -198,32 +193,56 @@
 @endsection
 
 <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-    $(document).ready(function(){
-    
-    searchInputFocusIn();
-    searchInputFocusOut();
+<script>
+    $(document).ready(function() {
+        checkOpenedShops();
+        searchInputFocusIn();
+        searchInputFocusOut();
 
-    function searchInputFocusIn(){
+        function searchInputFocusIn(){
             $( "#shop-search-input" ).focusin(function() {
-            h3 = $(this).parent().parent().find('h3');
-            h3.hide();
-            $(this).parent().addClass('w-100');
-             });
-    }
-
-    function searchInputFocusOut(){
-            $( "#shop-search-input" ).focusout(function() {
-            h3 = $(this).parent().parent().find('h3');
-            h3.show();
-            $(this).parent().removeClass('w-100');
+                h3 = $(this).parent().parent().find('h3');
+                h3.hide();
+                $(this).parent().addClass('w-100');
             });
-    }
-    
+        }
+
+        function searchInputFocusOut(){
+            $( "#shop-search-input" ).focusout(function() {
+                h3 = $(this).parent().parent().find('h3');
+                h3.show();
+                $(this).parent().removeClass('w-100');
+            });
+        }
+
+        function checkOpenedShops() {
+            const shops = $('.shop-item');
+            $.each(shops, function () {
+                const openingTime = $(this).data('opening-time').split(':');
+                const openingHour = +openingTime[0];
+                const openingMinute = +openingTime[1];
+
+                const closingTime = $(this).data('closing-time').split(':');
+                const closingHour = +closingTime[0];
+                const closingMinute = +closingTime[1];
+
+                const currentDate = new Date();
+                const currentHour = currentDate.getHours();
+                const currentMinute = currentDate.getMinutes();
+
+                if((currentHour < openingHour || currentHour > closingHour) ||
+                    (currentHour === openingHour && currentMinute < openingMinute) ||
+                    (currentHour === closingHour && currentMinute > closingMinute)
+                ) {
+                    const btn = $(this).find('.go-to-shop-btn');
+                    btn.prop('disabled', true).text(`{{__('msg.closed')}}`).css({'color': '#999999', 'cursor': 'auto'})
+                }
+            })
+        }
     });
 </script>
