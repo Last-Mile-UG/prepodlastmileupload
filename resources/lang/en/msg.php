@@ -122,6 +122,7 @@
     'shopnearheading' => 'Shops Near You',
     'searchshop' => 'SEARCH A SHOP',
     'viewshop' => 'VIEW SHOP',
+    'closed' => 'CLOSED',
     'popularproducts' => 'Popular Products',
     'lowprice' => 'Low Price',
     'highprice' => 'High Price',

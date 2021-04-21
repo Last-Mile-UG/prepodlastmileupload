@@ -122,6 +122,7 @@
     'shopnearheading' => 'Läden in Ihrer nähe', //
     'searchshop' => 'nach Laden suchen', //
     'viewshop' => 'Laden ansehen', //
+    'closed' => 'Geschlossen',
     'popularproducts' => 'Beliebte Produkte', //
     'lowprice' => 'Niedriger Preis', //
     'highprice' => 'Hoher Preis', //

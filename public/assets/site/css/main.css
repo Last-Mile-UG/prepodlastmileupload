@@ -1986,6 +1986,8 @@ a:link {
     border: none;
 }
 .card.s-shop .card-footer {
+    display: flex;
+    flex-direction: column;
     background: white;
     border: none;
 }
@@ -2010,13 +2012,20 @@ a:link {
     width: 220px;
     height: 140px;
 }
-.s-shop .shop-link {
+.s-shop .go-to-shop-btn {
     color: #666666;
     text-transform: uppercase;
     font-weight: 900;
+    margin: auto;
+    border: none;
+    background-color: transparent;
 }
-.s-shop .shop-link:hover {
+.s-shop .go-to-shop-btn:hover {
+    cursor: pointer;
     color: #313131;
+}
+.s-shop .go-to-shop-btn:focus {
+    outline: none;
 }
 .shops-search-container .shop-search-input {
     background: none;
