@@ -516,30 +516,36 @@
             processData: false,
             contentType: false,
 
-            success: function() {
+            success: function(res) {
                 // Create an instance of the Stripe object with your publishable API key
                 var stripe = Stripe('pk_test_51I9I00Ieek3BiHvge1ziyYmRagWsQ73CGQ9lKSG07vWzBoPryjCMZ1euPoTtXcnJsBTLn8Wyr3xYQTJTKWi3bmWE00LSYcqAe1');
                 
-                fetch('/create-checkout-session', {
-                    method: 'POST',
-                })
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(session) {
-                    return stripe.redirectToCheckout({ sessionId: session.id });
-                })
-                .then(function(result) {
-                    // If `redirectToCheckout` fails due to a browser or network
-                    // error, you should display the localized error message to your
-                    // customer using `error.message`.
-                    if (result.error) {
-                        alert(result.error.message);
-                    }
-                })
-                .catch(function(error) {
-                    console.error('Error:', error);
-                });
+                try {
+                    stripe.redirectToCheckout({ sessionId: res.session.id });
+                } catch (result) {
+                    alert(result.error.message);
+                }
+                
+                // fetch('/create-checkout-session', {
+                //     method: 'POST',
+                // })
+                // .then(function(response) {
+                //     return response.json();
+                // })
+                // .then(function(session) {
+                //     return stripe.redirectToCheckout({ sessionId: session.id });
+                // })
+                // .then(function(result) {
+                //     // If `redirectToCheckout` fails due to a browser or network
+                //     // error, you should display the localized error message to your
+                //     // customer using `error.message`.
+                //     if (result.error) {
+                //         alert(result.error.message);
+                //     }
+                // })
+                // .catch(function(error) {
+                //     console.error('Error:', error);
+                // });
             },
             error: () => showOrderNotification(`{{__('msg.orderFailed')}`, false)
         })
