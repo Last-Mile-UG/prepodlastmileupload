@@ -182,8 +182,8 @@ class PaymentController extends Controller
             'line_items' => $lineItems,
             'mode' => 'payment',
             'metadata' => ['order_id' => $order->id],
-            'success_url' => config('app.url') . '/success.html',
-            'cancel_url' => config('app.url') . '/cancel.html',
+            'success_url' => config('app.url') . '/payment/success',
+            'cancel_url' => config('app.url') . '/payment/cancel',
         ]);
     }
 
