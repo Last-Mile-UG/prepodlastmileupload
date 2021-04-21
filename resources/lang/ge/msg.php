@@ -218,6 +218,8 @@
     'expirymonthplaceholder' => 'Ablaufmonat', 
     'save' => 'speichern', 
     'confirmcheckout' => 'Checkout bestätigen',
+    'orderConfirmed' => 'Bestellung Bestätigt',
+    'orderFailed' => 'Order Failed',
     //End Cart Checkout
 
     //For Message Center Vendor Support
