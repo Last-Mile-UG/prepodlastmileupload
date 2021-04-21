@@ -9,15 +9,9 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Stripe\Checkout\Session;
+use Stripe\Exception\ApiErrorException;
 use Stripe\StripeClient;
-use App\{Transaction,
-    Orders,
-    OrderDetail,
-    User,
-    UserDetail,
-    UserLocation,
-    PremiumUserTransacion
-};
+use App\{Enum\OrderStatusEnum, Transaction, Orders, OrderDetail, User, UserDetail, UserLocation, PremiumUserTransacion};
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Hash;
 
@@ -35,15 +29,12 @@ class PaymentController extends Controller
             }
 
             $unSubscribeItemsSum = array_sum(array_column($unSubscribeItems->toArray(), 'subtotal'));
-            $unsubscribeCount = $unSubscribeItems->count();
             $amount = Cart::total();
             $cartItems = Cart::content();
             $totalAmount = str_replace(',', '', $amount);
 
             if (auth()->check()) //if userlogin
             {
-                $loggedInUser = auth()->user();
-
                 $userLocation = new UserLocation();
                 if ($address_id) {
                     $userAddress = $userLocation->find($address_id);
@@ -64,6 +55,7 @@ class PaymentController extends Controller
                 $order->user_id = auth()->user()->id;
                 $order->price = $totalAmount;
                 $order->driver_id = null;
+                $order->status = OrderStatusEnum::AWAITING_PAYMENT;
                 $order->user_location_id = $userAddress->id;
                 $order->latitude = $userAddress->latitude;
                 $order->longitude = $userAddress->longitude;
@@ -128,6 +120,7 @@ class PaymentController extends Controller
                 $order->user_id = $user->id;
                 $order->price = $unSubscribeItemsSum;
                 $order->driver_id = null;
+                $order->status = OrderStatusEnum::AWAITING_PAYMENT;
                 $order->user_location_id = $address_id;
                 $order->latitude = $userAddress->latitude;
                 $order->longitude = $userAddress->longitude;
@@ -148,7 +141,7 @@ class PaymentController extends Controller
                 #region transaction
                 #endregion
             }
-            $session = $this->createCheckoutSession($unSubscribeItems);
+            $session = $this->createCheckoutSession($unSubscribeItems, $order);
             DB::commit();
             $cart = Cart::destroy();
             return ['session' => ['id' => $session->id]];
@@ -160,7 +153,13 @@ class PaymentController extends Controller
         }
     }
 
-    private function createCheckoutSession(Collection $items): Session
+    /**
+     * @param Collection $items
+     * @param Orders $order
+     * @return Session
+     * @throws ApiErrorException
+     */
+    private function createCheckoutSession(Collection $items, Orders $order): Session
     {
         $lineItems = [];
         foreach ($items as $item) {
@@ -170,7 +169,7 @@ class PaymentController extends Controller
                     'unit_amount' => $item->price * 100,
                     'product_data' => [
                         'name' => $item->name,
-                        'images' => [$item->options->image],
+                       // 'images' => [$item->options->image],
                     ],
                 ],
                 'quantity' => $item->qty,
@@ -182,6 +181,7 @@ class PaymentController extends Controller
             'payment_method_types' => ['card', 'giropay'],
             'line_items' => $lineItems,
             'mode' => 'payment',
+            'metadata' => ['order_id' => $order->id],
             'success_url' => config('app.url') . '/success.html',
             'cancel_url' => config('app.url') . '/cancel.html',
         ]);
