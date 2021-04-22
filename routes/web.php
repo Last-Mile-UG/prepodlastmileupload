@@ -61,10 +61,10 @@ Route::middleware(['premium.customer'])->group(function(){
 	Route::get('help','SiteController@help')->name('help');
 
 
-	
+
 });
 
-	
+
 
 // Route::post('addlocation','CartController@checkoutlocation')->name('addlocation');
 
@@ -84,7 +84,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
 	Route::get('category', 'VendorCategoryController@index')->name('category-index');
 	Route::get('category-create', 'VendorCategoryController@create')->name('category-create');
 	Route::post('category-store', 'VendorCategoryController@store')->name('category-store');
-	
+
 	Route::resource('service-requests', 'ServiceRequestController');
 	Route::resource('vendors', 'VendorController');
 	Route::get('vendors/featured/{id}', 'VendorController@markFeatured')->name('vendors.featured');
@@ -106,7 +106,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
 
 Route::group(['namespace' => 'Vendor', 'prefix' => 'vendor', 'middleware' => 'auth'], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
-	
+
 	// Route::get('/', 'HomeController@index')->name('home');
 	Route::resource('vendor_orders', 'OrderController');
 	Route::resource('services', 'ServiceController');
@@ -162,9 +162,8 @@ Route::put('user/password', ['as' => 'user.password', 'uses' => 'UserController@
 Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });
 
-
-
-
+Route::get('payment/success', 'PaymentResultController@successAction');
+Route::get('payment/cancel', 'PaymentResultController@cancelAction');
 
 
 

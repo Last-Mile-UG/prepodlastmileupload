@@ -219,7 +219,9 @@
     'save' => 'speichern', 
     'confirmcheckout' => 'Checkout bestätigen',
     'orderConfirmed' => 'Bestellung Bestätigt',
+    'orederConfirmedMessage' => 'Vielen Dank für die Bestellung - die Bestelldetails werden an deine E-Mail-Adresse gesendet!',
     'orderFailed' => 'Order Failed',
+    'orderFailedMessage' => 'Beim Zahlungsvorgang ist etwas schief gelaufen, bitte noch einmal versuchen!',
     //End Cart Checkout
 
     //For Message Center Vendor Support

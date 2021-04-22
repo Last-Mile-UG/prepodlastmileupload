@@ -55,4 +55,6 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('vendorCategory/{id}', 'VendorCategoryController@vendorBycategory');
     Route::get('banners', 'BannerController@index');
     Route::get('ordersubscribe/{id}', 'OrderController@subscribeRecord');
+
+    Route::post('payment-webhook', 'PaymentWebhookController@webhookAction');
 });
