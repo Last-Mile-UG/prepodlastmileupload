@@ -2578,6 +2578,15 @@ textarea.complaint-msg:focus {
     z-index: 1030 !important;
 }
 
+/* Order response */
+
+.order-response__page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 /*media queries*/
 @media screen and (max-width: 1056px) {
     .nav-scroller {
