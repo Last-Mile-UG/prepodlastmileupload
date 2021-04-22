@@ -18,7 +18,7 @@
 }
 .side-cart {
   width: 100%;
-  padding: 8px 8px 8px 32px;
+  padding: 0 16px 16px;
   text-decoration: none;
   font-size: 25px;
   color: #818181;
@@ -83,7 +83,7 @@
                 <!-- section-->
 
                 <!--tabs-->
-            <div class="col-md-6">
+            <div class="col-md-6 products-list" data-vendor-address="{{$currentVendor->address}}">
                 <div class="tab-bar d-flex justify-content-between shadow-1">
                     <ul class="nav nav-pills custom-tab d-flex flex-column flex-sm-row flex-md-row flex-lg-row" id="pills-tab" role="tablist">
                         <li class="nav-item">
@@ -239,19 +239,17 @@
                         </div>
                         <div id="cart-item">                        
                             @foreach($items->unique('options.vendorId') as $item)
-                                <div class="cart-total d-flex flex-column justify-content-between">
+                            @foreach($items->where('options.vendorId', $item->options->vendorId) as $item)
+                                <div class="cart-total d-flex flex-column justify-content-between" data-item-address="{{$item->options->vendorAddress}}">
                                     <div class="top d-flex flex-column">
-                                        
                                         <div class="item justify-content-between mb-2 px-3">
-                                            @foreach($items->where('options.vendorId', $item->options->vendorId) as $item)
-                                                <span class="text-black font-13 font-medium">{{$item->name}}</span><span class="text-black font-13 font-medium" style="float:right">({{$item->qty}} x {{number_format($item->price, 2, ',', '.')}})</span><br>
-                                            @endforeach
+                                            <span class="text-black font-13 font-medium">{{$item->name}}</span><span class="text-black font-13 font-medium" style="float:right">({{$item->qty}} x {{number_format($item->price, 2, ',', '.')}})</span><br>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
+                            @endforeach
                         </div>
-                        
                     </div>
                     <div class="text-center">
                         @if(auth::check())
@@ -515,7 +513,15 @@
         function addToCart(){
             variantId = $('#final-variant-id').val()
             qty = $('#final-qty').val()
-            let route = `{{route('add-to-cart')}}`
+            let route = `{{route('add-to-cart')}}`;
+            const currentVendorAddress = $('.products-list').data('vendor-address');
+            const currentItemAddress = $('#cart-item .cart-total').data('item-address');
+
+            if(currentItemAddress !== undefined && currentVendorAddress !== currentItemAddress) {
+                alert('Different address');
+                return;
+            }
+
             $.ajax({
                 url : route,
                 type : "GET",
@@ -541,7 +547,7 @@
                     if(Object.keys(result.items).length > 0){
                         $.each(result.items, function(index, item){
                             var allVendorIds = vendorIds.includes(item.options.vendorId); 
-                            html2 +=`<div class="cart-total d-flex flex-column justify-content-between">
+                            html2 +=`<div class="cart-total d-flex flex-column justify-content-between" data-item-address="${item.options.vendorAddress}">
                                 <div class="top d-flex flex-column">                                    
                                     <div class="item justify-content-between mb-2 px-3">`;
                                     const filteredByValue = Object.fromEntries(
