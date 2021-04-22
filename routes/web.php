@@ -29,6 +29,7 @@ Route::middleware(['premium.customer'])->group(function(){
 	Route::resource('cart', 'CartController');
 	Route::get('update-quantity','CartController@updateCartQuantity')->name('update-quantity');
 	Route::get('cart-checkout', 'CartController@checkout')->name('site.checkout');
+	Route::get('cart-destroy', 'CartController@destroy')->name('site.checkout');
 	Route::post('/explore-shop', 'SiteController@nearShops')->name('site.explore.shop');
 	Route::get('/explore-shops', 'SiteController@allShops')->name('site.explore.shops');
 	Route::get('profile', 'SiteController@profile')->name('profile');

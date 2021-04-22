@@ -87,7 +87,7 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cart::destroy();
     }
 
     public function checkout(){ 
