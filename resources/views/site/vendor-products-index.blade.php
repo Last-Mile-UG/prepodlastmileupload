@@ -462,18 +462,18 @@
     <script>        
         $('body').on('click' , '.add-to-cart-btn', function() {
             id = $(this).attr('data-id');
-            let route = `{{route('product.data')}}`
+            let route = `{{route('product.data')}}`;
+        
             $.ajax({
                 url : route+'/'+id,
                 type : "GET",
                 datatype : "json",
-                success:function(result){
-                    // $('#cart-count').html(result.count)
-                    
+                success:function(result){                    
                     var product = result.product
+
                     $('#main-item-image').attr('src', product.image)
                     $('#prod-name').html(product.name)
-                    // var description = product.description;
+
                     jQuery.nl2br = function(val){
                         return val.replace(/(\r\n|\n\r|\r|\n)/g, "<br>");
                     };                    
@@ -510,17 +510,10 @@
             });
         }
 
-        function addToCart(){
+        function getItemAndPushToCart() {
             variantId = $('#final-variant-id').val()
             qty = $('#final-qty').val()
             let route = `{{route('add-to-cart')}}`;
-            const currentVendorAddress = $('.products-list').data('vendor-address');
-            const currentItemAddress = $('#cart-item .cart-total').data('item-address');
-
-            if(currentItemAddress !== undefined && currentVendorAddress !== currentItemAddress) {
-                alert('Different address');
-                return;
-            }
 
             $.ajax({
                 url : route,
@@ -573,8 +566,34 @@
                     }
                 }
             });
+        }
+
+        function addToCart(){
+            const currentVendorAddress = $('.products-list').data('vendor-address');
+            const currentItemAddress = $('#cart-item .cart-total').data('item-address');
+
+            if(currentItemAddress !== undefined && currentVendorAddress !== currentItemAddress) {
+                if(confirm('Are you sure?')) {
+                    $.ajax({
+                        url: `{{route('cart-destroy')}}`,
+                        type: "POST",
+                        datatype: "json",
+                        headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" },
+
+                        success: function() {
+                            $('#cart-item').html('');
+                            $('.sidenav').hide();
+                            getItemAndPushToCart();
+                        }
+                    })
+                    return;
+                };
+
+                return;
+            }
+
+            getItemAndPushToCart();        
         }  
-        
 
         function getProducts(){ 
             vendorId = `{{$vendorId}}`

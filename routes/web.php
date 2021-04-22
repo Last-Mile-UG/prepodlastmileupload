@@ -29,7 +29,7 @@ Route::middleware(['premium.customer'])->group(function(){
 	Route::resource('cart', 'CartController');
 	Route::get('update-quantity','CartController@updateCartQuantity')->name('update-quantity');
 	Route::get('cart-checkout', 'CartController@checkout')->name('site.checkout');
-	Route::get('cart-destroy', 'CartController@destroy')->name('site.checkout');
+	Route::post('cart-destroy', 'CartController@destroy')->name('cart-destroy');
 	Route::post('/explore-shop', 'SiteController@nearShops')->name('site.explore.shop');
 	Route::get('/explore-shops', 'SiteController@allShops')->name('site.explore.shops');
 	Route::get('profile', 'SiteController@profile')->name('profile');
@@ -59,19 +59,13 @@ Route::middleware(['premium.customer'])->group(function(){
 	Route::post('/products/autocomplete/fetch', 'Vendor\ProductController@fetchProducts')->name('products.autocomplete.fetch');
 	Route::post('cartremove','CartController@removecart')->name('cartremove');
 	Route::get('help','SiteController@help')->name('help');
-
-
-
 });
-
-
 
 // Route::post('addlocation','CartController@checkoutlocation')->name('addlocation');
 
 // Route::get('dashboard', 'SiteController@dashboard')->name('site.dashboard');
 // Route::get('checkout', 'PaymentController@checkout')->name('checkout.payment');
 Route::post('checkout','PaymentController@checkout')->name('checkout.payment');
-
 
 Auth::routes(['verify' => true]);
 
@@ -135,8 +129,6 @@ Route::group(['namespace' => 'Driver', 'prefix' => 'driver'], function () {
 Route::group(['namespace' => 'Customer', 'prefix' => 'customer'], function () {
 
 });
-
-
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('premium.customer','verified');
 Route::get('editProfile/{id}', 'UserController@showProfile');
