@@ -219,7 +219,9 @@
     'save' => 'Save', 
     'confirmcheckout' => 'Confirm Checkout',
     'orderConfirmed' => 'Order Confirmed',
+    'orederConfirmedMessage' => 'Thank you for your order - the details of your order will be sent to your email address!',
     'orderFailed' => 'Order Failed',
+    'orderFailedMessage' => 'Something went wrong in the payment process, please try again!',
     //End Cart Checkout
 
     //For WishList

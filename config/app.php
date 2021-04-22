@@ -130,6 +130,7 @@ return [
     'pagination_length'=> env('PAGINATION_LENGTH', 5),
 
     'stripe_secret_key' => env('STRIPE_SECRET_KEY'),
+    'stripe_webhook_secret_key' => env('STRIPE_WEBHOOK_SECRET_KEY'),
     'stripe_product_id' => env('STRIPE_PRODUCT_ID'),
     'stripe_publish_key' => env('STRIPE_PUBLISH_KEY'),
     'stripe_premium_customer_plan_id' =>env('PREMIUM_CUSTOMER_PLAN_ID'),

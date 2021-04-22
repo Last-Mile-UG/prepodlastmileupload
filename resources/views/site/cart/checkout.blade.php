@@ -36,7 +36,7 @@
                         </div>
                         <div class="multi-layer-form ">
                             <div class="card-1 first-screen show">
-                                <h5>1/4 {{__('msg.easytpes')}}</h5>
+                                <h5>1/3 {{__('msg.easytpes')}}</h5>
                                 <div class="checkout-method getpaymenttype">
                                     <label for="title" class="my-3 mb-2">{{__('msg.checkoutmethod')}}</label>
                                     @foreach($recordDelivery as $delivery)
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="card-1 ml-2">
-                                <h5>2/4 {{__('msg.easytpes')}}</h5>
+                                <h5>2/3 {{__('msg.easytpes')}}</h5>
                                 <!--for existing  user (available delivery addresses)-->
                                 <div class="existing-address" id="existing-address-container">
                                     <div class="checkout-method getaddressspan mb-4">
@@ -196,76 +196,9 @@
                                     <button class="btn btn-black next-button" disabled id="nextmethod_delivery" onClick="address1()" >{{__('msg.next')}}</button>
                                 </div>
                             </div>
+                            
                             <div class="card-1 ml-2">
-                                <h5>3/4 {{__('msg.easytpes')}}</h5>
-                                <!--for existing user (available payment methods)-->
-                                    <div class="existing-payment" id="existing-payment-container">
-                                        <div class="checkout-method getcarddetail mb-4">
-                                                <label for="title" class="my-2">{{__('msg.paymentmethod')}}</label>
-                                            @if(Auth::check())    
-                                            @foreach($recordcard as $records)
-                                                <div class="radio  mb-3">
-                                                    <label class="m-0">
-                                                        <input id="card-{{$records->id}}" onchange="validateExistCard();" type="radio" data-id="{{$records->id}}" data-year="{{$records->exp_year}}" data-month="{{$records->exp_month}}" data-cvc="{{$records->cvc}}" class="mr-3 payment-radio" name="payment-radio"  value="{{$records->card_name}}">{{$records->card_name}}
-                                                    </label>
-                                                    <span class="float-right" id="card-number-{{$records->id}}">{{$records->number}}</span>                                        
-                                                </div>
-                                            @endforeach
-                                            @endif
-                                        </div>
-                                        <div class="radio mb-3 row text-center">
-                                            <span class="add-new d-c-card" id="add-new-card" style="cursor:poiner;">
-                                            <i class="fa fa-plus mr-2"></i>{{__('msg.addnewcard')}}
-                                            </span>
-                                        </div>
-                                    </div>
-                                <!--for existing  user (available payment methods)-->
-                                <!--for new/guest  user (add new payment method)-->
-                                    <div class="new-data payment-form"  id="new-payment-container">
-                                            <div class="checkout-method">
-                                               <label for="title" class="my-3 mb-2">{{__('msg.alltransactionsecure')}}</label>
-                                                <div class="d-flex flex-wrap">
-                                                    <div class="radio  w-100 mr-2 mb-2">
-                                                        <label class="m-0"><input type="radio" checked id="creadit-card" class="mr-3 checkout-radio cardType" name="cardType"  value="Credit Card">{{__('msg.creditcard')}}</label>
-                                                        <i class="fa fa-credit-card float-right"></i>
-                                                    </div>
-                                                    <!--<div class="radio w-100 mr-2">-->
-                                                        <!--<label class="m-0"><input type="radio" id="paypal" class="mr-3 checkout-radio cardType" name="cardType"  value="Paypal">Paypal</label>-->
-                                                        <!--<i class="fa fa-cc-paypal float-right" aria-hidden="true"></i>-->
-                                                    <!--</div>-->
-                                                </div>
-                                            </div>
-                                        <div class="checkout-method mt-3" id="d-c-card">
-                                            <label for="title" class="my-3 mb-2">{{__('msg.CardDetails')}}</label>
-                                            <div class="bg-white shadow-2 br-5 p-3">
-                                                    <div class="form-col mb-3">
-                                                        <input type="text" oninput="validateNewCardFields();" class="form-control custom c" id="cardNo" value="" placeholder="{{__('msg.cardnoplaceholder')}}">
-                                                    </div>
-                                                    <div class="form-col mb-3">
-                                                        <input type="text" oninput="validateNewCardFields();" class="form-control custom c" id="cardHolderName" value="" placeholder="{{__('msg.cardholdernameplaceholder')}}">
-                                                    </div>
-                                                    <div class="form-row mb-3">
-                                                        <div class="form-col col-md-6">
-                                                            <input type="text" oninput="validateNewCardFields();" class="form-control custom c" id="expiry" value="" placeholder="{{__('msg.expiryyearplaceholder')}}">
-                                                        </div>
-                                                        <div class="form-col col-md-6">
-                                                            <input type="text" oninput="validateNewCardFields();" class="form-control custom c" id="cvcget" value="" placeholder="CVC">
-                                                        </div>
-                                                     </div>
-                                                <div class="form-col mb-3">
-                                                <input type="text" oninput="validateNewCardFields();" class="form-control custom c" id="expiry_month" value="" placeholder="{{__('msg.expirymonthplaceholder')}}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <!--for new/guest  user (add new payment method)-->
-                                <div class="row mt-4">
-                                    <button class="btn btn-transparent btn-prev mb-2">{{__('msg.back')}}</button>
-                                    <button class="btn btn-black next-button " disabled id="nextmethod_payment" onClick="paymentCard()">{{__('msg.next')}}</button>
-                                </div>
-                            </div>
-                            <div class="card-1 ml-2">
-                                <h5>4/4 {{__('msg.easytpes')}}</h5>
+                                <h5>3/3 {{__('msg.easytpes')}}</h5>
                                 <form onsubmit="return confirmOrder(event)" name="orderForm" id="orderForm">
                                     @csrf 
                                     <div class="top d-flex flex-column">
@@ -318,8 +251,8 @@
                                     </div>
                                     <div class="row mt-4">
                                         <button class="btn btn-transparent btn-prev mb-2" type="button">{{__('msg.back')}}</button>
-                                        <button class="btn btn-black btn-confirm-checkout" type="submit">{{__('msg.confirmcheckout')}}</button>
-                                        <!-- <a class="btn btn-black btn-confirm-checkout"  href="{{route('checkout.payment')}}" >Confirm Checkout</a> -->
+                                        <!-- <button class="btn btn-black btn-confirm-checkout" type="submit" onClick="getallvalue()">{{__('msg.confirmcheckout')}}</button> -->
+                                        <button class="btn btn-black btn-confirm-checkout" type="submit" id="checkout-button">{{__('msg.confirmcheckout')}}</button>
                                     </div>
                                 </form>
                             </div>
@@ -409,18 +342,20 @@
     </div>
 @endsection
 
+    <!-- Get Stripe SDK-->
+    <script src="https://js.stripe.com/v3/"></script>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-    src="https://code.jquery.com/jquery-3.5.1.js"
-    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <!-- Optional JavaScript -->
 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- Optional JavaScript -->
     <script src="{{ asset('assets/site/js/checkout.js') }}"></script>
+
     <script>
     function validateNewAddressFields()
     {
@@ -581,7 +516,37 @@
             processData: false,
             contentType: false,
 
-            success: () => showOrderNotification(`{{__('msg.orderConfirmed')}}`, true),
+            success: function(res) {
+                // Create an instance of the Stripe object with your publishable API key
+                var stripe = Stripe('pk_test_51I9I00Ieek3BiHvge1ziyYmRagWsQ73CGQ9lKSG07vWzBoPryjCMZ1euPoTtXcnJsBTLn8Wyr3xYQTJTKWi3bmWE00LSYcqAe1');
+                
+                try {
+                    stripe.redirectToCheckout({ sessionId: res.session.id });
+                } catch (result) {
+                    alert(result.error.message);
+                }
+                
+                // fetch('/create-checkout-session', {
+                //     method: 'POST',
+                // })
+                // .then(function(response) {
+                //     return response.json();
+                // })
+                // .then(function(session) {
+                //     return stripe.redirectToCheckout({ sessionId: session.id });
+                // })
+                // .then(function(result) {
+                //     // If `redirectToCheckout` fails due to a browser or network
+                //     // error, you should display the localized error message to your
+                //     // customer using `error.message`.
+                //     if (result.error) {
+                //         alert(result.error.message);
+                //     }
+                // })
+                // .catch(function(error) {
+                //     console.error('Error:', error);
+                // });
+            },
             error: () => showOrderNotification(`{{__('msg.orderFailed')}`, false)
         })
 
@@ -589,6 +554,7 @@
     }
 
     </script>
+
     <script>
         $(document).ready(function(){
             $("#new-address-container").hide();
