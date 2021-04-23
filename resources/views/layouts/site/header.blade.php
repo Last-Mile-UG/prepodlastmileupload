@@ -51,8 +51,8 @@
                             {{__('msg.allorders')}}
                         </a>
                     @endif     
-                            <!-- {{auth()->check() ? auth()->user()->name : 'Login/Signup'}} -->
-                        </a>
+                    @if(!auth()->check())
+                        
                         <a href="{{route('help')}}" class="link-item ml-4">{{__('msg.help')}}</a>
                         <div class="dropdown ml-4">
                             <span class="link-item ">{{__('msg.language')}} <img class="dark" src="{{ asset('assets/site/img/icons/down_arrow.png') }}" alt=""> </span>
@@ -61,14 +61,15 @@
                             <a class="dropdown-item" href="/local/ge">{{__('msg.langDe')}}</a>
                             </div>
                         </div>
-                        @if(!auth()->check())
-                            <a class="user-account link-item ml-2" onClick="loginModal()" style="color:gray; cursor: pointer;">
-                            <img src="{{ asset('assets/site/img/icons/account.png') }}" alt="">
-                            @if(auth()->check())
-                            auth()->user()->name
-                            @else
-                            {{__('msg.login')}}
+                        <a class="user-account link-item ml-2" onClick="loginModal()" style="color:gray; cursor: pointer;">
+                        <img src="{{ asset('assets/site/img/icons/account.png') }}" alt="">
+                        @if(auth()->check())
+                        auth()->user()->name
+                        @else
+                        {{__('msg.login')}}
                         @endif
+                            <!-- {{auth()->check() ? auth()->user()->name : 'Login/Signup'}} -->
+                        </a>
                     @else
                     
                     <div class="dropdown ml-3" style="margin-top: -4px;">  
