@@ -186,6 +186,9 @@
     'recentorder'=>'Recent Orders',
     //HomeCustomer
 
+    // vendors products list
+    'outOfStock' => 'Out of stock',
+
     //For Cart Checkout
     'easytpes' =>'Easy Steps',
     'checkoutmethod' =>'Checkout Method',
