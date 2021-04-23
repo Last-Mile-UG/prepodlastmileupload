@@ -11,7 +11,16 @@ use Illuminate\Support\Facades\Log;
 use Stripe\Checkout\Session;
 use Stripe\Exception\ApiErrorException;
 use Stripe\StripeClient;
-use App\{Enum\OrderStatusEnum, Transaction, Orders, OrderDetail, User, UserDetail, UserLocation, PremiumUserTransacion};
+use App\{DeliveryOption,
+    Enum\OrderStatusEnum,
+    Transaction,
+    Orders,
+    OrderDetail,
+    User,
+    UserDetail,
+    UserLocation,
+    PremiumUserTransacion
+};
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,6 +34,7 @@ class PaymentController extends Controller
         try {
             $unSubscribeItems = Cart::content()->where('options.subscription', 0);
             if ($unSubscribeItems->isEmpty()) {
+                DB::rollback();
                 return response()->json(['Message' => 'The cart is empty'], Response::HTTP_NOT_ACCEPTABLE);
             }
 
@@ -141,11 +151,15 @@ class PaymentController extends Controller
                 #region transaction
                 #endregion
             }
-            $session = $this->createCheckoutSession($unSubscribeItems, $order);
+            $deliveryOption = DeliveryOption::find($delivery_id);
+            if($deliveryOption === null) {
+                DB::rollback();
+                return response()->json(['Message' => 'The delivery is empty'], Response::HTTP_NOT_ACCEPTABLE);
+            }
+            $session = $this->createCheckoutSession($unSubscribeItems, $deliveryOption, $order);
             DB::commit();
-            $cart = Cart::destroy();
             return ['session' => ['id' => $session->id]];
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             DB::rollback();
             Log::alert($e->getMessage());
 
@@ -155,11 +169,12 @@ class PaymentController extends Controller
 
     /**
      * @param Collection $items
+     * @param DeliveryOption $deliveryOption
      * @param Orders $order
      * @return Session
      * @throws ApiErrorException
      */
-    private function createCheckoutSession(Collection $items, Orders $order): Session
+    private function createCheckoutSession(Collection $items, DeliveryOption $deliveryOption, Orders $order): Session
     {
         $lineItems = [];
         foreach ($items as $item) {
@@ -169,12 +184,24 @@ class PaymentController extends Controller
                     'unit_amount' => $item->price * 100,
                     'product_data' => [
                         'name' => $item->name,
-                       // 'images' => [$item->options->image],
+                        'images' => [$item->options->image],
                     ],
                 ],
                 'quantity' => $item->qty,
             ];
         }
+        $lineItems[] = [
+            'price_data' => [
+                'currency' => 'eur',
+                'unit_amount' => $deliveryOption->price * 100,
+                'product_data' => [
+                    'name' => $deliveryOption->title,
+                ],
+            ],
+            'quantity' => $item->qty,
+        ];
+
+
         $stripe = new StripeClient(config('app.stripe_secret_key'));
 
         return $stripe->checkout->sessions->create([
