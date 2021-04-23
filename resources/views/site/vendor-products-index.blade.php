@@ -257,7 +257,7 @@
                         @if(auth::check())
                         <a href="{{route('cart.index')}}" class="btn btn-black next-button">{{__('msg.checkoutbtn')}}</a>
                         @elseif(!auth::check())
-                        <a href="{{route('cart.index')}}" class="btn btn-black next-button" >Checkout</a>
+                        <a href="{{route('cart.index')}}" class="btn btn-black next-button" >{{__('msg.checkoutbtn')}}</a>
                         <!-- <a href="#" class="btn btn-black next-button"  >Checkout</a> -->
                         @endif                
                     </div>
