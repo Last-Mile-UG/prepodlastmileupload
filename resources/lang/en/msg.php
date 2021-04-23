@@ -4,7 +4,7 @@
     'searchHeader' => 'What are you looking for?',
     'locationInputPlaceholder' => 'Enter your address',
     'category' => 'Category',
-    'items' =>'items',
+    'items' =>'Items',
     'favorites' => 'Favorites',
     'login' =>'Login/Signup',
     'allcategories' => 'All Categories',
