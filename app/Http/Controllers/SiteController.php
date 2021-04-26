@@ -117,19 +117,22 @@ class SiteController extends Controller
     }
 
     public function addToCart(Request $request){
-        
         $data = $request->all();
         extract($data);
         $variantModel = new ProductVariant();
         $variant = $variantModel->find($variantId);
         $productsModel = new Products();
         $product = $productsModel->with(['user', 'category', 'variants'])->find($variant->product_id);
+        $vendor = UserDetail::where('user_id', $product->user->id)->first();
+        $vendorAddress = $vendor->address;
+
         Cart::setGlobalTax(0);
         Cart::add(
             $variantId, $product->name, $quantity ?? 1, $variant->price, 1,[
                 'image' => $variant->image, 
                 'vendorName' => $product->user->name,
                 'vendorId' => $product->user->id,
+                'vendorAddress' => $vendorAddress,
                 'description' => $variant->description,
                 'category' => $product->category->title,
                 'subscription' => 0,
@@ -232,6 +235,7 @@ class SiteController extends Controller
     }
 
    public function vendorProductsPage($vendorId){
+        $currentVendor = UserDetail::where('user_id', $vendorId)->first();
         $productsModel = new Products();
         $records = $productsModel->withCount('reviews')->with(['category', 'user', 'reviews', 'variants.reviews'])->where('vendor_id', $vendorId)->get();
         $products = $records;
@@ -250,7 +254,7 @@ class SiteController extends Controller
         $cartCount = count($items);
         $cartTotal = Cart::total();
        
-        return view('site.vendor-products-index', compact(['products', 'cartCount', 'categories', 'vendorId','items','cartTotal']));
+        return view('site.vendor-products-index', compact(['products', 'cartCount', 'categories', 'vendorId','items','cartTotal', 'currentVendor']));
    }
 
    public function categoryProducts($vendorId, $catId){

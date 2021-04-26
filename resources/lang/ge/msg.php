@@ -53,6 +53,7 @@
     'subject' => 'Betreff',
     'typemessage' => 'Schreibe deine Nachricht',
     'submit' => 'Absenden',
+    'confirmAnotherOrder' => 'Es sieht so aus, als hätten Sie bei Anbietern an verschiedenen Standorten bestellt! Beachte bitte, dass die Liefergebühr für jeden Standort separat ist. Es ist jetzt möglich, von einem Standort mit mehreren Filialen mit einer einmaligen Liefergebühr zu bestellen! Schauen Sie sich in unserem Shop um, um mehr Informationen zu diesen Filialen zu erhalten. Vielen Dank!',
     //End FindMe Index Page
 
     //For UserSidebar

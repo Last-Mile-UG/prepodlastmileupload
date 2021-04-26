@@ -53,6 +53,7 @@
     'subject' => 'Subject',
     'typemessage' => 'Type Message',
     'submit' => 'Submit',
+    'confirmAnotherOrder' => 'Looks like you have ordered from vendors in different locations! Please note that the delivery fee for each location is separate. It is now possible to order from one location with multiple stores with a one time delivery fee! Browse our shop for more information regarding these stores. Thanks!',
     //End FindMe Index Page
 
     //For UserSidebar

@@ -59,18 +59,13 @@ Route::middleware(['premium.customer'])->group(function(){
 	Route::post('cartremove','CartController@removecart')->name('cartremove');
 	Route::get('help','SiteController@help')->name('help');
     Route::delete('clear-cart','CartController@clearCart')->name('clear-cart');
-
-
 });
-
-
 
 // Route::post('addlocation','CartController@checkoutlocation')->name('addlocation');
 
 // Route::get('dashboard', 'SiteController@dashboard')->name('site.dashboard');
 // Route::get('checkout', 'PaymentController@checkout')->name('checkout.payment');
 Route::post('checkout','PaymentController@checkout')->name('checkout.payment');
-
 
 Auth::routes(['verify' => true]);
 
@@ -134,8 +129,6 @@ Route::group(['namespace' => 'Driver', 'prefix' => 'driver'], function () {
 Route::group(['namespace' => 'Customer', 'prefix' => 'customer'], function () {
 
 });
-
-
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('premium.customer','verified');
 Route::get('editProfile/{id}', 'UserController@showProfile');
