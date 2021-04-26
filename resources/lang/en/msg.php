@@ -191,12 +191,12 @@
 
     //For Cart Checkout
     'easytpes' =>'Easy Steps',
-    'checkoutmethod' =>'Checkout Method',
+    'checkoutmethod' =>'Delivery Costs',
     'checkoutbtn'=>'CheckOut',
     'next' =>'Next',
     'cart'=>'Cart',
     'deliveryaddress' => 'Delivery Address',
-    'deliverydetails' => 'Delivery Details',
+    'deliverydetails' => 'Personal Details',
     'paymentmethod' => 'Payment Method',
     'itemsincart' => 'Items in your Cart',
     'viewitem' => 'View Items',

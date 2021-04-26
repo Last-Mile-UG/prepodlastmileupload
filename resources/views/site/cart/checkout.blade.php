@@ -386,6 +386,9 @@
         const totalPrice = $('.price-total').text();
         const total = +deliverPrice.replace('€', '').replace(',', '.') + +totalPrice.replace('€', '').replace(',', '.');
         $('.price-total').text(`€${total}`);
+
+        paymenttype();
+
     }
     function validateDeliveryAddress()
     {
@@ -556,7 +559,7 @@
                 $("input[name=payment-radio]").prop('checked', false).prop('checked', true);
             });
 
-            $('.delivery-method').first().find('input[type=radio]').prop('checked', true).trigger("change");
+            $("input[name=checkout-radio]").prop('checked', true).trigger("change");
         });
     </script>
 
