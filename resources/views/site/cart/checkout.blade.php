@@ -221,7 +221,7 @@
                                             </div>
                                         </div>
                                         <div class="details mb-3">
-                                            <label for="title-d" class="m-0">{{__('msg.deliveryaddress')}}</label>
+                                            <label for="title-d" class="m-0">{{__('msg.deliverydetails')}}</label>
                                             <div class="des-pri d-flex justify-content-between">
                                                 <span class="w-50 text-dark-grey">{{__('msg.name')}}</span>
                                                 <span class="w-100 text-right guestname text-dark-grey"  id="guestname">{{Auth::check() ? $record->name :''}}</span>
