@@ -29,7 +29,6 @@ Route::middleware(['premium.customer'])->group(function(){
 	Route::resource('cart', 'CartController');
 	Route::get('update-quantity','CartController@updateCartQuantity')->name('update-quantity');
 	Route::get('cart-checkout', 'CartController@checkout')->name('site.checkout');
-	Route::post('cart-destroy', 'CartController@destroy')->name('cart-destroy');
 	Route::post('/explore-shop', 'SiteController@nearShops')->name('site.explore.shop');
 	Route::get('/explore-shops', 'SiteController@allShops')->name('site.explore.shops');
 	Route::get('profile', 'SiteController@profile')->name('profile');
@@ -59,6 +58,7 @@ Route::middleware(['premium.customer'])->group(function(){
 	Route::post('/products/autocomplete/fetch', 'Vendor\ProductController@fetchProducts')->name('products.autocomplete.fetch');
 	Route::post('cartremove','CartController@removecart')->name('cartremove');
 	Route::get('help','SiteController@help')->name('help');
+    Route::delete('clear-cart','CartController@clearCart')->name('clear-cart');
 });
 
 // Route::post('addlocation','CartController@checkoutlocation')->name('addlocation');

@@ -186,14 +186,17 @@
     'recentorder'=>'letzte Bestellungen',
     //HomeCustomer
 
+    // vendors products list
+    'outOfStock' => 'Ausverkauft',
+
     //For Cart Checkout
     'easytpes' =>'Einfache Schritte',
-    'checkoutmethod' =>'Checkout-Methode',
+    'checkoutmethod' =>'Lieferkosten',
     'checkoutbtn'=>'Checkout',
     'next' =>'Weiter',
     'cart'=>'Wagen',
     'deliveryaddress' => 'Lieferadresse',
-    'deliverydetails' => 'Lieferdetails',
+    'deliverydetails' => 'Persönliche Angaben',
     'paymentmethod' => 'Zahlungsmethode',
     'itemsincart' => 'Artikel in deinem Warenkorb',
     'viewitem' => 'Artikel ansehen',

@@ -40,9 +40,9 @@
                                 <div class="checkout-method getpaymenttype">
                                     <label for="title" class="my-3 mb-2">{{__('msg.checkoutmethod')}}</label>
                                     @foreach($recordDelivery as $delivery)
-                                    <div class="radio  mb-3">
+                                    <div class="radio mb-3 delivery-method">
                                         <label class="m-0"><input type="radio" onchange="validateDelivery();" data-id="{{$delivery->id}}" value="{{$delivery->title}}" class="mr-3 checkout-radio payment_method" name="checkout-radio">{{$delivery->title}}</label>
-                                        <span class="float-right" id="delivery-{{$delivery->id}}">€{{$delivery->price}}</span>
+                                        <span class="float-right delivery-price" id="delivery-{{$delivery->id}}">€{{$delivery->price}}</span>
                                     </div>
                                     @endforeach
                                     <p style="color:red;display:none" id="p1">Empty Field</p>
@@ -155,7 +155,6 @@
                                                                         <!-- <input type="text" class="form-control" name="title" id="searchTextField" onclick="mapInit()" > -->
                                                                     </div>
                                                                 </div>    
-                                                                    
                                                                 <div class="form-row">
                                                                     <div class="form-group col-md-6 mb-3">
                                                                         <label for="title">{{__('msg.addressname')}}</label>
@@ -301,7 +300,6 @@
                                 <div class="d-flex justify-content-between">
                                     <span class="qty-total">{{__('msg.total')}}</span>
                                     <a class="price-total">€{{number_format(str_replace( ',', '', $cartTotal ), 2, ',', '.')}}</a>
-
                                 </div>
                             </div>
                         </div>
@@ -382,6 +380,14 @@
     function validateDelivery()
     {
         $("#nextmethod").prop('disabled', false);
+
+        const deliverPrice = $('.delivery-method').has('input[type=radio]:checked').find('.delivery-price').text();
+        const totalPrice = $('.price-total').text();
+        const total = +deliverPrice.replace('€', '').replace(',', '.') + +totalPrice.replace('€', '').replace(',', '.');
+        $('.price-total').text(`€${total.toFixed(2)}`);
+
+        paymenttype();
+
     }
     function validateDeliveryAddress()
     {
@@ -507,6 +513,7 @@
         const data = setValues();
         const form = document.getElementById('orderForm');
         const allFormValues = new FormData(form);
+        allFormValues.append('delivery_id', `{{$delivery->id}}`);
 
         const stripeKey = "{{ config('app.stripe_publish_key') }}";
 
@@ -537,18 +544,22 @@
     </script>
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $("#new-address-container").hide();
-            $("#add-new-delivery-address").on('click',function(){
+
+            $("#add-new-delivery-address").on('click',function() {
                 $("#existing-address-container").hide();
                 $("#new-address-container").show();
                 $("input[name=delivery-radio]").prop('checked', false);
             });
-            $("#add-new-card").on('click',function(){
+
+            $("#add-new-card").on('click',function() {
                 $("#existing-payment-container").hide();
                 $("#new-payment-container").show();
-                $("input[name=payment-radio]").prop('checked', false);
+                $("input[name=payment-radio]").prop('checked', false).prop('checked', true);
             });
+
+            $("input[name=checkout-radio]").prop('checked', true).trigger("change");
         });
     </script>
 
@@ -603,6 +614,8 @@
                     var result = results[0];
                     document.getElementById("search-txt").value = result.formatted_address;
                     document.getElementById("location-address").value = result.formatted_address;
+                    $("#addNewCompany").trigger('input');
+
                     if (result.geometry.viewport) {
                         map.fitBounds(result.geometry.viewport);
                     } else {

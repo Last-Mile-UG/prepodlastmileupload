@@ -20,7 +20,7 @@ class CartController extends Controller
         $items = Cart::content();
         $cartCount = count($items);
         $cartTotal = Cart::total();
-        
+
         return view('site.cart.index', compact(['items', 'cartCount', 'cartTotal']));
     }
 
@@ -90,9 +90,9 @@ class CartController extends Controller
         $cart = Cart::destroy();
     }
 
-    public function checkout(){ 
-        
-       
+    public function checkout(){
+
+
       $user = auth()->user();
 
        if(!is_null($user))
@@ -119,7 +119,7 @@ class CartController extends Controller
             $cartTotal = Cart::total();
             return view('site.cart.checkout',compact(['items','cartCount','cartTotal','recordDelivery']));
 
-        } 
+        }
     }
     // public function checkoutlocation(Request $request)
     // {
@@ -135,11 +135,11 @@ class CartController extends Controller
     //     $userlocation->title = $name;
     //     $userlocation->address = $address;
     //     $userlocation->save();
-    //   } 
+    //   }
     //   catch (Exception $e)
     //   {
     //       return redirect()->back()->with('error',$e);
-    //   } 
+    //   }
     // }
 
 
@@ -155,20 +155,20 @@ class CartController extends Controller
         {
             return redirect()->back()->with($e->getMessage());
         }
-        
+
     }
 
     public function updateCartQuantity(Request $request)
     {
 
         try {
-            
-            
+
+
                $data =  $request->all();
                extract($data);
 
             $items = Cart::update($rowId,$quant);
-            
+
         }
          catch (Exception $e)
         {
@@ -176,5 +176,10 @@ class CartController extends Controller
         }
     }
 
+    public function clearCart()
+    {
+        Cart::destroy();
 
+        return response()->json();
+    }
 }

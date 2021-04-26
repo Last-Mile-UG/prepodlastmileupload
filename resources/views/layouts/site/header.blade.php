@@ -51,7 +51,16 @@
                             {{__('msg.allorders')}}
                         </a>
                     @endif     
-                     @if(!auth()->check())
+                    @if(!auth()->check())
+                        
+                        <a href="{{route('help')}}" class="link-item ml-4">{{__('msg.help')}}</a>
+                        <div class="dropdown ml-4">
+                            <span class="link-item ">{{__('msg.language')}} <img class="dark" src="{{ asset('assets/site/img/icons/down_arrow.png') }}" alt=""> </span>
+                            <div class="dropdown-content">
+                            <a class="dropdown-item" href="/local/en">{{__('msg.langEng')}}</a>
+                            <a class="dropdown-item" href="/local/ge">{{__('msg.langDe')}}</a>
+                            </div>
+                        </div>
                         <a class="user-account link-item ml-2" onClick="loginModal()" style="color:gray; cursor: pointer;">
                         <img src="{{ asset('assets/site/img/icons/account.png') }}" alt="">
                         @if(auth()->check())
@@ -61,14 +70,6 @@
                         @endif
                             <!-- {{auth()->check() ? auth()->user()->name : 'Login/Signup'}} -->
                         </a>
-                        <a href="{{route('help')}}" class="link-item ml-4">{{__('msg.help')}}</a>
-                        <div class="dropdown ml-4">
-                            <span class="link-item ">{{__('msg.language')}} <img class="dark" src="{{ asset('assets/site/img/icons/down_arrow.png') }}" alt=""> </span>
-                            <div class="dropdown-content">
-                            <a class="dropdown-item" href="/local/en">{{__('msg.langEng')}}</a>
-                            <a class="dropdown-item" href="/local/ge">{{__('msg.langDe')}}</a>
-                            </div>
-                        </div>
                     @else
                     
                     <div class="dropdown ml-3" style="margin-top: -4px;">  

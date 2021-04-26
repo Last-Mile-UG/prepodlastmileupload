@@ -20,7 +20,7 @@
     $(document).ready(() => {
       setTimeout(() => {
         login = `{{auth()->check()}}`
-        window.location.replace(login ? '/home' : '/');
+        window.location.replace('/cart');
       }, 3000)
     })
   </script>

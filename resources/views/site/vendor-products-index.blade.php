@@ -129,7 +129,7 @@
                                             </div>
                                             <div class="card-body-s text-center d-flex flex-column align-items-center mt-2">
                                                 <img src="{{ $product->variants->first()->image }}" alt="" class="product-img" style="height: 175px; width:175px;">
-                                                <span>{{ $product->user->name }}</span>
+                                                <!-- <span>{{ $product->user->name }}</span> -->
                                                 <span>{{ $product->name }}</span>
                                             </div>
                                             <div class="card-footer">
@@ -205,7 +205,7 @@
                                                 <i class="fa fa-plu"></i>
                                                 
                                                     <div class="add-to-cart overlay text-center">
-                                                        <button class="btn btn-black "  type="button" style="font-size: 15px;">Out of Stock&nbsp;
+                                                        <button class="btn btn-black "  type="button" style="font-size: 15px;">{{__('msg.outOfStock')}}&nbsp;
                                                         <i class="fa fa-cube"></i>
                                                         </button>
                                                     </div>
@@ -255,7 +255,7 @@
                         @if(auth::check())
                         <a href="{{route('cart.index')}}" class="btn btn-black next-button">{{__('msg.checkoutbtn')}}</a>
                         @elseif(!auth::check())
-                        <a href="{{route('cart.index')}}" class="btn btn-black next-button" >Checkout</a>
+                        <a href="{{route('cart.index')}}" class="btn btn-black next-button" >{{__('msg.checkoutbtn')}}</a>
                         <!-- <a href="#" class="btn btn-black next-button"  >Checkout</a> -->
                         @endif                
                     </div>
@@ -575,8 +575,8 @@
             if(currentItemAddress !== undefined && currentVendorAddress !== currentItemAddress) {
                 if(confirm('Are you sure?')) {
                     $.ajax({
-                        url: `{{route('cart-destroy')}}`,
-                        type: "POST",
+                        url: `{{route('clear-cart')}}`,
+                        type: "DELETE",
                         datatype: "json",
                         headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" },
 

@@ -18,10 +18,17 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
     $(document).ready(() => {
+      $.ajax({
+        url: `{{route('clear-cart')}}`,
+        type: "DELETE",
+        datatype: "json",
+        headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" },
+      });
+
       setTimeout(() => {
         login = `{{auth()->check()}}`
         window.location.replace(login ? '/home' : '/');
-      }, 3000)
+      }, 3000);
     })
   </script>
 </body>

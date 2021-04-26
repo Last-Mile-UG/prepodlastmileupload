@@ -4,7 +4,7 @@
     'searchHeader' => 'What are you looking for?',
     'locationInputPlaceholder' => 'Enter your address',
     'category' => 'Category',
-    'items' =>'items',
+    'items' =>'Items',
     'favorites' => 'Favorites',
     'login' =>'Login/Signup',
     'allcategories' => 'All Categories',
@@ -186,14 +186,17 @@
     'recentorder'=>'Recent Orders',
     //HomeCustomer
 
+    // vendors products list
+    'outOfStock' => 'Out of stock',
+
     //For Cart Checkout
     'easytpes' =>'Easy Steps',
-    'checkoutmethod' =>'Checkout Method',
+    'checkoutmethod' =>'Delivery Costs',
     'checkoutbtn'=>'CheckOut',
     'next' =>'Next',
     'cart'=>'Cart',
     'deliveryaddress' => 'Delivery Address',
-    'deliverydetails' => 'Delivery Details',
+    'deliverydetails' => 'Personal Details',
     'paymentmethod' => 'Payment Method',
     'itemsincart' => 'Items in your Cart',
     'viewitem' => 'View Items',
