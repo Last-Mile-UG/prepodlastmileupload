@@ -573,7 +573,7 @@
             const currentItemAddress = $('#cart-item .cart-total').data('item-address');
 
             if(currentItemAddress !== undefined && currentVendorAddress !== currentItemAddress) {
-                if(confirm('Are you sure?')) {
+                if(confirm('{{__("msg.confirmAnotherOrder")}}')) {
                     $.ajax({
                         url: `{{route('clear-cart')}}`,
                         type: "DELETE",
