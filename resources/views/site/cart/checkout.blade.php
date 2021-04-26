@@ -155,7 +155,6 @@
                                                                         <!-- <input type="text" class="form-control" name="title" id="searchTextField" onclick="mapInit()" > -->
                                                                     </div>
                                                                 </div>    
-                                                                    
                                                                 <div class="form-row">
                                                                     <div class="form-group col-md-6 mb-3">
                                                                         <label for="title">{{__('msg.addressname')}}</label>
@@ -385,7 +384,7 @@
         const deliverPrice = $('.delivery-method').has('input[type=radio]:checked').find('.delivery-price').text();
         const totalPrice = $('.price-total').text();
         const total = +deliverPrice.replace('€', '').replace(',', '.') + +totalPrice.replace('€', '').replace(',', '.');
-        $('.price-total').text(`€${total}`);
+        $('.price-total').text(`€${total.toFixed(2)}`);
 
         paymenttype();
 
@@ -514,6 +513,7 @@
         const data = setValues();
         const form = document.getElementById('orderForm');
         const allFormValues = new FormData(form);
+        allFormValues.append('delivery_id', `{{$delivery->id}}`);
 
         const stripeKey = "{{ config('app.stripe_publish_key') }}";
 
@@ -614,6 +614,8 @@
                     var result = results[0];
                     document.getElementById("search-txt").value = result.formatted_address;
                     document.getElementById("location-address").value = result.formatted_address;
+                    $("#addNewCompany").trigger('input');
+
                     if (result.geometry.viewport) {
                         map.fitBounds(result.geometry.viewport);
                     } else {

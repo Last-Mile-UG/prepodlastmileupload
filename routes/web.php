@@ -58,7 +58,7 @@ Route::middleware(['premium.customer'])->group(function(){
 	Route::post('/products/autocomplete/fetch', 'Vendor\ProductController@fetchProducts')->name('products.autocomplete.fetch');
 	Route::post('cartremove','CartController@removecart')->name('cartremove');
 	Route::get('help','SiteController@help')->name('help');
-    Route::delete('clear-cart','CartController@clearCart');
+    Route::delete('clear-cart','CartController@clearCart')->name('clear-cart');
 
 
 });
