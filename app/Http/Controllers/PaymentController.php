@@ -184,7 +184,7 @@ class PaymentController extends Controller
                     'unit_amount' => $item->price * 100,
                     'product_data' => [
                         'name' => $item->name,
-                        'images' => [$item->options->image],
+                        //'images' => [$item->options->image],
                     ],
                 ],
                 'quantity' => $item->qty,
