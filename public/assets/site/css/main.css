@@ -1575,6 +1575,10 @@ a:link {
     overflow: scroll;
 }
 
+.shop-item {
+    cursor: pointer;
+}
+
 /*track-order scrollbar*/
 .explore-shops-modal .shops::-webkit-scrollbar {
     width: 0;

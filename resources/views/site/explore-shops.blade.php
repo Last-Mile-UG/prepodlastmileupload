@@ -146,7 +146,12 @@
 
     <div class="row">
         @foreach($shops as $shop)
-        <div class="col-md-3 mb-4 shop-item" data-opening-time="{{$shop->detail->opening_time}}" data-closing-time="{{$shop->detail->closing_time}}">
+        <div
+            class="col-md-3 mb-4 shop-item"
+            data-opening-time="{{$shop->detail->opening_time}}"
+            data-closing-time="{{$shop->detail->closing_time}}"
+            onclick="window.location.href = `{{route('site.explore.vendor.products', ['id'=>$shop->id])}}`"
+        >
             <div class="card s-shop shadow-2">
                 <div class="card-header px-2 pt-3 d-flex justify-content-between">
                     <span class="shop-category-tag px-2" style="background: none;"></span>
