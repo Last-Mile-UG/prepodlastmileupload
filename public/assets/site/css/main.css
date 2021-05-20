@@ -350,6 +350,30 @@ a:link {
     outline: none;
     border: 1px solid #019386;
 }
+.search-address-field-container .search-wrapper {
+    position: relative;
+    width: 100%;
+}
+.search-address-field-container #locationInput {
+    padding-right: 42px;   
+}
+.search-address-field-container #clear-btn {
+    height: 42px;
+    border:1px solid transparent;
+    background-color: transparent;
+    display: inline-block;
+    vertical-align: middle;
+    outline: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.search-address-field-container #clear-btn .fa {
+    padding: 8px;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.295);
+}
 /*search by address*/
 
 /*search goods field*/

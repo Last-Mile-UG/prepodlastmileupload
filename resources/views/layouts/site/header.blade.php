@@ -23,13 +23,16 @@
                         </div>
                     </div> -->
                     <div class="search-address-field-container d-flex flex-fill">
-                     <input type="text" id="locationInput" class="form-control" placeholder="{{__('msg.locationInputPlaceholder')}}">
-                     <form method="post" id="form-submit" action="{{route('site.explore.shop')}}">
+                    <div class="search-wrapper">
+                        <input type="text" id="locationInput" class="form-control" placeholder="{{__('msg.locationInputPlaceholder')}}">
+                        <button id="clear-btn" onClick="clearSearch()"><i class="fa fa-times-circle"></i></button>
+                    </div>
+                    <form method="post" id="form-submit" action="{{route('site.explore.shop')}}">
                         @csrf
                         <input type="hidden" name="getLatitude" id="getLatitude">
                         <input type="hidden" name="getLongitude" id="getLongitude">
                         <button class="btn"  id="search-btn" type="submit">
-                        <i class="fa fa-search" style="padding:8px"></i>
+                            <i class="fa fa-search" style="padding:8px"></i>
                         </button>
                     </form>
                     </div>
@@ -134,6 +137,11 @@
         login = `{{auth()->check()}}`
         if(!login)
             $("#loginModal").modal('show');
+    }
+
+    function clearSearch() {
+        document.getElementById('locationInput').value = "";
+        localStorage.clear();
     }
 </script>
 
