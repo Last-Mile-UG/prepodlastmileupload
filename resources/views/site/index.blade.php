@@ -73,7 +73,6 @@
         <div class="row">
         <div class="col-md-6 bg-black p-0 order-2 order-md-1" style="position:relative">
             <div class="section buy-subscribe bg-grey d-flex flex-column justify-content-center" style="position:relative">
-                <img src="{{ asset('assets/site/img/triangle.png') }}" alt="" class="triangle">
                 <div class="buy-subscribe px-5">
                     <h3 class="font-bold">{{__('msg.buyheading')}}</h3>
                     <p class="mb-3">

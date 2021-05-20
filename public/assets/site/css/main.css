@@ -1435,12 +1435,6 @@ a:link {
     height: 360px;
     z-index: 1;
 }
-.section.buy-subscribe .triangle {
-    position: absolute;
-    top: -55px;
-    max-width: 660px;
-    left: 58%;
-}
 .section.buy-subscribe p {
     width: 70%;
 }
@@ -2638,9 +2632,6 @@ textarea.complaint-msg:focus {
         padding-top: 220px;
     }
     .checkout-container .right {
-        display: none;
-    }
-    .section.buy-subscribe .triangle {
         display: none;
     }
 }
