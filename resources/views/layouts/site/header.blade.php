@@ -216,14 +216,25 @@ $('#products_search_box').keyup(function(){
 <script src="https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true&amp;key=AIzaSyBR7rrSUi4o118-vGLhDI_f6buJOnZr900&amp;callback=initialize&amp;libraries=places" defer></script>
 
 <script type="text/javascript">
+    $(document).ready(function() {
+    document.getElementById('locationInput').value = localStorage.getItem('address');
+    document.getElementById('getLatitude').value = localStorage.getItem('lat')
+    document.getElementById('getLongitude').value = localStorage.getItem('lon')
+    })
+
     function initialize() {
         var input = document.getElementById('locationInput');
         var autocomplete = new google.maps.places.Autocomplete(input);
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
             var place = autocomplete.getPlace();
 
+            document.getElementById('locationInput').value = place.formatted_address;
             document.getElementById('getLatitude').value = place.geometry.location.lat();
             document.getElementById('getLongitude').value = place.geometry.location.lng(); 
+
+            localStorage.setItem('address', place.formatted_address);
+            localStorage.setItem('lat', place.geometry.location.lat());
+            localStorage.setItem('lon', place.geometry.location.lng());
         });
     }
     google.maps.event.addDomListener(window, 'load', initialize).style.color = "blue"; 
