@@ -80,7 +80,7 @@
                         <a href="#" class="user-account link-item ml-1 mt-3" style="color:gray; cursor: pointer;">{{auth()->user()->name }}</a>
                         <!-- <img class="dark" src="{{ asset('assets/site/img/icons/down_arrow.png') }}" alt=""> -->
                         <div class="dropdown-content">
-                            <a href="{{route('home')}}" class="dropdown-item" style="cursor: pointer;">{{__('msg.dashboard')}}</a>
+                            {{-- <a href="{{route('home')}}" class="dropdown-item" style="cursor: pointer;">{{__('msg.dashboard')}}</a> --}}
                             <form method="POST" action="{{route('logout')}}">
                                 @csrf
                                 <button class="dropdown-item" style="cursor: pointer;">{{__('msg.logout')}}</button>                        

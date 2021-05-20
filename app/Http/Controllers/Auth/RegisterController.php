@@ -93,7 +93,7 @@ class RegisterController extends Controller
         $user->name = $name;
         $user->email = $email;
         $user->password = Hash::make($password);
-        $user->role= 'customer';
+        $user->role= 'guest';
         $user->save();
 
 
@@ -109,7 +109,7 @@ class RegisterController extends Controller
 
         $user->sendEmailVerificationNotification();
 
-        return redirect()->route('premium');
+        return view('auth.verify');
     }
 
 }
