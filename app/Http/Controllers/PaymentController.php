@@ -73,6 +73,7 @@ class PaymentController extends Controller
                 $order->tax = 2;  // check
                 $order->save();
 
+                /*
                 // $vendorIds = [];
                 foreach ($cartItems as $item) {
                     $orderDetail = new OrderDetail();
@@ -96,6 +97,8 @@ class PaymentController extends Controller
                 $transaction->object = json_encode($paymentObject);
                 $transaction->save();
                 #endregion
+
+                */
             } else //Anonymous User Flow
             {
 

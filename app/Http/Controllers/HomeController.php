@@ -150,7 +150,7 @@ class HomeController extends Controller
                     */
                     // dd($allrider);
                 
-                return view('site.index', compact(['orders','cartCount','lat','lng']));
+                return view('site.index', compact(['orders','subscriptionOrders','unsubscribeOrders','cartCount','lat','lng']));
                 // return view('site.dashboard', compact(['vendoraccept','orders','subscriptionOrders','unsubscribeOrders','cartCount','lat','lng']));
             }
         }
