@@ -6,9 +6,12 @@
 </head>
 <section class="cd-faq js-cd-faq container max-width-md  margin-bottom-lg">
 		<ul class="cd-faq__categories" style="font-size: 25px;">
-			<li><a class="cd-faq__category  truncate" href="#users" style="color: #808080">{{__('msg.user')}}</a></li>
-			<li><a class="cd-faq__category truncate" href="#vendors" style="color: #808080">{{__('msg.vendor')}}</a></li>
-			<li><a class="cd-faq__category truncate" href="#drivers" style="color: #808080">{{__('msg.driver')}}</a></li>
+			<li><a class="cd-faq__category  truncate" href="#users" style="color: #808080"><i
+				class="fa fa-users"></i>{{__('msg.user')}}</a></li>
+			<li><a class="cd-faq__category truncate" href="#vendors" style="color: #808080"><i
+						class="fa fa-shopping-cart"></i></i>{{__('msg.vendor')}}</a></li>
+			<li><a class="cd-faq__category truncate" href="#drivers" style="color: #808080"><i
+						class="fa fa-truck"></i>{{__('msg.driver')}}</a></li>
 		</ul> <!--cd-faq__categories -->
 	<div class="cd-faq__items p-5">
 		<ul id="users" class="cd-faq__group">

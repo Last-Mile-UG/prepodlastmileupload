@@ -3606,6 +3606,11 @@ mark {
 	border-bottom: 1px solid var(--border-color)
 }
 
+.cd-faq__category i {
+	margin-right: 15px;
+	font-size: 20px;
+}
+
 .cd-faq__category::before,
 .cd-faq__category::after {
 	content: '';
