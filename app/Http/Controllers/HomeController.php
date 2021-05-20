@@ -115,6 +115,7 @@ class HomeController extends Controller
                         }
                         
                     }
+                    /*
                     $factory = (new Factory)->withServiceAccount(__DIR__.'/Api/firebaseKey.json');
                     $firestore = $factory->createFirestore();
                     $db = $firestore->database();
@@ -146,11 +147,11 @@ class HomeController extends Controller
                         
                         
                     }
-
+                    */
                     // dd($allrider);
                 
-                
-                return view('site.dashboard', compact(['vendoraccept','orders','subscriptionOrders','unsubscribeOrders','cartCount','lat','lng']));
+                return view('site.index', compact(['orders','cartCount','lat','lng']));
+                // return view('site.dashboard', compact(['vendoraccept','orders','subscriptionOrders','unsubscribeOrders','cartCount','lat','lng']));
             }
         }
     }
