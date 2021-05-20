@@ -844,6 +844,13 @@ a:link {
     opacity: 1;
     background: rgba(0, 0, 0, 0.274);
 }
+.s-product .add-to-cart.overlay .add-to-cart-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 .s-product .add-to-cart.overlay .fa-plus {
     position: absolute;
     top: 50%;

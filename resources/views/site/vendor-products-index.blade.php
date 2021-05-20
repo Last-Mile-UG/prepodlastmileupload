@@ -150,11 +150,16 @@
                                                     <img src="{{ asset('assets/site/img/icons/cart.png') }}" alt="" class="ml-4">
                                                 </div>
                                             </div>
-                                            <div class="add-to-cart overlay text-center add-to-cart-btn" data-id="{{$product->id}}" data-toggle="modal" data-target="{{$product->subscription == 1 ? '#exampleModalCenter1':'#exampleModalCenter'}}">
-                                                <i class="fa fa-plu"></i>
-                                                    <button class="btn btn-primary add-to-cart-btn" data-id="{{$product->id}}" type="button"  data-target="{{$product->subscription == 1 ? '#exampleModalCenter1':'#exampleModalCenter'}}">Add to Cart
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </button>
+                                            <div class="add-to-cart overlay text-center">
+                                                <div class="add-to-cart-btn" data-id="{{$product->id}}" data-toggle="modal"
+                                                    data-target="{{$product->subscription == 1 ? '#exampleModalCenter1' : '#exampleModalCenter'}}">
+                                                    <i class="fa fa-plus"></i>
+                                                  </div>
+                                                  <button onclick="addOneToCart(this)" class="btn btn-primary"
+                                                    data-variant-id="{{$product->variants->first()->id}}">Add to
+                                                    Cart
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                  </button>
                                                 
                                                 <!-- <button class="btn btn-primary add-to-cart-btn" data-id="{{$product->id}}" data-toggle="modal" data-target="{{$product->subscription == 1 ? '#exampleModalCenter1':'#exampleModalCenter'}}">Add to Cart
                                                     <i class="fa fa-shopping-cart"></i>
@@ -202,13 +207,13 @@
                                                 </div>
                                             </div>
                                             <div class="add-to-cart overlay text-center" >
-                                                <i class="fa fa-plu"></i>
-                                                
-                                                    <div class="add-to-cart overlay text-center">
-                                                        <button class="btn btn-black "  type="button" style="font-size: 15px;">{{__('msg.outOfStock')}}&nbsp;
-                                                        <i class="fa fa-cube"></i>
-                                                        </button>
-                                                    </div>
+                                                <i class="fa fa-plus"></i>
+
+                                                <div class="add-to-cart overlay text-center">
+                                                  <button class="btn btn-black " type="button" style="font-size: 15px;">{{__('msg.outOfStock')}}&nbsp;
+                                                    <i class="fa fa-cube"></i>
+                                                  </button>
+                                                </div>
                                                 
                                                 <!-- <button class="btn btn-primary add-to-cart-btn" data-id="{{$product->id}}" data-toggle="modal" data-target="{{$product->subscription == 1 ? '#exampleModalCenter1':'#exampleModalCenter'}}">Add to Cart
                                                     <i class="fa fa-shopping-cart"></i>
@@ -437,6 +442,11 @@
 </div>
 <!-- product modal Subscription closed-->
 
+<div class="modal" style="display: none" id="snackbarModal" tabindex="-1" role="dialog" aria-hidden="true"
+  data-keyboard="false" data-backdrop="static">
+  <div id="snackbar" style="visibility: visible">Item is Added Successfully</div>
+</div>
+
     <!-- Optional JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->    
@@ -506,6 +516,71 @@
                     $('#variant-description').html('<b>Description</b>: '+result.description)
                     $('#prod-varient-price').html('€'+Number(result.price).toLocaleString("es-ES", {minimumFractionDigits: 2}))
                     $('#final-variant-id').val(result.id)
+                }
+            });
+        }
+
+        function addOneToCart(element) {
+            let variantId = element.getAttribute('data-variant-id');
+
+            let route = `{{route('add-to-cart')}}`;
+
+            $.ajax({
+                url: route,
+                type: "GET",
+                datatype: "json",
+                data: {
+                variantId: variantId,
+                quantity: 1
+                },
+
+                success: function(result) {
+                $('#cart-count').html(result.count);
+                html = ``;
+                html1 = ``;
+                html2 = ``;
+
+                html +=
+                    `<h3 class="mt-3 mb-3">€${ Number(result.total).toLocaleString("es-ES", {minimumFractionDigits: 2})}</h3>`
+                $('#total-price-heading').html(html)
+                var vendorIds = [];
+                $.each(result.items, function(index, item) {
+                    vendorIds.push(item.options.vendorId)
+                });
+
+                if (Object.keys(result.items).length > 0) {
+                    $.each(result.items, function(index, item) {
+                    var allVendorIds = vendorIds.includes(item.options.vendorId);
+                    html2 += `<div class="cart-total d-flex flex-column justify-content-between" data-item-address="${item.options.vendorAddress}">
+                                            <div class="top d-flex flex-column">                                    
+                                                <div class="item justify-content-between mb-2 px-3">`;
+                    const filteredByValue = Object.fromEntries(
+                        Object.entries(result.items).filter(([key, value]) => value.options.vendorId === item.options
+                        .vendorId)
+                    )
+                    $.each(filteredByValue, function(index, innerItem) {
+                        if (allVendorIds == true) {
+                        html2 +=
+                            `<span class="text-black font-13 font-medium">${item.name}</span> <span class="text-black font-13 font-medium" style="float:right">(${item.qty} x ${ Number(item.price).toLocaleString("es-ES", {minimumFractionDigits: 2})})</span><br>`
+                        return false;
+
+                        }
+
+                    });
+                    html2 += `</div>
+                                            </div>
+                                        </div>`;
+                    })
+                    $('#cart-item').html('')
+                    $('#cart-item').html(html2)
+                    $('.sidenav').show();
+
+                    var x = document.getElementById("snackbarModal");
+                    x.style.display = "block";
+                    setTimeout(function() {
+                    x.style.display = "none";
+                    }, 3000);
+                }
                 }
             });
         }
