@@ -4,11 +4,11 @@
     @section('content')
         <div class="pt-150"></div>
         
-<div class="row no-gutters">
-    <div class="col-md-12">
-        <div class="swiper-container feature-banner-container">
+<div class="row no-gutters slider-wrapper">
+    <div class="col-md-12" h100>
+        <div class="swiper-container feature-banner-container h100">
             <div class="swiper-wrapper">
-            <div class="swiper-slide">
+            <div class="swiper-slide h100">
             <img  src="{{ asset('assets/site/img/featured-banners/1.jpg') }}" alt="First Banner">
             </div>
             <div class="swiper-slide">
