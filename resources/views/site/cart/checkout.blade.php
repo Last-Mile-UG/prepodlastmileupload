@@ -560,6 +560,16 @@
             });
 
             $("input[name=checkout-radio]").prop('checked', true).trigger("change");
+
+            // pre-fill address inputs with the address storged in local storage
+            const address = localStorage.getItem('address');
+
+            if (address && address !== '') {
+                $(".address-description-span").html(address);
+                
+                $("#search-txt").val(address);
+                $("#location-address").val(address);
+            }
         });
     </script>
 
@@ -570,15 +580,19 @@
 		 */
     function loadmap() {
         // initialize map
+
+        const lat = localStorage.getItem('lat');
+        const lon = localStorage.getItem('lon');
+
         var map = new google.maps.Map(document.getElementById("map-canvas"), {
-            center: new google.maps.LatLng(33.808678, -117.918921),
+            center: new google.maps.LatLng(lat ? parseFloat(lat) : 33.808678, lon ? parseFloat(lon) : -117.918921),
             zoom: 13,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
         // initialize marker
         var marker = new google.maps.Marker({
-            position: map.getCenter(),
+            position: lat ? {lat: parseFloat(lat), lng: parseFloat(lon)} : map.getCenter(),
             draggable: true,
             map: map
 
@@ -589,9 +603,13 @@
 
         // intercept map and marker movements
         google.maps.event.addListener(map, "idle", function() {
-            marker.setPosition(map.getCenter());
-            var longitude = document.getElementById("longitude").value = map.getCenter().lat().toFixed(6);
-            var latitude = document.getElementById("latitude").value = map.getCenter().lng().toFixed(6);
+            if (lat && lon) {
+                marker.setPosition({lat: parseFloat(lat), lng: parseFloat(lon)});
+            } else {
+                marker.setPosition(map.getCenter());
+                var longitude = document.getElementById("longitude").value = map.getCenter().lat().toFixed(6);
+                var latitude = document.getElementById("latitude").value = map.getCenter().lng().toFixed(6);
+            }
         });
 
         google.maps.event.addListener(marker, "dragend", function(mapEvent) {
