@@ -36,7 +36,7 @@
                         </div>
                         <div class="multi-layer-form ">
                             <div class="card-1 first-screen show">
-                                <h5>1/3 {{__('msg.easytpes')}}</h5>
+                                <h5>1/4 {{__('msg.easytpes')}}</h5>
                                 <div class="checkout-method getpaymenttype">
                                     <label for="title" class="my-3 mb-2">{{__('msg.checkoutmethod')}}</label>
                                     @foreach($recordDelivery as $delivery)
@@ -65,9 +65,9 @@
                                 </div>
                             </div>
                             <div class="card-1 ml-2">
-                                <h5>2/3 {{__('msg.easytpes')}}</h5>
+                                <h5>2/4 {{__('msg.easytpes')}}</h5>
                                 <!--for existing  user (available delivery addresses)-->
-                                <div class="existing-address" id="existing-address-container">
+                                {{-- <div class="existing-address" id="existing-address-container">
                                     <div class="checkout-method getaddressspan mb-4">
                                         <label for="title" class="my-2">{{__('msg.deliveryaddress')}}</label>
                                         @if(Auth::check())
@@ -93,11 +93,11 @@
                                         <i class="fa fa-plus mr-2"></i>{{__('msg.addnewaddress')}}
                                         </span>
                                     </div>
-                                </div>
+                                </div> --}}
                                  <!--for guest/new user (add new delivery address)-->
                                     <div class="new-data address-form"  id="new-address-container">
                                         <div class="checkout-method">
-                                            <label for="title" class="my-2">{{__('msg.deliveryaddress')}}</label>
+                                            <label for="title" class="my-2">{{__('msg.deliverydetails')}}</label>
                                             
                                                 <div class="bg-white br-5 shadow-2 p-3">
                                                     <div class="form-row mb-3">
@@ -120,9 +120,9 @@
                                                     <div class="form-col mb-3">
                                                         <input type="text" disabled class="form-control custom" id="addNewCompany" name="name" value="" placeholder="Address Title">
                                                     </div> -->
-                                                    <div class="form-col mb-3">
+                                                    {{-- <div class="form-col mb-3">
                                                         <button type="button" disabled class="btn btn-black w-100" id="addNewLocationBtn" data-toggle="modal"  data-target="#myMapModal1">{{__('msg.addnewlocations')}}</button>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                     </div>
@@ -192,12 +192,24 @@
                                 <!--for existing  user (available delivery addresses)-->
                                 <div class="row mt-4">
                                     <button class="btn btn-transparent btn-prev mb-2">{{__('msg.back')}}</button>
+                                    <button class="btn btn-black next-button" disabled id="nextmethod_address" onClick="address1()" >{{__('msg.next')}}</button>
+                                </div>
+                            </div>
+                            
+                            <div class="card-1 ml-2">
+                                <h5>3/4 {{__('msg.easytpes')}}</h5>
+                                <div class="mt-4" id="">
+                                    <label for="title" class="my-3">{{__('msg.deliveryaddress')}}</label>
+                                    <input oninput="validateAddressField();" id="delivery-address" class="controls form-control" type="text" placeholder="Enter a location">
+                                </div>
+                                <div class="row mt-4">
+                                    <button class="btn btn-transparent btn-prev mb-2">{{__('msg.back')}}</button>
                                     <button class="btn btn-black next-button" disabled id="nextmethod_delivery" onClick="address1()" >{{__('msg.next')}}</button>
                                 </div>
                             </div>
                             
                             <div class="card-1 ml-2">
-                                <h5>3/3 {{__('msg.easytpes')}}</h5>
+                                <h5>4/4 {{__('msg.easytpes')}}</h5>
                                 <form onsubmit="return confirmOrder(event)" name="orderForm" id="orderForm">
                                     @csrf 
                                     <div class="top d-flex flex-column">
@@ -206,18 +218,6 @@
                                             <div class="des-pri d-flex justify-content-between">
                                                 <span class="w-50 text-dark-grey payment-type" id="payment-type"></span><input type="hidden" id="checkout-method" name="checkout-method"> 
                                                 <span class="w-50 text-right payment-type-span text-dark-grey" id="payment-type-span"></span><input type="hidden" id="checkout-method-type" name="get-checkout-method">
-                                            </div>
-                                        </div>
-                                        <div class="details mb-3">
-                                            <label for="title-d" class="m-0">{{__('msg.deliveryaddress')}}</label>
-                                            <div class="des-pri d-flex justify-content-between">
-                                                <span class="w-100 text-dark-grey address_name" id="address_name"></span>
-                                                <input type="hidden" id="get_address_name" name="address">
-                                                <span class="w-100 text-right text-dark-grey address-description-span" id="address_description_span"></span>
-                                                <input type="hidden" id="get_address_description" name="address_description">
-                                                <input type="hidden" id="selected-address-id"  name="address_id" value="">
-                                                <input type="hidden" id="select-lat" name="latitude">
-                                                <input type="hidden" id="select-long" name="longitude">
                                             </div>
                                         </div>
                                         <div class="details mb-3">
@@ -234,6 +234,17 @@
                                                 <input type="hidden" value="" id="addphone" name="phone">
                                                 @endif
                                                 
+                                            </div>
+                                        </div>
+                                        <div class="details mb-3">
+                                            <label for="title-d" class="m-0">{{__('msg.deliveryaddress')}}</label>
+                                            <div class="des-pri d-flex justify-content-between">
+                                                <span class="w-50 text-dark-grey address-description-span" id="address_description_span"></span>
+                                                <input type="hidden" id="get_address_description" name="address">
+                                                <input type="hidden" name="address_description" value="test">
+                                                <input type="hidden" name="latitude" value="test">
+                                                <input type="hidden" name="longitude" value="test">
+                                                <input type="hidden" id="selected-address-id"  name="address_id" value="">
                                             </div>
                                         </div>
                                         <div class="details mb-3">
@@ -266,13 +277,6 @@
                                         <span class="w-50 font-13 font-medium text-grey  text-right payment-type-span" >--</span>
                                     </div>
                                 </div>
-                                    <div class="details 2 mb-2">
-                                        <label for="title-d" class="m-0">{{__('msg.deliveryaddress')}}</label>
-                                        <div class="des-pri d-flex justify-content-between">
-                                            <span class="w-50 address_name font-13 font-medium text-grey " id="address_name">--</span>
-                                            <span class="w-50 text-right address-description-span font-13 font-medium text-grey " id="address-description">--</span>
-                                        </div>
-                                    </div>
                                     <div class="details 3 mb-2" id="delivery-a-details">
                                         <label for="title-d" class="m-0">{{__('msg.deliverydetails')}}</label>
                                         <div class="des-pri d-flex justify-content-between">
@@ -282,6 +286,12 @@
                                         <div class="des-pri d-flex justify-content-between">
                                             <span class="w-50 font-13 font-medium text-grey ">{{__('msg.email')}}</span>
                                             <span class="w-100 guestemail text-right font-13 font-medium text-grey " id="guestemail">{{ Auth::check() ? $record->email : ''}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="details 2 mb-2">
+                                        <label for="title-d" class="m-0">{{__('msg.deliveryaddress')}}</label>
+                                        <div class="des-pri d-flex justify-content-between">
+                                            <span class="w-50 address-description-span font-13 font-medium text-grey " id="address-description">--</span>
                                         </div>
                                     </div>
                                     <div class="details 4 mb-2" id="payment-details">
@@ -365,7 +375,8 @@
     {
         var allFieldsHaveValues = $('#addNewFname').val() && $('#addNewLname').val() && $('#addNewEmail').val() && $('#addNewPhone').val();
         
-        $("#addNewLocationBtn").prop('disabled', !allFieldsHaveValues);
+        $("#nextmethod_address").prop('disabled', !allFieldsHaveValues);
+        // $("#addNewLocationBtn").prop('disabled', !allFieldsHaveValues);
     }
     function validateExistCard()
     {
@@ -388,6 +399,13 @@
 
         paymenttype();
 
+    }
+    function validateAddressField() {
+        if ($("#delivery-address").val()) {
+            $("#nextmethod_delivery").prop('disabled', false);
+        } else {
+            $("#nextmethod_delivery").prop('disabled', true);
+        }
     }
     function validateDeliveryAddress()
     {
@@ -516,7 +534,6 @@
         allFormValues.append('delivery_id', `{{$delivery->id}}`);
 
         const stripeKey = "{{ config('app.stripe_publish_key') }}";
-
         $.ajax({
             url : `{{route('checkout.payment')}}`,
             type : "POST",
@@ -545,7 +562,9 @@
 
     <script>
         $(document).ready(function() {
-            $("#new-address-container").hide();
+            $("#existing-address-container").hide();
+            $("#add-new-delivery-address").hide();
+            $("#new-address-container").show();
 
             $("#add-new-delivery-address").on('click',function() {
                 $("#existing-address-container").hide();
@@ -569,6 +588,9 @@
                 
                 $("#search-txt").val(address);
                 $("#location-address").val(address);
+                $("#delivery-address").val(address);
+
+                $("#nextmethod_delivery").prop('disabled', false);
             }
         });
     </script>
