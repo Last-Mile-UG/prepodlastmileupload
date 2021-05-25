@@ -547,10 +547,10 @@ a:link {
 /*slider*/
 .feature-banner-container .swiper-slide img {
     max-width: 100% !important;
-    height: 100% !important;
+    height: 100%;
 }
 .feature-banner-container .swiper-wrapper {
-    height: 100% !important;
+    height: 100%;
 }
 
 .swiper-container .swiper-slide {
@@ -568,7 +568,6 @@ a:link {
 }
 .swiper-container .swiper-slide img {
     width: 100%;
-    height: 162px;
 }
 
 .swiper-container.promo .swiper-slide img {
@@ -2701,6 +2700,10 @@ textarea.complaint-msg:focus {
     }
     .pt-157 {
         padding-top: 190px;
+    }
+
+    .slider-wrapper {
+        height: 200px;
     }
 }
 
