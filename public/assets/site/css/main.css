@@ -568,6 +568,8 @@ a:link {
 }
 .swiper-container .swiper-slide img {
     width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .swiper-container.promo .swiper-slide img {
@@ -575,7 +577,7 @@ a:link {
     height: 100%;
 }
 .swiper-container.support .swiper-slide img {
-    width: 100%;
+    width: 800px;
     height: 240px;
 }
 .swiper-button-next,

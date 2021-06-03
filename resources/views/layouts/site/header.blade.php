@@ -7,13 +7,30 @@
 <!--mobile collapse icon-->
     <div class="top-header pt-0 pb-2 py-sm-3 py-md-3 py-lg-3">
          <div class="row  justify-content-between align-items-center">
-            <div class="col-sm-12 col-md-12 col-lg-4">
-                <div class="logo-area ml-0 ml-sm-5 ml-md-5 ml-lg-5 mb-3 mb-sm-4 mb-md-4 mb-lg-0 text-center text-sm-center text-md-center text-lg-left">
+            <div class="col-sm-12 col-md-12 col-lg-4"  style="display: flex";>
+                <div class="logo-area ml-0 ml-sm-5 ml-md-5 ml-lg-5 mb-3 mb-sm-4 mb-md-4 mb-lg-0 text-center text-sm-center text-md-center text-lg-left" style="margin-left:0px;">
                     <a class="text-muted " href="{{route('site')}}">
-                        <img src="{{asset('assets/site/img/logo.png')}}" alt="" class="img-fluid">
+                        <img src="{{asset('assets/site/img/Last_Mile_Only.png')}}" alt="" height="55px">
                     </a>
+                    
                 </div>
+                <div>
+                     <style>
+        .vertical {
+            border-left: 3px solid #019386;
+            height: 42px;
+            position:absolute;
+            left: 61.4%;
+        }
+    </style>
+    <div class = "vertical"></div>
+                </div>
+                 
+              <div style="padding-top:8px; color:#019386; padding-left:30px; font-size:11px; font-family:roboto;">Lieferung auf Abruf aus deinen Lieblingsläden von Ort</div>
+              
+
             </div>
+           
             <div class="col-sm-12 col-md-12 col-lg-8 top-header-sub-part">
                 <div class="d-flex  flex-wrap flex-column flex-sm-column flex-md-row flex-lg-row justify-content-end align-items-center top-header-options">
                     <!-- <div class="search-goods input-field flex-fill">
